@@ -1,31 +1,39 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import auth from './hoc/auth';
 
+import Login from './components/views/LoginPage/Login';
 import Navbar from './components/views/NavBar/Navbar';
-import LandingPage from './components/views/LandingPage/LandingPage';
-import MeasurementDetailPage from './components/views/MeasurementDetailPage/MeasurementDetailPage';
-import AdminPage from './components/views/AdminPage/AdminPage';
-import DisasterInfoPage from './components/views/DisasterInfoPage/DisasterInfoPage';
-import SafetyMeasuresPage from './components/views/SafetyMeasuresPage/SafetyMeasuresPage';
-
+import DailyStatisticsPage from './components/views/DailyStatisticsPage/DailyStatisticsPage';
+import MonthStatisticsPage from './components/views/MonthStatisticsPage/MonthStatisticsPage';
+import SettingPage from './components/views/SettingPage/Setting';
 import Footer from './components/views/Footer/Footer';
+import TestPage from './components/views/TestPage/TestPage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div style={{ padding: '1rem', minHeight: 'calc(100vh - 80px)' }}>
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        {/* null => 아무나 진입가능
+            true => 로그인한 유저만 가능
+            false => 로그인한 유저 출입불가
+        */}
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/measurement" component={MeasurementDetailPage} />
-          <Route exact path="/admin" component={AdminPage} />
-          <Route exact path="/disasterinfo" component={DisasterInfoPage} />
-          <Route exact path="/safetymeasures" component={SafetyMeasuresPage} />
+          <Route exact path="/" component={DailyStatisticsPage} />
+          <Route
+            exact
+            path="/month"
+            component={auth(MonthStatisticsPage, null)}
+          />
+          <Route exact path="/setting" component={auth(SettingPage, true)} />
+          <Route exact path="/login" component={auth(Login, false)} />
+          <Route exact path="/test" component={auth(TestPage, null)} />
         </Switch>
-      </div>
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </div>
   );
 }
 

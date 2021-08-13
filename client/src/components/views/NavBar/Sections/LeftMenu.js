@@ -1,10 +1,15 @@
 import React from 'react';
 import { Menu } from 'antd';
+import { withRouter } from 'react-router-dom';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 function LeftMenu(props) {
+  const onClickHandler = () => {
+    props.history.push('/');
+  };
+
   return (
     <Menu mode={props.mode}>
       <Menu.Item key="mail">
@@ -22,16 +27,22 @@ function LeftMenu(props) {
       >
         <MenuItemGroup>
           <Menu.Item key="setting:1">
-            <a href="/measurement">측정정보</a>
+            <a href="/">일간 변화량</a>
           </Menu.Item>
           <Menu.Item key="setting:2">
-            <a href="/disasterinfo">재난정보</a>
+            <a href="/month">월간 변화량</a>
           </Menu.Item>
           <Menu.Item key="setting:3">
-            <a href="/safetymeasures">알림정보</a>
+            <a href="/setting">수치변경</a>
           </Menu.Item>
           <Menu.Item key="setting:4">
-            <a href="/admin">admin</a>
+            <a href="/login">Login</a>
+          </Menu.Item>
+          <Menu.Item key="setting:5">
+            <button onClick={onClickHandler}>로그아웃</button>
+          </Menu.Item>
+          <Menu.Item key="setting:6">
+            <a href="/test">TEST</a>
           </Menu.Item>
         </MenuItemGroup>
       </SubMenu>
@@ -39,4 +50,4 @@ function LeftMenu(props) {
   );
 }
 
-export default LeftMenu;
+export default withRouter(LeftMenu);

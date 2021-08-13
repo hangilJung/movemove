@@ -17,12 +17,12 @@ import {
 } from 'recharts';
 import axios from 'axios';
 
-function AdminGraph() {
+function DailyStatisticsGraph() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .post('/api/sensor')
+      .post('/api/water')
       .then((res) => {
         setData(res.data);
       })
@@ -31,7 +31,6 @@ function AdminGraph() {
 
   return (
     <div id="landingGraph">
-      <h1>AdminPage</h1>
       <h4>일간 변화량</h4>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
@@ -82,4 +81,4 @@ function AdminGraph() {
   );
 }
 
-export default AdminGraph;
+export default DailyStatisticsGraph;

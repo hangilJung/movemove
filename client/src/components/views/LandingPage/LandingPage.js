@@ -11,7 +11,7 @@ function LandingPage() {
         textAlign: 'center',
       }}
     >
-      <h1>LandingPage</h1>
+      <h1>로그인창 이후 랜딩페이지</h1>
       <Row>
         <Col md={12} xs={24}>
           <Card>
