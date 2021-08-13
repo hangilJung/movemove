@@ -4,7 +4,7 @@ import WaterLevel from './Sections/WaterLevel';
 function MonthStatisticsPage() {
   return (
     <div>
-      <h1>월간 강우량</h1>
+      <h1>기간조회</h1>
       <WaterLevel />
     </div>
   );

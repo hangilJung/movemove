@@ -1,74 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import {
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
-  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
   Tooltip,
+  Legend,
+  //   Brush,
+  ResponsiveContainer,
+  ReferenceLine,
 } from 'recharts';
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+// import { ko } from 'date-fns/esm/locale';
 
 function WaterLevel() {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
+  const [PlaceId, setPlaceId] = useState('');
+  const [StartDate, setStartDate] = useState('');
+  const [EndDate, setEndDate] = useState('');
+
+  const onSubmitHandler = async (event) => {
+    // page refresh를 막아줌
+    event.preventDefault();
+
+    let body = {
+      placeId: PlaceId,
+      startDate: StartDate,
+      endDate: EndDate,
+    };
+
     axios
-      .post('/api/water')
+      .post('/api/water', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
+    console.log(body);
   };
 
   return (
     <div>
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="water_level"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
+      <form onSubmit={onSubmitHandler}>
+        <DatePicker
+          // locale={ko}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="2021-08-05"
+          selected={StartDate}
+          onChange={(date) => setStartDate(date)}
+        />
+        <DatePicker
+          // locale={ko}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="2021-08-05"
+          selected={EndDate}
+          onChange={(date) => setEndDate(date)}
+        />
+        <button type="submit">조회</button>
+      </form>
+
+      <h4>기간별 변화량</h4>
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="created_at" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            name="수위"
+            type="monotone"
+            dataKey="water_level"
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
+          <ReferenceLine y={40} stroke="red" label={'위험수위'} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -14,20 +14,14 @@ import {
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/esm/locale';
 
 function Date() {
   const [data, setData] = useState([]);
 
+  const [PlaceId, setPlaceId] = useState('');
   const [StartDate, setStartDate] = useState('');
   const [EndDate, setEndDate] = useState('');
-
-  const onStartDateHandler = (event) => {
-    setStartDate(event.currentTarget.value);
-  };
-
-  const onEndDateHandler = (event) => {
-    setEndDate(event.currentTarget.value);
-  };
 
   const onSubmitHandler = async (event) => {
     // page refresh를 막아줌
@@ -51,28 +45,19 @@ function Date() {
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
-        {/* <input
-          type="date"
-          value={StartDate}
-          onChange={onStartDateHandler}
-        />
-        <input
-          type="date"
-          value={EndDate}
-          onChange={onEndDateHandler}
-        />
-        <button type="submit">조회</button> */}
         <DatePicker
+          locale={ko}
+          dateFormat="yyyy-MM-dd"
           placeholderText="2021-08-05"
           selected={StartDate}
           onChange={(date) => setStartDate(date)}
-          dateFormat="yyyy-mm-dd"
         />
         <DatePicker
+          locale={ko}
+          dateFormat="yyyy-MM-dd"
           placeholderText="2021-08-05"
           selected={EndDate}
           onChange={(date) => setEndDate(date)}
-          dateFormat="yyyy-mm-dd"
         />
         <button type="submit">조회</button>
       </form>

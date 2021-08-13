@@ -25,23 +25,25 @@ router.post('/api/detail/', async (req, res) => {
 router.post('/api/landing/', async (req, res) => {
   const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
     place_id: req.body.body.placeId,
-    start_date: req.body.body.startDate,
-    end_date: req.body.body.endDate,
+    start_date: req.body.body.startDate.split('T')[0],
+    end_date: req.body.body.endDate.split('T')[0],
     orderby_column: 'created_at',
     sort: 'desc',
   });
-  console.log(req.body.bodyplaceId);
-  console.log(req.body.body.startDate);
-  console.log(req.body.body.endDate);
+  console.log(req.body.body.startDate.split('T')[0]);
+  console.log(req.body.body.endDate.split('T')[0]);
   res.json(getData.data.body);
 });
 
 router.post('/api/water/', async (req, res) => {
   const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
-    start_date: '2021-07-01',
-    end_date: '2021-08-01',
+    start_date: req.body.body.startDate.split('T')[0],
+    end_date: req.body.body.endDate.split('T')[0],
+    orderby_column: 'created_at',
     sort: 'desc',
   });
+  console.log(req.body.body.startDate.split('T')[0]);
+  console.log(req.body.body.endDate.split('T')[0]);
   res.json(getData.data.body);
 });
 
