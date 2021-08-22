@@ -1,6 +1,9 @@
 import React from 'react';
-import Date from './Sections/Date';
+import OneDay from './Sections/OneDay';
 import DateTest from './Sections/DateTest';
+import Pie from './Sections/Pie';
+import Test from './Sections/Test';
+import { Col, Row, Card } from 'antd';
 
 function TestPage() {
   return (
@@ -12,8 +15,9 @@ function TestPage() {
         height: '100vh',
       }}
     >
+      {/* <Pie /> */}
+      <OneDay />
       {/* <DateTest /> */}
-      <Date />
     </div>
   );
 }

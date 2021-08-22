@@ -11,18 +11,36 @@ router.post('/api/sensor/', async (req, res) => {
   res.json(getData.data.body);
 });
 
-router.post('/api/detail/', async (req, res) => {
-  const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
-    start_date: req.body.start_date,
-    end_date: req.body.end_date,
-    orderby_column: 'created_at',
-    limit: 20,
+router.post('/api/daily/', async (req, res) => {
+  const getData = await axios.post('http://192.168.0.29:3200/sensor/hour', {
+    place_id: req.body.body.placeId,
+    start_date: req.body.body.startDate.split('T')[0],
+    end_date: req.body.body.endDate.split('T')[0],
+    // created_at: req.body.body.createdAt.split('T')[0],
+    // orderby_column: 'created_at',
+    // sort: 'desc',
+    // limit: 24,
   });
-  console.log(req.body);
+  console.log(req.body.body);
+  console.log(req.body.body.createdAt);
   res.json(getData.data.body);
 });
 
 router.post('/api/landing/', async (req, res) => {
+  const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
+    // place_id: req.body.body.placeId,
+    // start_date: req.body.body.startDate.split('T')[0],
+    // end_date: req.body.body.endDate.split('T')[0],
+    orderby_column: 'created_at',
+    sort: 'desc',
+  });
+  console.log(req.body.body.startDate.split('T')[0]);
+  console.log(req.body.body.endDate.split('T')[0]);
+  res.json(getData.data.body);
+});
+
+// ---------------월간변화량 수위------------------
+router.post('/api/search/', async (req, res) => {
   const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
     place_id: req.body.body.placeId,
     start_date: req.body.body.startDate.split('T')[0],
@@ -30,20 +48,21 @@ router.post('/api/landing/', async (req, res) => {
     orderby_column: 'created_at',
     sort: 'desc',
   });
+  console.log(req.body);
+  console.log(req.body.body.placeId);
   console.log(req.body.body.startDate.split('T')[0]);
   console.log(req.body.body.endDate.split('T')[0]);
   res.json(getData.data.body);
 });
 
-router.post('/api/water/', async (req, res) => {
-  const getData = await axios.post('http://192.168.0.29:3200/sensor/', {
+router.post('/api/month/', async (req, res) => {
+  const getData = await axios.post('http://192.168.0.29:3200/sensor/month', {
+    place_id: req.body.body.placeId,
     start_date: req.body.body.startDate.split('T')[0],
     end_date: req.body.body.endDate.split('T')[0],
-    orderby_column: 'created_at',
-    sort: 'desc',
   });
-  console.log(req.body.body.startDate.split('T')[0]);
-  console.log(req.body.body.endDate.split('T')[0]);
+  console.log(req.body);
+  console.log(getData.data.body);
   res.json(getData.data.body);
 });
 
@@ -56,6 +75,9 @@ router.post('/api/login', async (req, res) => {
   res.json(userData.data);
   console.log(userData.data);
 });
+
+const today = new Date();
+console.log(today);
 
 // ---------------auth--------------
 
@@ -85,5 +107,18 @@ router.post('/api/login', async (req, res) => {
 //     });
 //   });
 // });
+
+// -------------------------------------test 월간
+
+router.post('/api/test/', async (req, res) => {
+  const getData = await axios.post('http://192.168.0.29:3200/sensor/month', {
+    place_id: req.body.body.placeId,
+    start_date: req.body.body.startDate.split('T')[0],
+    end_date: req.body.body.endDate.split('T')[0],
+  });
+  console.log(req.body);
+  console.log(getData.data.body);
+  res.json(getData.data.body);
+});
 
 module.exports = router;

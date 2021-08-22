@@ -13,7 +13,7 @@ function Navbar() {
           fontSize: '2rem',
         }}
       >
-        순천시 재난정보 시스템
+        순천시 재난 정보 관리 시스템
       </p>
       <div>
         <LeftMenu />

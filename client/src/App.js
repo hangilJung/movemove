@@ -6,7 +6,8 @@ import auth from './hoc/auth';
 import Login from './components/views/LoginPage/Login';
 import Navbar from './components/views/NavBar/Navbar';
 import DailyStatisticsPage from './components/views/DailyStatisticsPage/DailyStatisticsPage';
-import MonthStatisticsPage from './components/views/MonthStatisticsPage/MonthStatisticsPage';
+import DateSearchPage from './components/views/DateSearchPage/DateSearchPage';
+import StatisticsPage from './components/views/StatisticsPage/StatisticsPage';
 import SettingPage from './components/views/SettingPage/Setting';
 import Footer from './components/views/Footer/Footer';
 import TestPage from './components/views/TestPage/TestPage';
@@ -22,10 +23,11 @@ function App() {
         */}
         <Switch>
           <Route exact path="/" component={DailyStatisticsPage} />
+          <Route exact path="/search" component={auth(DateSearchPage, null)} />
           <Route
             exact
-            path="/month"
-            component={auth(MonthStatisticsPage, null)}
+            path="/statistics"
+            component={auth(StatisticsPage, null)}
           />
           <Route exact path="/setting" component={auth(SettingPage, true)} />
           <Route exact path="/login" component={auth(Login, false)} />

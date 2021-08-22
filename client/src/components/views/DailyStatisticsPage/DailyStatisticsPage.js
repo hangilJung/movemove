@@ -6,6 +6,9 @@ function DailyStatisticsPage() {
     <div
       style={{
         textAlign: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <DailyStatisticsGraph />

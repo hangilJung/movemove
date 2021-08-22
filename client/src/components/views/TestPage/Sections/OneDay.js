@@ -13,19 +13,19 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import axios from 'axios';
+import moment from 'moment';
 
-function DateTest() {
+function OneDay() {
   const [data, setData] = useState([]);
 
-  const [state, setState] = useState(initialState);
-
   const [PlaceId, setPlaceId] = useState('1');
-  const [StartDate, setStartDate] = useState(new Date());
-  const [EndDate, setEndDate] = useState(new Date());
-  const [CreatedAt, setCreatedAt] = useState(new Date());
+  const [StartDate, setStartDate] = useState(moment());
+  const [EndDate, setEndDate] = useState(moment());
+  const [CreatedAt, setCreatedAt] = useState(moment());
 
-  const [zoom, setzoom] = useState(initialState);
-  const [zoomOut, setzoomOut] = useState(initialState);
+  const testDay = moment().format('YYYY년 MM월 DD일');
+
+  console.log(testDay);
 
   const onPlaceIdHandler = (event) => {
     setPlaceId(event.currentTarget.value);
@@ -68,92 +68,6 @@ function DateTest() {
     console.log(body);
   };
 
-  const getAxisYDomain = (from, to, ref, offset) => {
-    const refData = data.slice(from - 1, to);
-    let [bottom, top] = [refData[0][ref], refData[0][ref]];
-    refData.forEach((d) => {
-      if (d[ref] > top) top = d[ref];
-      if (d[ref] < bottom) bottom = d[ref];
-    });
-
-    return [(bottom | 0) - offset, (top | 0) + offset];
-  };
-
-  const initialState = {
-    data,
-    left: 'dataMin',
-    right: 'dataMax',
-    refAreaLeft: '',
-    refAreaRight: '',
-    top: 'dataMax+1',
-    bottom: 'dataMin-1',
-    top2: 'dataMax+20',
-    bottom2: 'dataMin-20',
-    animation: true,
-  };
-
-  zoom(() => {
-    let { refAreaLeft, refAreaRight, data } = this.state;
-
-    if (refAreaLeft === refAreaRight || refAreaRight === '') {
-      this.setState(() => ({
-        refAreaLeft: '',
-        refAreaRight: '',
-      }));
-      return;
-    }
-
-    // xAxis domain
-    if (refAreaLeft > refAreaRight)
-      [refAreaLeft, refAreaRight] = [refAreaRight, refAreaLeft];
-
-    // yAxis domain
-    const [bottom, top] = getAxisYDomain(refAreaLeft, refAreaRight, 'cost', 1);
-    const [bottom2, top2] = getAxisYDomain(
-      refAreaLeft,
-      refAreaRight,
-      'impression',
-      50
-    );
-
-    setState(() => ({
-      refAreaLeft: '',
-      refAreaRight: '',
-      data: data.slice(),
-      left: refAreaLeft,
-      right: refAreaRight,
-      bottom,
-      top,
-      bottom2,
-      top2,
-    }));
-  });
-
-  zoomOut(() => {
-    setState(({ data }) => ({
-      data: data.slice(),
-      refAreaLeft: '',
-      refAreaRight: '',
-      left: 'dataMin',
-      right: 'dataMax',
-      top: 'dataMax+1',
-      top2: 'dataMax+50',
-      bottom: 'dataMin',
-    }));
-  });
-
-  const {
-    // data,
-    left,
-    right,
-    refAreaLeft,
-    refAreaRight,
-    top,
-    bottom,
-    top2,
-    bottom2,
-  } = state;
-
   const formatXAxis = (tickItem) => {
     if (tickItem)
       return `${tickItem.slice(5, 7)}월 ${tickItem.slice(
@@ -165,10 +79,6 @@ function DateTest() {
 
   return (
     <div>
-      <button className="btn update" onClick={this.zoomOut.bind(this)}>
-        Zoom Out
-      </button>
-
       <form onSubmit={onSubmitHandler}>
         <select onChange={onPlaceIdHandler}>
           <option value="1">용당교</option>
@@ -218,17 +128,7 @@ function DateTest() {
             stroke="#8884d8"
           />
           <Bar dataKey="precipitation" barSize={20} fill="#413ea0" />
-          <Line
-            type="monotone"
-            dataKey="temperature"
-            stroke="#ff7300"
-            onMouseDown={(e) => this.setState({ refAreaLeft: e.activeLabel })}
-            onMouseMove={(e) =>
-              this.state.refAreaLeft &&
-              this.setState({ refAreaRight: e.activeLabel })
-            }
-            onMouseUp={this.zoom.bind(this)}
-          />
+          <Line type="monotone" dataKey="temperature" stroke="#ff7300" />
           <Brush startIndex={0} endIndex={0} height={10} stroke="#8884d8" />
         </ComposedChart>
       </ResponsiveContainer>
@@ -236,4 +136,4 @@ function DateTest() {
   );
 }
 
-export default DateTest;
+export default OneDay;

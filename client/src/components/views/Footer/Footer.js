@@ -12,7 +12,7 @@ function Footer() {
         fontSize: '1rem',
       }}
     >
-      <p>^^</p>
+      <p>순천시 재난정보 관리 시스템</p>
     </div>
   );
 }
