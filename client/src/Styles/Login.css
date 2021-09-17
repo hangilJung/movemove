@@ -1,0 +1,11 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  margin: auto;
+  padding-top: 30vh;
+}
+.login-form {
+  display: flex;
+  width: 80vh;
+}

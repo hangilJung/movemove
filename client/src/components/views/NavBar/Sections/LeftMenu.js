@@ -1,51 +1,41 @@
 import React from 'react';
 import { Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
+import {
+  FcCalendar,
+  FcList,
+  FcWebcam,
+  FcSettings,
+  FcStatistics,
+  FcHome,
+  FcSelfServiceKiosk,
+} from 'react-icons/fc';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 function LeftMenu(props) {
-  const onClickHandler = () => {
-    props.history.push('/');
-  };
-
   return (
-    <Menu mode={props.mode}>
-      <Menu.Item key="mail">
-        <a href="/">Home</a>
-      </Menu.Item>
-      <SubMenu
-        title={<span>Menu</span>}
-        key="subMenu"
-        style={{
-          height: '80px',
-          display: 'flex',
-          alignItems: 'left',
-          justifyContent: 'left',
-        }}
-      >
+    <Menu mode={props.mode} triggerSubMenuAction="click">
+      <SubMenu title={<span>Menu</span>} key="subMenu" icon={<FcList />}>
+        <Menu.Item key="main" icon={<FcHome />}>
+          <a href="/">Home</a>
+        </Menu.Item>
         <MenuItemGroup>
-          <Menu.Item key="setting:1">
-            <a href="/">일간 변화량</a>
+          <Menu.Item key="daily" icon={<FcWebcam />}>
+            <a href="/daily">일간 모니터링</a>
           </Menu.Item>
-          <Menu.Item key="setting:2">
-            <a href="/search">기간별 조회</a>
+          <Menu.Item key="search" icon={<FcCalendar />}>
+            <a href="/search">검색 일자 선택</a>
           </Menu.Item>
-          <Menu.Item key="setting:3">
+          <Menu.Item key="statistics" icon={<FcStatistics />}>
             <a href="/statistics">통계</a>
           </Menu.Item>
-          <Menu.Item key="setting:4">
-            <a href="/setting">수치변경</a>
+          <Menu.Item key="setting" icon={<FcSettings />}>
+            <a href="/setting">설정</a>
           </Menu.Item>
-          <Menu.Item key="setting:5">
-            <a href="/login">Login</a>
-          </Menu.Item>
-          <Menu.Item key="setting:6">
-            <p onClick={onClickHandler}>로그아웃</p>
-          </Menu.Item>
-          <Menu.Item key="setting:7">
-            <a href="/test">TEST</a>
+          <Menu.Item key="kiosk" icon={<FcSelfServiceKiosk />}>
+            <a href="/kiosk">키오스크</a>
           </Menu.Item>
         </MenuItemGroup>
       </SubMenu>

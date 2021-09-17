@@ -1,23 +1,27 @@
-import React from 'react';
-import RadarCharts from './Sections/RadarCharts';
-import BarWaterGraph from './Sections/BarWaterGraph';
-import { Col, Row, Card } from 'antd';
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+import { Radio, Tabs } from 'antd';
+import { withRouter } from 'react-router';
+import MonthGraph from './Sections/MonthGraph';
+import YearGraph from './Sections/YearGraph';
+import '../../../Styles/Page.css';
 
-function StatisticsPage() {
+function StatisticsPage(props) {
+  const { TabPane } = Tabs;
+
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: '0 auto',
-      }}
-    >
-      <BarWaterGraph />
-      <RadarCharts />
+    <div className="statistics-page">
+      <Tabs defaultActiveKey="1" centered>
+        <TabPane tab="월간 통계" key="month">
+          <MonthGraph />
+        </TabPane>
+        <TabPane tab="연간 통계" key="year">
+          <YearGraph />
+        </TabPane>
+      </Tabs>
     </div>
   );
 }
 
-export default StatisticsPage;
+export default withRouter(StatisticsPage);
