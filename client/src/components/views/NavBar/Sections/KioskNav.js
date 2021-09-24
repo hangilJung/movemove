@@ -40,7 +40,7 @@ function KioskNav() {
   }
 
   return (
-    <div>
+    <div className="kiosk-nav">
       <div className="kiosk-title">
         <h1>
           <a href="/">동천 모니터링 시스템</a>

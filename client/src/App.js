@@ -12,6 +12,7 @@ import SettingPage from './components/views/SettingPage/SettingPage';
 import Footer from './components/views/Footer/Footer';
 import KioskPage from './components/views/KioskPage/KioskPage';
 import NotFound from './components/views/NotFoundPage';
+import TestPage from './components/views/TestPage/Test';
 import { Spin, Alert } from 'antd';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <PrivateRoute exact path="/statistics" component={StatisticsPage} />
             <PrivateRoute exact path="/setting" component={SettingPage} />
             <PublicRoute exact path="/kiosk" component={KioskPage} />
+            <PublicRoute exact path="/test" component={TestPage} />
             <PublicRoute exact path="/notfound" component={NotFound} />
           </Switch>
         </div>

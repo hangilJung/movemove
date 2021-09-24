@@ -1,5 +1,29 @@
 .kiosk-page {
-  padding: 50px 30px 0 30px;
+  margin: 0 auto;
+  padding: 50px 30px 50px 30px;
   text-align: center;
-  max-height: 850px;
+  background: #ececec;
+  min-height: 550px;
+}
+.firstPoint {
+  padding: 30px 10px 30px 10px;
+}
+.secondPoint {
+  padding: 30px 10px 30px 10px;
+}
+.thirdPoint {
+  padding: 30px 10px 30px 10px;
+}
+.fourthPoint {
+  padding: 30px 10px 30px 10px;
+}
+
+.kiosk-low {
+  color: blue;
+}
+.kiosk-safe {
+  color: green;
+}
+.kiosk-waring {
+  color: red;
 }

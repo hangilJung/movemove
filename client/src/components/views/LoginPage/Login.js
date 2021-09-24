@@ -51,16 +51,22 @@ function Login() {
   return (
     <div className="login-page">
       <Form className="login-form" onKeyPress={onKeyPress}>
-        <Input
-          type="text"
-          onChange={idValue}
-          placeholder="아이디를 입력해 주세요."
-        ></Input>
-        <Input
-          type="password"
-          onChange={passwordValue}
-          placeholder="비밀번호를 입력해 주세요."
-        ></Input>
+        <Form.Item>
+          <Input
+            type="text"
+            onChange={idValue}
+            placeholder="아이디를 입력해 주세요."
+            size="large"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Input
+            type="password"
+            onChange={passwordValue}
+            placeholder="비밀번호를 입력해 주세요."
+            size="large"
+          />
+        </Form.Item>
         <Button type="button" onClick={onLogin}>
           로그인
         </Button>

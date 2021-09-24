@@ -1,34 +1,43 @@
 @import '~antd/dist/antd.css';
 
+body {
+  margin-bottom: 50px;
+}
+
 .daily-page {
   width: 90%;
   justify-content: center;
-  /* display: flex; */
   text-align: center;
   margin: 0 auto;
   padding: 10vh;
 }
+.daily-table {
+  margin-bottom: 50px;
+}
+.daily-chart {
+  margin-bottom: 50px;
+}
 .search-page {
   width: 90%;
   justify-content: center;
-  /* display: flex; */
   text-align: center;
   margin: 0 auto;
   padding-top: 10vh;
+  padding-bottom: 15vh;
 }
 
 .statistics-page {
   width: 95%;
   justify-content: center;
-  /* display: flex; */
   text-align: center;
   margin: 0 auto;
   padding-top: 10vh;
+  padding-bottom: 15vh;
 }
 
 .setting {
   display: flex;
   justify-content: center;
   padding-top: 5vh;
-  /* margin: 0 auto; */
+  padding-bottom: 15vh;
 }

@@ -6,13 +6,14 @@ import moment from 'moment';
 import { Radio } from 'antd';
 import accessToken from '../../../../lib/accessToken';
 import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
+  Bar,
+  BarChart,
+  XAxis,
+  Label,
+  YAxis,
   Tooltip,
   Legend,
+  CartesianGrid,
   ResponsiveContainer,
 } from 'recharts';
 import { Row, Col, Card } from 'antd';
@@ -64,6 +65,11 @@ function MonthGraph(props) {
       .catch((err) => console.log(err));
   };
 
+  const formatXAxis = (tickItem) => {
+    if (tickItem) return `${tickItem.slice(5, 7)}월`;
+    else return tickItem;
+  };
+
   return (
     <div className="radar-chart">
       <div>
@@ -77,85 +83,137 @@ function MonthGraph(props) {
       <Row gutter={16}>
         <Col span={12}>
           <Card title="수위" bordered={false}>
-            <ResponsiveContainer width="100%" height={500}>
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="month" />
-                <PolarRadiusAxis angle={30} />
-                <Radar
-                  name="수위"
-                  dataKey="water_level"
-                  stroke="#8884d8"
-                  fill="#8884d8"
-                  fillOpacity={0.6}
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={data}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="created_at"
+                  dx={10}
+                  tickFormatter={formatXAxis}
+                  allowDataOverflow={false}
                 />
-
+                <YAxis yAxisId="left" orientation="left" />
+                <YAxis yAxisId="right" orientation="right" />
                 <Tooltip />
                 <Legend />
-              </RadarChart>
+                <Bar
+                  yAxisId="left"
+                  name="수위"
+                  dataKey="water_level"
+                  fill="#8884d8"
+                  label={{ position: 'top' }}
+                />
+              </BarChart>
             </ResponsiveContainer>
           </Card>
         </Col>
         <Col span={12}>
           <Card title="강수량" bordered={false}>
-            <ResponsiveContainer width="100%" height={500}>
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="month" />
-                <PolarRadiusAxis angle={30} />
-                <Radar
-                  name="강수량"
-                  dataKey="precipitation"
-                  stroke="#82ca9d"
-                  fill="#82ca9d"
-                  fillOpacity={0.6}
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={data}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="created_at"
+                  dx={10}
+                  tickFormatter={formatXAxis}
+                  allowDataOverflow={false}
                 />
-
+                <YAxis yAxisId="left" orientation="left" />
+                <YAxis yAxisId="right" orientation="right" />
                 <Tooltip />
                 <Legend />
-              </RadarChart>
+                <Bar
+                  yAxisId="left"
+                  name="강수량"
+                  dataKey="precipitation"
+                  fill="#82ca9d"
+                  label={{ position: 'top' }}
+                />
+              </BarChart>
             </ResponsiveContainer>
           </Card>
         </Col>
         <Col span={12}>
           <Card title="온도" bordered={false}>
-            <ResponsiveContainer width="100%" height={500}>
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="month" />
-                <PolarRadiusAxis angle={30} />
-                <Radar
-                  name="온도"
-                  dataKey="temperature"
-                  stroke="#ff7300"
-                  fill="#ff7300"
-                  fillOpacity={0.6}
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={data}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="created_at"
+                  dx={10}
+                  tickFormatter={formatXAxis}
+                  allowDataOverflow={false}
                 />
-
+                <YAxis yAxisId="left" orientation="left" />
+                <YAxis yAxisId="right" orientation="right" />
                 <Tooltip />
                 <Legend />
-              </RadarChart>
+                <Bar
+                  yAxisId="left"
+                  name="온도"
+                  dataKey="temperature"
+                  fill="#ff7300"
+                  label={{ position: 'top' }}
+                />
+              </BarChart>
             </ResponsiveContainer>
           </Card>
         </Col>
         <Col span={12}>
           <Card title="습도" bordered={false}>
-            <ResponsiveContainer width="100%" height={500}>
-              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="month" />
-                <PolarRadiusAxis angle={30} />
-                <Radar
-                  name="습도"
-                  dataKey="humidity"
-                  stroke="#8B0000"
-                  fill="#8B0000"
-                  fillOpacity={0.6}
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={data}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="created_at"
+                  dx={10}
+                  tickFormatter={formatXAxis}
+                  allowDataOverflow={false}
                 />
-
+                <YAxis yAxisId="left" orientation="left" />
+                <YAxis yAxisId="right" orientation="right" />
                 <Tooltip />
                 <Legend />
-              </RadarChart>
+                <Bar
+                  yAxisId="left"
+                  name="습도"
+                  dataKey="humidity"
+                  fill="#8B0000"
+                  label={{ position: 'top' }}
+                />
+              </BarChart>
             </ResponsiveContainer>
           </Card>
         </Col>

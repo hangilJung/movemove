@@ -11,6 +11,7 @@ import '../../../Styles/Page.css';
 import accessToken from '../../../lib/accessToken';
 
 function DailyStatisticsPage(props) {
+  console.log('daily11');
   const [data, setData] = useState([]);
 
   const [placeId, setPlaceId] = useState('1');
@@ -74,6 +75,7 @@ function DailyStatisticsPage(props) {
         <Radio.Button value="4">순천만 생태공원</Radio.Button>
       </Radio.Group>
       <DailyGraph data={data} />
+      <br />
       <DailyTable data={data} />
     </div>
   );

@@ -9,12 +9,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Label,
   ResponsiveContainer,
 } from 'recharts';
 import axios from 'axios';
 import locale from 'antd/lib/date-picker/locale/ko_KR';
 import moment from 'moment';
-import { Row, Col, Card, DatePicker, Button, Radio } from 'antd';
+import { Row, Col, Card, DatePicker, Button, Radio, Form } from 'antd';
 import { withRouter } from 'react-router';
 import accessToken from '../../../../lib/accessToken';
 import '../../../../Styles/Graph.css';
@@ -89,27 +90,31 @@ function YearGraph(props) {
 
   return (
     <div className="bar-chart">
-      <div>
-        <Radio.Group onChange={onPlaceHandler} defaultValue="1">
-          <Radio.Button value="1">용당교</Radio.Button>
-          <Radio.Button value="2">풍덕교</Radio.Button>
-          <Radio.Button value="3">천변주차장</Radio.Button>
-          <Radio.Button value="4">순천만 생태공원</Radio.Button>
-        </Radio.Group>
-      </div>
-      <DatePicker
-        locale={locale}
-        placeholder={moment().format('YYYY년')}
-        onChange={(date) => setStartDate(date)}
-        picker="year"
-      />
-      <DatePicker
-        locale={locale}
-        placeholder={moment().format('YYYY년')}
-        onChange={(date) => setEndDate(date)}
-        picker="year"
-      />
-      <Button onClick={onSubmitHandler}>조회</Button>
+      <Form>
+        <Form.Item>
+          <Radio.Group onChange={onPlaceHandler} defaultValue="1">
+            <Radio.Button value="1">용당교</Radio.Button>
+            <Radio.Button value="2">풍덕교</Radio.Button>
+            <Radio.Button value="3">천변주차장</Radio.Button>
+            <Radio.Button value="4">순천만 생태공원</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item>
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YYYY년')}
+            onChange={(date) => setStartDate(date)}
+            picker="year"
+          />
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YYYY년')}
+            onChange={(date) => setEndDate(date)}
+            picker="year"
+          />
+          <Button onClick={onSubmitHandler}>조회</Button>
+        </Form.Item>
+      </Form>
       <Row gutter={16}>
         <Col span={12}>
           <Card title="수위" bordered={false}>
@@ -139,6 +144,7 @@ function YearGraph(props) {
                   name="수위"
                   dataKey="water_level"
                   fill="#8884d8"
+                  label={{ position: 'top' }}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -172,6 +178,7 @@ function YearGraph(props) {
                   name="강수량"
                   dataKey="precipitation"
                   fill="#82ca9d"
+                  label={{ position: 'top' }}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -205,6 +212,7 @@ function YearGraph(props) {
                   name="온도"
                   dataKey="temperature"
                   fill="#ff7300"
+                  label={{ position: 'top' }}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -238,6 +246,7 @@ function YearGraph(props) {
                   name="습도"
                   dataKey="humidity"
                   fill="#8B0000"
+                  label={{ position: 'top' }}
                 />
               </BarChart>
             </ResponsiveContainer>

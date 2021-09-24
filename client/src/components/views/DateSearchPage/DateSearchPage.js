@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import DateSearchGraph from './Sections/DateSearchGraph';
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import { Radio, DatePicker, Button } from 'antd';
+import { Radio, DatePicker, Button, Form } from 'antd';
 import moment from 'moment';
 import 'moment/locale/ko';
 import locale from 'antd/lib/date-picker/locale/ko_KR';
@@ -99,27 +99,29 @@ function DateSearchPage(props) {
       <br />
       <br />
       <h2>조회 기간별 데이터 수치 변화</h2>
-      <div>
-        <Radio.Group onChange={onSelect} defaultValue="1">
-          <Radio.Button value="1">용당교</Radio.Button>
-          <Radio.Button value="2">풍덕교</Radio.Button>
-          <Radio.Button value="3">천변주차장</Radio.Button>
-          <Radio.Button value="4">순천만 생태공원</Radio.Button>
-        </Radio.Group>
-      </div>
-      <div>
-        <DatePicker
-          locale={locale}
-          placeholder={moment().format('YY년 MM월 DD일')}
-          onChange={(date) => setStartDate(date)}
-        />
-        <DatePicker
-          placeholder={moment().format('YY년 MM월 DD일')}
-          locale={locale}
-          onChange={(date) => setEndDate(date)}
-        />
-        <Button onClick={onSubmitHandler}>조회</Button>
-        <div>
+      <Form>
+        <Form.Item>
+          <Radio.Group onChange={onSelect} defaultValue="1">
+            <Radio.Button value="1">용당교</Radio.Button>
+            <Radio.Button value="2">풍덕교</Radio.Button>
+            <Radio.Button value="3">천변주차장</Radio.Button>
+            <Radio.Button value="4">순천만 생태공원</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item>
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YY년 MM월 DD일')}
+            onChange={(date) => setStartDate(date)}
+          />
+          <DatePicker
+            placeholder={moment().format('YY년 MM월 DD일')}
+            locale={locale}
+            onChange={(date) => setEndDate(date)}
+          />
+          <Button onClick={onSubmitHandler}>조회</Button>
+        </Form.Item>
+        <Form.Item>
           <Button
             onClick={onSearchBtn}
             value={moment().subtract(1, 'months').format('YYYY-MM-DD')}
@@ -138,11 +140,11 @@ function DateSearchPage(props) {
           >
             1년
           </Button>
-        </div>
-      </div>
+        </Form.Item>
 
-      <DateSearchGraph data={data} />
-      <br />
+        <DateSearchGraph data={data} />
+        <br />
+      </Form>
     </div>
   );
 }

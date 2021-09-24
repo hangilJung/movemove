@@ -1,6 +1,7 @@
 @import '~antd/dist/antd.css';
 
 .menu {
+  width: 100%;
   padding: 10px 20px 20px;
   border-bottom: solid 1px #e8e8e8;
   box-shadow: 0 0 30px #f3f1f1;

@@ -70,6 +70,7 @@ function DateSearchGraph(props) {
             stroke="#FF8042"
             activeDot={{ r: 8 }}
           />
+          <ReferenceLine y={dangerLevel} stroke="red" label={'위험강수량'} />
         </LineChart>
       </ResponsiveContainer>
       <br />
@@ -93,6 +94,7 @@ function DateSearchGraph(props) {
             stroke="#006633"
             activeDot={{ r: 8 }}
           />
+          <ReferenceLine y={dangerLevel} stroke="red" label={'야외활동자제'} />
         </LineChart>
       </ResponsiveContainer>
       <h3>습도</h3>
@@ -115,6 +117,7 @@ function DateSearchGraph(props) {
             stroke="#000"
             activeDot={{ r: 8 }}
           />
+          <ReferenceLine y={dangerLevel} stroke="red" label={'불쾌지수높음'} />
         </LineChart>
       </ResponsiveContainer>
     </div>

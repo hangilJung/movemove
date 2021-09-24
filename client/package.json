@@ -10,6 +10,8 @@
     "antd": "^4.16.9",
     "axios": "^0.21.1",
     "core-js": "^3.16.1",
+    "highcharts": "^9.2.2",
+    "highcharts-react-official": "^3.0.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",

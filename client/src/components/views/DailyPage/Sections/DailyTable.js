@@ -12,6 +12,7 @@ function DailyTable(props) {
       },
       key: 'created_at',
       align: 'center',
+      width: 250,
     },
     {
       title: '수위',
@@ -42,8 +43,10 @@ function DailyTable(props) {
   return (
     <div className="daily-table">
       <Table
+        bordered={true}
         columns={columns}
         dataSource={props.data}
+        size="small"
         // 페이징 표시안함
         pagination={false}
         // 페이징 바텀센터

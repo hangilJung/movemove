@@ -3,20 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ReferenceLine,
-  ResponsiveContainer,
-} from 'recharts';
+import { Statistic, Row, Col, Card } from 'antd';
+import '../../../../Styles/Kiosk.css';
 
-function SecondPoint() {
-  const [data, setData] = useState([]);
+function FirstPoint() {
+  const [data, setData] = useState([{}]);
 
   const dangerLevel = data[0]?.water_level_danger;
 
@@ -40,66 +31,97 @@ function SecondPoint() {
       .catch((err) => console.log(err));
   }, []);
 
+  const waterData = data[data.length - 1].water_level;
+  const preData = data[data.length - 1].precipitation;
+  const tempData = data[data.length - 1].temperature;
+  const humData = data[data.length - 1].humidity;
+
   const formatXAxis = (tickItem) => {
     if (tickItem) return `${tickItem.slice(11, 13)}시`;
     else return tickItem;
   };
 
+  const waterColor = waterData < 10 ? 'blue' : waterData < 30 ? 'green' : 'red';
+  const preColor = preData < 30 ? 'blue' : preData < 50 ? 'green' : 'red';
+  const tempColor = tempData < 20 ? 'blue' : tempData < 32 ? 'green' : 'red';
+  const humColor = humData < 40 ? 'blue' : humData < 75 ? 'green' : 'red';
+
   return (
-    <div>
-      <ResponsiveContainer width="99%" height={250}>
-        <LineChart
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="created_at" tickFormatter={formatXAxis} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="water_level"
-            stroke="#0088FE"
-            activeDot={{ r: 8 }}
-            name="수위"
-          />
-          <Line
-            type="monotone"
-            dataKey="precipitation"
-            stroke="#006633"
-            name="강수량"
-          />
-          <Line
-            type="monotone"
-            dataKey="temperature"
-            stroke="#ff7300"
-            name="온도"
-          />
-          <Line
-            type="monotone"
-            dataKey="humidity"
-            stroke="#82ca9d"
-            name="습도"
-          />
-          <ReferenceLine
-            y={dangerLevel}
-            stroke="red"
-            label={{
-              position: 'top',
-              value: '위험수위',
-              fill: 'red',
-              fontSize: 15,
-            }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="secondPoint">
+      <Row gutter={16}>
+        <Col span={6}>
+          <Card>
+            <Statistic
+              title="수위"
+              value={waterData}
+              precision={1}
+              valueStyle={{ color: waterColor }}
+              suffix="m"
+            />
+            {waterData < 10 ? (
+              <p className="kiosk-low">수위 낮음</p>
+            ) : waterData < 30 ? (
+              <p className="kiosk-safe">적정수위</p>
+            ) : (
+              <p className="kiosk-waring">수위 높음</p>
+            )}
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Statistic
+              title="강수량"
+              value={preData}
+              precision={1}
+              valueStyle={{ color: preColor }}
+              suffix="mm"
+            />
+            {preData < 30 ? (
+              <p className="kiosk-low">강수량 없음</p>
+            ) : preData < 50 ? (
+              <p className="kiosk-safe">안전</p>
+            ) : (
+              <p className="kiosk-waring">위험</p>
+            )}
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Statistic
+              title="온도"
+              value={tempData}
+              precision={1}
+              valueStyle={{ color: tempColor }}
+              suffix="℃"
+            />
+            {tempData < 20 ? (
+              <p className="kiosk-low">온도 낮음</p>
+            ) : tempData < 32 ? (
+              <p className="kiosk-safe">적정 온도</p>
+            ) : (
+              <p className="kiosk-waring">온도 높음</p>
+            )}
+          </Card>
+        </Col>
+        <Col span={6}>
+          <Card>
+            <Statistic
+              title="습도"
+              value={humData}
+              valueStyle={{ color: humColor }}
+              suffix="%"
+            />
+            {humData < 40 ? (
+              <p className="kiosk-low">습도 낮음</p>
+            ) : humData < 75 ? (
+              <p className="kiosk-safe">적정 습도</p>
+            ) : (
+              <p className="kiosk-waring">습도 높음</p>
+            )}
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 }
-export default SecondPoint;
+export default FirstPoint;

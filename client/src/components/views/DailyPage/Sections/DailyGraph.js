@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ComposedChart,
-  Line,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -38,25 +38,25 @@ function DailyGraph(props) {
           />
           <Tooltip dateKey="created_at" tickFormatter={formatXAxis} />
           <Legend />
-          <Line
+          <Bar
             type="monotone"
             dataKey="water_level"
-            stroke="#8884d8"
+            fill="#1E90FF"
             name="수위"
           />
-          <Line
+          <Bar
             type="monotone"
             dataKey="precipitation"
-            stroke="#413ea0"
+            fill="#87CEFA"
             name="강수량"
           />
-          <Line
+          <Bar
             type="monotone"
             dataKey="temperature"
-            stroke="#ff7300"
+            fill="#FF8C00"
             name="온도"
           />
-          <Line type="monotone" dataKey="humidity" stroke="#000" name="습도" />
+          <Bar type="monotone" dataKey="humidity" fill="#32CD32" name="습도" />
           <ReferenceLine
             y={dangerLevel}
             stroke="red"
