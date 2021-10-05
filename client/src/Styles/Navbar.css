@@ -1,49 +1,48 @@
+/* ----------------------------------------------- */
+
 @import '~antd/dist/antd.css';
 
 .menu {
-  width: 100%;
-  padding: 10px 20px 20px;
   border-bottom: solid 1px #e8e8e8;
+  overflow: auto hidden;
   box-shadow: 0 0 30px #f3f1f1;
   background-color: white;
   text-align: center;
-  overflow: hidden;
+  width: 90%;
+  margin: 0 0 10px auto;
+  height: 70px;
 }
-.menu img {
+
+.menu__logo {
+  margin: 0 auto;
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+}
+.menu__logo img {
   width: 60px;
   height: 60px;
+}
+
+.menu_left {
+  text-align: center;
   float: left;
+  margin-left: 10%;
+  width: 50%;
+  box-sizing: border-box;
 }
 
-.menu-title {
-  padding: 0;
+.menu_right {
+  float: right;
+  width: 10%;
+  box-sizing: border-box;
 }
 
-.menu-title a {
-  display: inline-block;
-  font-size: 20px;
-  padding: 10px 20px 0 20px;
-}
-
-.menu__container .ant-menu-item {
-  width: 20vh;
-  padding: 0px 5px;
-}
-
-.ant-menu-item a,
-.ant-menu-submenu {
-  font-size: 17px;
+.menu__container .ant-menu-item a,
+.menu__container {
+  padding: 10px 15px;
 }
 
 .menu__container .ant-menu-horizontal {
   border-bottom: none;
-  line-height: 0;
-}
-
-.menu__container .menu_left {
-  float: left;
-}
-
-.menu__container .menu_right {
-  float: right;
 }

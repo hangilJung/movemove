@@ -82,21 +82,24 @@ function AdminSetting(props) {
       <Form className="pwd-setting" onKeyPress={onKeyPress}>
         <Title level={2}>{idTrue} 님</Title>
         <Input
+          className="first-pwd"
           type="password"
           onChange={passwordValue}
           placeholder="기존의 비밀번호를 입력해 주세요."
         />
         <Input
+          className="second-pwd"
           type="password"
           onChange={changePassword}
           placeholder="바꾸실 비밀번호를 입력해 주세요."
         />
         <Input
+          className="third-pwd"
           type="password"
           onChange={verificationPassword}
           placeholder="바꾸실 비밀번호를 한번 더 입력해 주세요."
         />
-        <Button type="button" onClick={onSubmit}>
+        <Button className="pwd-btn" type="button" onClick={onSubmit}>
           비밀번호 변경
         </Button>
       </Form>

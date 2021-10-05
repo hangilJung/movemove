@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const fs = require('fs');
 const refresh = require('../refresh');
-
 const ipAddress = require('../ipAddress');
 
 const Issuance = (req, res, next) => {
@@ -48,12 +47,13 @@ const request = async (url, body) => {
       token.accessToken = await getAccessToken.data.body.accessToken;
       dataJSON = await JSON.stringify(token);
       fs.writeFileSync(__dirname + '/../accessToken.json', dataJSON);
-
+      console.log(__dirname);
       const access = await axios.post(url, body, {
         headers: {
           authorization: getAccessToken.data.body.accessToken,
         },
       });
+
       return access.data.body;
     } catch (error) {
       console.log(error);

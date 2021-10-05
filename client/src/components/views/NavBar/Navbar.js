@@ -18,14 +18,20 @@ function Navbar() {
     );
 
   return (
-    <nav className="menu">
-      <div>
-        <div>
-          <img src="img/루미뚱이.png" />
-        </div>
-        <div className="menu-title">
-          <a href="/">순천시 재난 정보 관리 시스템</a>
-        </div>
+    <nav
+      className="menu"
+      style={{
+        position: 'fixed',
+        zIndex: 5,
+        width: '100%',
+        display: 'inline-block',
+      }}
+    >
+      <div className="menu__logo">
+        <a href="/">
+          <img src="img/루미뚱이2.png" />
+          <h3></h3>
+        </a>
       </div>
       <div className="menu__container">
         <div className="menu_left">

@@ -7,7 +7,7 @@ const { default: axios } = require('axios');
 
 // ----------------------일간변화량
 router.post('/daily', async (req, res) => {
-  const getData = await request(ipAddress + '/sensor/hour', {
+  const getData = await request('http://192.168.0.29:3200' + '/sensor/hour', {
     place_id: req.body.body.placeId,
     start_date: req.body.body.startDate.split('T')[0],
     end_date: req.body.body.endDate.split('T')[0],
@@ -15,6 +15,7 @@ router.post('/daily', async (req, res) => {
     sort: 'desc',
     limit: 24,
   });
+
   res.json(getData.data.body);
 });
 
@@ -62,7 +63,10 @@ router.post('/kiosk/', async (req, res) => {
 });
 
 router.post('/weather/header', async (req, res) => {
+  console.log(ipAddress + '/weather/header');
   const getData = await request(ipAddress + '/weather/header');
+
+  console.log(getData);
   res.json(getData.data);
 });
 

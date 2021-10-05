@@ -34,7 +34,7 @@ function RightMenu(props) {
   }, []);
 
   return (
-    <>
+    <div>
       {!idTrue && (
         <Menu mode={props.mode}>
           <Menu.Item key="login" icon={<GrLogin />}>
@@ -44,12 +44,12 @@ function RightMenu(props) {
       )}
       {idTrue && (
         <Menu mode={props.mode}>
-          <Menu.Item key="logout" icon={<GrLogout size="13" />}>
+          <Menu.Item key="logout" icon={<GrLogout />}>
             <a onClick={onLogout}>Logout</a>
           </Menu.Item>
         </Menu>
       )}
-    </>
+    </div>
   );
 }
 

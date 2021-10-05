@@ -16,7 +16,7 @@ function KioskPage() {
   return (
     <div className="kiosk-page">
       <Row gutter={16}>
-        <Col span={12}>
+        <Col span={12} lg={12}>
           <Card title="용당교" bordered={false} type="inner">
             <FirstPoint />
           </Card>

@@ -18,7 +18,7 @@ import 'react-app-polyfill/stable';
 // )(createStore);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode theme="GmarketSansMedium">
     <App />
   </React.StrictMode>,
   document.getElementById('root')

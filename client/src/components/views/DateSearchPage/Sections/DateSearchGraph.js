@@ -51,7 +51,11 @@ function DateSearchGraph(props) {
             activeDot={{ r: 8 }}
             interval="preserveStartEnd"
           />
-          <ReferenceLine y={dangerLevel} stroke="red" label={'위험수위'} />
+          <ReferenceLine
+            y={dangerLevel}
+            stroke="red"
+            label={{ value: '위험수위', position: 'left' }}
+          />
         </LineChart>
       </ResponsiveContainer>
       <br />
@@ -70,7 +74,11 @@ function DateSearchGraph(props) {
             stroke="#FF8042"
             activeDot={{ r: 8 }}
           />
-          <ReferenceLine y={dangerLevel} stroke="red" label={'위험강수량'} />
+          <ReferenceLine
+            y={dangerLevel}
+            stroke="red"
+            label={{ value: '강수량 높음', position: 'left' }}
+          />
         </LineChart>
       </ResponsiveContainer>
       <br />
@@ -94,7 +102,11 @@ function DateSearchGraph(props) {
             stroke="#006633"
             activeDot={{ r: 8 }}
           />
-          <ReferenceLine y={dangerLevel} stroke="red" label={'야외활동자제'} />
+          <ReferenceLine
+            y={dangerLevel}
+            stroke="red"
+            label={{ value: '기온 높음', position: 'left' }}
+          />
         </LineChart>
       </ResponsiveContainer>
       <h3>습도</h3>
@@ -117,7 +129,11 @@ function DateSearchGraph(props) {
             stroke="#000"
             activeDot={{ r: 8 }}
           />
-          <ReferenceLine y={dangerLevel} stroke="red" label={'불쾌지수높음'} />
+          <ReferenceLine
+            y={dangerLevel}
+            stroke="red"
+            label={{ value: '습도 높음', position: 'left' }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

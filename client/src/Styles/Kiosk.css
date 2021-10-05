@@ -1,10 +1,14 @@
+@import '~antd/dist/antd.css';
+
 .kiosk-page {
   margin: 0 auto;
-  padding: 50px 30px 50px 30px;
+  padding: 20px;
   text-align: center;
   background: #ececec;
-  min-height: 550px;
+  height: auto;
+  overflow: none;
 }
+
 .firstPoint {
   padding: 30px 10px 30px 10px;
 }
@@ -26,4 +30,15 @@
 }
 .kiosk-waring {
   color: red;
+}
+
+.water-card,
+.pre-card,
+.temp-card,
+.hum-card {
+  min-height: 237px;
+}
+.ant-card-body {
+  align-items: center;
+  margin: 0;
 }

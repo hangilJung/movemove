@@ -13,18 +13,14 @@ import Footer from './components/views/Footer/Footer';
 import KioskPage from './components/views/KioskPage/KioskPage';
 import NotFound from './components/views/NotFoundPage';
 import TestPage from './components/views/TestPage/Test';
-import { Spin, Alert } from 'antd';
+import { Spin } from 'antd';
 
 function App() {
   return (
     <Suspense
       fallback={
         <Spin>
-          <Alert
-            message="Alert message title"
-            description="Further details about the context of this alert."
-            type="info"
-          />
+          <div>...loading</div>
         </Spin>
       }
     >

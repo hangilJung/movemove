@@ -8,7 +8,7 @@ function DailyTable(props) {
       title: '시간',
       dataIndex: 'created_at',
       render: (created_at) => {
-        return <p>{moment(created_at).format('MM월 DD일 HH시')}</p>;
+        return <p>{moment(created_at).format('LT')}</p>;
       },
       key: 'created_at',
       align: 'center',

@@ -9,7 +9,7 @@ function KioskNav() {
 
   const [weatherData, setWeatherData] = useState({});
 
-  const today = moment().format('MM월 DD일');
+  const today = moment().format('llll').slice(0, 16);
 
   useEffect(() => {
     axios.post('/api/weather/header').then((res) => {
@@ -38,23 +38,25 @@ function KioskNav() {
   ) {
     weather = <img src="img/눈.png" />;
   }
+  console.log(weatherData);
+  // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
 
   return (
     <div className="kiosk-nav">
-      <div className="kiosk-title">
-        <h1>
+      <ul>
+        <li className="kiosk-today">{today}</li>
+        <p className="kiosk-title">
           <a href="/">동천 모니터링 시스템</a>
-        </h1>
-      </div>
-      <ul className="kiosk-weather">
-        <li>{today} 오늘의 날씨</li>
-        <li className="weather">{weather}</li>
-        <li>{weatherData.tmp}℃</li>
-        <li>
-          <span className="low">{weatherData.tmn}℃</span>/{' '}
-          <span className="high">{weatherData.tmx}℃</span>
-        </li>
-        <li>강수확률 {weatherData.pop}%</li>
+        </p>
+        <ul className="kiosk-weather">
+          <li>{weather}</li>
+          <li>{weatherData.tmp}℃</li>
+          <li>
+            <span className="low">{weatherData.tmn}℃</span>/{' '}
+            <span className="high">{weatherData.tmp}℃</span>
+          </li>
+          <li>강수확률 {weatherData.pop}%</li>
+        </ul>
       </ul>
     </div>
   );

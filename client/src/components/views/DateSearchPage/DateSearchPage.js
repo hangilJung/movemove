@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import DateSearchGraph from './Sections/DateSearchGraph';
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import { Radio, DatePicker, Button, Form } from 'antd';
+import { Radio, DatePicker, Button, Form, Typography } from 'antd';
 import moment from 'moment';
 import 'moment/locale/ko';
 import locale from 'antd/lib/date-picker/locale/ko_KR';
@@ -19,6 +19,8 @@ function DateSearchPage(props) {
   const [startDate, setStartDate] = useState(moment().format());
   const [endDate, setEndDate] = useState(moment().format());
   const [createdAt, setCreatedAt] = useState(moment().format());
+
+  const { Title } = Typography;
 
   let body = {
     placeId: placeId,
@@ -98,7 +100,7 @@ function DateSearchPage(props) {
     <div className="search-page">
       <br />
       <br />
-      <h2>조회 기간별 데이터 수치 변화</h2>
+      <Title level={2}>날짜별 조회</Title>
       <Form>
         <Form.Item>
           <Radio.Group onChange={onSelect} defaultValue="1">

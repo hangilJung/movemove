@@ -4,13 +4,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-import { Statistic, Row, Col, Card } from 'antd';
+import { Statistic, Row, Col, Card, Progress } from 'antd';
 import '../../../../Styles/Kiosk.css';
 
-function FirstPoint() {
+function FourthPoint() {
   const [data, setData] = useState([{}]);
-
-  const dangerLevel = data[0]?.water_level_danger;
 
   const [StartDate, setStartDate] = useState(moment());
   const [EndDate, setEndDate] = useState(moment());
@@ -37,23 +35,17 @@ function FirstPoint() {
   const tempData = data[data.length - 1].temperature;
   const humData = data[data.length - 1].humidity;
 
-  const formatXAxis = (tickItem) => {
-    if (tickItem) return `${tickItem.slice(11, 13)}시`;
-    else return tickItem;
-  };
-
   const waterColor = waterData < 10 ? 'blue' : waterData < 30 ? 'green' : 'red';
   const preColor = preData < 30 ? 'blue' : preData < 50 ? 'green' : 'red';
   const tempColor = tempData < 20 ? 'blue' : tempData < 32 ? 'green' : 'red';
   const humColor = humData < 40 ? 'blue' : humData < 75 ? 'green' : 'red';
 
   return (
-    <div className="fourthPoint">
+    <div className="thirdPoint">
       <Row gutter={16}>
         <Col span={6}>
-          <Card>
+          <Card title="수위" className="water-card">
             <Statistic
-              title="수위"
               value={waterData}
               precision={1}
               valueStyle={{ color: waterColor }}
@@ -69,16 +61,15 @@ function FirstPoint() {
           </Card>
         </Col>
         <Col span={6}>
-          <Card>
+          <Card title="강수량" className="pre-card">
             <Statistic
-              title="강수량"
               value={preData}
               precision={1}
               valueStyle={{ color: preColor }}
               suffix="mm"
             />
             {preData < 30 ? (
-              <p className="kiosk-low">강수량 없음</p>
+              <p className="kiosk-low">강수량 적음</p>
             ) : preData < 50 ? (
               <p className="kiosk-safe">안전</p>
             ) : (
@@ -87,9 +78,8 @@ function FirstPoint() {
           </Card>
         </Col>
         <Col span={6}>
-          <Card>
+          <Card title="온도" className="temp-card">
             <Statistic
-              title="온도"
               value={tempData}
               precision={1}
               valueStyle={{ color: tempColor }}
@@ -105,13 +95,8 @@ function FirstPoint() {
           </Card>
         </Col>
         <Col span={6}>
-          <Card>
-            <Statistic
-              title="습도"
-              value={humData}
-              valueStyle={{ color: humColor }}
-              suffix="%"
-            />
+          <Card title="습도" className="hum-card">
+            <Progress type="circle" percent={humData} strokeColor={humColor} />
             {humData < 40 ? (
               <p className="kiosk-low">습도 낮음</p>
             ) : humData < 75 ? (
@@ -125,4 +110,4 @@ function FirstPoint() {
     </div>
   );
 }
-export default FirstPoint;
+export default FourthPoint;

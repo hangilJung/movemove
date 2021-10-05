@@ -6,12 +6,16 @@ import DailyGraph from './Sections/DailyGraph';
 import DailyTable from './Sections/DailyTable';
 import axios from 'axios';
 import moment from 'moment';
-import { Radio, Typography } from 'antd';
+import { Radio, Typography, Row, Col, Card } from 'antd';
 import '../../../Styles/Page.css';
 import accessToken from '../../../lib/accessToken';
+import FirstPoint from './Sections/FirstPoint';
+import SecondPoint from './Sections/SecondPoint';
+import ThirdPoint from './Sections/ThirdPoint';
+import FourthPoint from './Sections/FourthPoint';
 
 function DailyStatisticsPage(props) {
-  console.log('daily11');
+  const { Title } = Typography;
   const [data, setData] = useState([]);
 
   const [placeId, setPlaceId] = useState('1');
@@ -60,23 +64,36 @@ function DailyStatisticsPage(props) {
       })
       .catch((err) => console.log(err));
   };
+  console.log(data);
 
-  const { Text, Title } = Typography;
   return (
     <div className="daily-page">
-      <Title level={2}>일간 데이터 조회</Title>
+      {/* <Title level={2}>일간 변화량</Title>
       <Title level={4}>{`${today(moment())}`}</Title>
-      <br />
+      <br /> */}
 
-      <Radio.Group onChange={onSelect} defaultValue="1">
+      {/* <Radio.Group onChange={onSelect} defaultValue="1">
         <Radio.Button value="1">용당교</Radio.Button>
         <Radio.Button value="2">풍덕교</Radio.Button>
         <Radio.Button value="3">천변주차장</Radio.Button>
         <Radio.Button value="4">순천만 생태공원</Radio.Button>
-      </Radio.Group>
-      <DailyGraph data={data} />
+      </Radio.Group> */}
       <br />
-      <DailyTable data={data} />
+
+      <Row gutter={16}>
+        <Col span={6}>
+          <FirstPoint />
+        </Col>
+        <Col span={6}>
+          <SecondPoint />
+        </Col>
+        <Col span={6}>
+          <ThirdPoint />
+        </Col>
+        <Col span={6}>
+          <FourthPoint />
+        </Col>
+      </Row>
     </div>
   );
 }

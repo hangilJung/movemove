@@ -1,13 +1,22 @@
-.pwd-setting,
 .level-setting {
   text-align: center;
   margin-top: 50px;
   min-width: 1000px;
 }
-.level-setting {
+.pwd-setting {
+  text-align: center;
+  margin-top: 50px;
+  width: 500px;
 }
-.level-form {
+.first-pwd,
+.second-pwd,
+.third-pwd {
+  margin-top: 10px;
 }
+.pwd-btn {
+  margin: 10px;
+}
+
 ul {
   list-style: none;
 }
