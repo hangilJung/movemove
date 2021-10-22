@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ComposedChart,
   Bar,
@@ -11,21 +11,50 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts';
+import accessToken from '../../../../lib/accessToken';
 import { withRouter } from 'react-router-dom';
 import '../../../../Styles/Graph.css';
+import moment from 'moment';
+import axios from 'axios';
 
 function DailyGraph(props) {
+  const [data, setData] = useState([]);
+
+  const [placeId, setPlaceId] = useState('1');
+  const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment());
+  const [createdAt, setCreatedAt] = useState(moment());
+
   const formatXAxis = (tickItem) => {
     if (tickItem) return `${tickItem.slice(11, 13)}시`;
     else return tickItem;
   };
 
-  const dangerLevel = props.data[0]?.water_level_danger;
+  let body = {
+    placeId: placeId,
+    startDate: startDate,
+    endDate: endDate,
+    createdAt: createdAt,
+  };
+
+  useEffect(() => {
+    accessToken(props);
+
+    axios
+      .post('/api/daily/', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  // const dangerLevel = props.data[0]?.water_level_danger;
+
+  console.log(data);
 
   return (
     <div className="daily-chart">
       <ResponsiveContainer width="95%" height={300}>
-        <ComposedChart data={props.data}>
+        <ComposedChart data={data}>
           <CartesianGrid stroke="#f5f5f5" />
           <XAxis
             dataKey="created_at"
@@ -58,7 +87,7 @@ function DailyGraph(props) {
           />
           <Bar type="monotone" dataKey="humidity" fill="#32CD32" name="습도" />
           <ReferenceLine
-            y={dangerLevel}
+            // y={dangerLevel}
             stroke="red"
             label={{
               position: 'left',

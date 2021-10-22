@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Radio } from 'antd';
+import { Table, Radio, Form, DatePicker, Button } from 'antd';
+import locale from 'antd/lib/date-picker/locale/ko_KR';
 import moment from 'moment';
 import accessToken from '../../../../lib/accessToken';
 import axios from 'axios';
+import { CSVLink } from 'react-csv';
 
-function DailyTable(props) {
+function RiverTable(props) {
   const [data, setData] = useState([{}]);
 
   const [placeId, setPlaceId] = useState('1');
@@ -45,7 +47,26 @@ function DailyTable(props) {
       })
       .catch((err) => console.log(err));
   };
+  // 날짜선택 submit함수
+  const onSubmitHandler = (event) => {
+    // page refresh를 막아줌
+    event.preventDefault();
 
+    body = {
+      placeId: placeId,
+      startDate: startDate,
+      endDate: endDate,
+      createdAt: createdAt,
+    };
+
+    axios
+      .post('/api/daily', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  // table 컬럼
   const columns = [
     {
       title: '시간',
@@ -92,6 +113,21 @@ function DailyTable(props) {
         <Radio.Button value="3">천변주차장</Radio.Button>
         <Radio.Button value="4">순천만 생태공원</Radio.Button>
       </Radio.Group>
+      <Form.Item>
+        <DatePicker
+          locale={locale}
+          placeholder={moment().format('YYYY년')}
+          onChange={(date) => setStartDate(date)}
+          picker="date"
+        />
+        <DatePicker
+          locale={locale}
+          placeholder={moment().format('YYYY년')}
+          onChange={(date) => setEndDate(date)}
+          picker="date"
+        />
+        <Button onClick={onSubmitHandler}>조회</Button>
+      </Form.Item>
 
       <Table
         bordered={true}
@@ -108,4 +144,4 @@ function DailyTable(props) {
   );
 }
 
-export default DailyTable;
+export default RiverTable;

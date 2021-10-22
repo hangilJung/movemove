@@ -5,6 +5,7 @@ import { Radio, Tabs } from 'antd';
 import { withRouter } from 'react-router';
 import MonthGraph from './Sections/MonthGraph';
 import YearGraph from './Sections/YearGraph';
+import RiverTable from './Sections/RiverTable';
 import '../../../Styles/Page.css';
 
 function StatisticsPage(props) {
@@ -18,6 +19,9 @@ function StatisticsPage(props) {
         </TabPane>
         <TabPane tab="연간 통계" key="year">
           <YearGraph />
+        </TabPane>
+        <TabPane tab="표" key="table">
+          <RiverTable />
         </TabPane>
       </Tabs>
     </div>

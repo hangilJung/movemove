@@ -16,7 +16,7 @@ import FourthPoint from './Sections/FourthPoint';
 
 function DailyStatisticsPage(props) {
   const { Title } = Typography;
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}]);
 
   const [placeId, setPlaceId] = useState('1');
   const [startDate, setStartDate] = useState(moment());
@@ -64,22 +64,22 @@ function DailyStatisticsPage(props) {
       })
       .catch((err) => console.log(err));
   };
-  console.log(data);
 
+  console.log(data);
   return (
     <div className="daily-page">
-      {/* <Title level={2}>일간 변화량</Title>
+      <Title level={2}>일간 변화량</Title>
       <Title level={4}>{`${today(moment())}`}</Title>
-      <br /> */}
-
-      {/* <Radio.Group onChange={onSelect} defaultValue="1">
+      <br />
+      {/*
+      <Radio.Group onChange={onSelect} defaultValue="1">
         <Radio.Button value="1">용당교</Radio.Button>
         <Radio.Button value="2">풍덕교</Radio.Button>
         <Radio.Button value="3">천변주차장</Radio.Button>
         <Radio.Button value="4">순천만 생태공원</Radio.Button>
-      </Radio.Group> */}
-      <br />
-
+      </Radio.Group>
+      <br /> */}
+      {/* 
       <Row gutter={16}>
         <Col span={6}>
           <FirstPoint />
@@ -93,7 +93,10 @@ function DailyStatisticsPage(props) {
         <Col span={6}>
           <FourthPoint />
         </Col>
-      </Row>
+      </Row> */}
+      <div>
+        <DailyTable props={data} />
+      </div>
     </div>
   );
 }
