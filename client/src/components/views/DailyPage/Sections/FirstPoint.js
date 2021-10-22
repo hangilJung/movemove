@@ -24,7 +24,7 @@ function FirstPoint() {
 
   useEffect(() => {
     axios
-      .post('/api/kiosk/', { body })
+      .post('/api/daily/', { body })
       .then((res) => {
         setData(res.data);
       })

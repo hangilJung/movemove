@@ -71,15 +71,22 @@ function DailyStatisticsPage(props) {
       <Title level={2}>일간 변화량</Title>
       <Title level={4}>{`${today(moment())}`}</Title>
       <br />
-      {/*
-      <Radio.Group onChange={onSelect} defaultValue="1">
-        <Radio.Button value="1">용당교</Radio.Button>
-        <Radio.Button value="2">풍덕교</Radio.Button>
-        <Radio.Button value="3">천변주차장</Radio.Button>
-        <Radio.Button value="4">순천만 생태공원</Radio.Button>
-      </Radio.Group>
-      <br /> */}
-      {/* 
+      <Row gutter={16}>
+        <Col span={8}>
+          <Card>아이콘</Card>
+          <Card>
+            측정위치
+            <p>5개소</p>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card>측정위치</Card>
+          <Card>
+            <p>개소수</p>
+          </Card>
+        </Col>
+      </Row>
+      <br />
       <Row gutter={16}>
         <Col span={6}>
           <FirstPoint />
@@ -93,10 +100,7 @@ function DailyStatisticsPage(props) {
         <Col span={6}>
           <FourthPoint />
         </Col>
-      </Row> */}
-      <div>
-        <DailyTable props={data} />
-      </div>
+      </Row>
     </div>
   );
 }

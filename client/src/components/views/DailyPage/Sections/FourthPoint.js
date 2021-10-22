@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import '../../../../Styles/Card.css';
+import { GiCableStayedBridge } from 'react-icons/gi';
 
 import { Statistic, Row, Col, Card, Progress } from 'antd';
-import '../../../../Styles/Card.css';
 
 function FirstPoint() {
   const [data, setData] = useState([{}]);
@@ -41,11 +42,13 @@ function FirstPoint() {
   const humColor = humData < 40 ? 'blue' : humData < 75 ? 'green' : 'red';
 
   return (
-    <div className="main-card-fourth">
+    <div className="main-card-first">
+      <GiCableStayedBridge />
+      <p>현재 수위</p>
       <Statistic
         value={waterData}
         precision={1}
-        valueStyle={{ color: waterColor }}
+        valueStyle={{ color: waterColor, fontSize: 40 }}
         suffix="m"
       />
       {waterData < 10 ? (

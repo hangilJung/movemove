@@ -16,32 +16,35 @@ function Navbar() {
         <KioskNav />
       </div>
     );
+  if (window.location.pathname === '/login') return <div></div>;
 
   return (
-    <nav
-      className="menu"
-      style={{
-        position: 'fixed',
-        zIndex: 5,
-        width: '100%',
-        display: 'inline-block',
-      }}
-    >
-      <div className="menu__logo">
-        <a href="/">
-          <img src="img/루미뚱이2.png" />
-          <h3></h3>
-        </a>
-      </div>
-      <div className="menu__container">
-        <div className="menu_left">
-          <LeftMenu mode="horizontal" />
+    <div>
+      <nav
+        className="menu"
+        style={{
+          position: 'fixed',
+          zIndex: 5,
+          width: '100%',
+          display: 'inline-block',
+        }}
+      >
+        <div className="menu__logo">
+          <a href="/">
+            <img src="img/루미뚱이2.png" />
+            <h3></h3>
+          </a>
         </div>
-        <div className="menu_right">
-          <RightMenu mode="horizontal" />
+        <div className="menu__container">
+          <div className="menu_right">
+            <RightMenu mode="horizontal" />
+          </div>
         </div>
+      </nav>
+      <div className="menu_left">
+        <LeftMenu />
       </div>
-    </nav>
+    </div>
   );
 }
 export default Navbar;

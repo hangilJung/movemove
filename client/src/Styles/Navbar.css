@@ -4,7 +4,7 @@
 
 .menu {
   border-bottom: solid 1px #e8e8e8;
-  overflow: auto hidden;
+  /* overflow: auto hidden; */
   box-shadow: 0 0 30px #f3f1f1;
   background-color: white;
   text-align: center;
@@ -24,18 +24,16 @@
   height: 60px;
 }
 
-.menu_left {
-  text-align: center;
-  float: left;
-  margin-left: 10%;
-  width: 50%;
-  box-sizing: border-box;
-}
-
 .menu_right {
   float: right;
   width: 10%;
   box-sizing: border-box;
+}
+.menu_left {
+  float: left;
+  width: 10%;
+  box-sizing: border-box;
+  margin-top: 10vh;
 }
 
 .menu__container .ant-menu-item a,

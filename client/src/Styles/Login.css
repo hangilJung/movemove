@@ -1,12 +1,23 @@
 .login-page {
   text-align: center;
   position: relative;
-  width: 800px;
-  height: 500px;
   margin: 0 auto;
+  height: 100vh;
 }
 .login-form {
   width: 500px;
+  height: 50vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: 1px solid #17a2b8;
+  background-color: #ffffff;
+  opacity: 0.85;
+}
+
+.login-img {
+  width: 1200px;
   position: absolute;
   top: 50%;
   left: 50%;

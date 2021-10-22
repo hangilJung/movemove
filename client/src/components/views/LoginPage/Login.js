@@ -50,7 +50,14 @@ function Login() {
 
   return (
     <div className="login-page">
+      <img className="login-img" src="img/LoginImg.png" />
       <Form className="login-form" onKeyPress={onKeyPress}>
+        <br />
+        <br />
+        <h1 style={{ color: '#17A2B8' }}>순천 도시하천 모니터링 시스템</h1>
+        <br />
+        <br />
+        <br />
         <Form.Item>
           <Input
             type="text"
@@ -67,7 +74,7 @@ function Login() {
             size="large"
           />
         </Form.Item>
-        <Button type="button" onClick={onLogin}>
+        <Button type="button" onClick={onLogin} style={{ color: '#17A2B8' }}>
           로그인
         </Button>
       </Form>
