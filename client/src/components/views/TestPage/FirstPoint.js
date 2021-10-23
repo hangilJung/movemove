@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Row, Col, Card } from 'antd';
 
 function FirstPoint() {
   const [data, setData] = useState([{}]);
@@ -39,28 +38,11 @@ function FirstPoint() {
   const humColor = humData < 40 ? 'blue' : humData < 75 ? 'green' : 'red';
 
   return (
-    <Row className="firstPoint">
-      <Col
-        span={12}
-        // style={{ float: 'left', marginLeft: 200 }}
-      >
-        <svg id="fillgauge1" width="900" height="900"></svg>
-      </Col>
-      <Col span={6} style={{ textAlign: 'center' }}>
-        <ul>
-          <li>위험 : 40M</li>
-          <li>주의 : 20M</li>
-        </ul>
-        <img src="img/gauge.png" style={{ marginLeft: 70 }} />
-      </Col>
-      <Col span={6} className="right-info">
-        <ul>
-          <li style={{ color: '#2F88FF' }}>안전 : 2개소</li>
-          <li style={{ color: '#FFDD15' }}>주의 : 1개소</li>
-          <li style={{ color: '#FF0202' }}>위험 : 1개소</li>
-        </ul>
-      </Col>
-    </Row>
+    <div className="thirdPoint">
+      <div>
+        <svg id="fillgauge1" width="97%" height="250"></svg>
+      </div>
+    </div>
   );
 }
 export default FirstPoint;

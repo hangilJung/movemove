@@ -2,7 +2,7 @@
 
 .kiosk-page {
   margin: 0 auto;
-  padding: 20px;
+  padding: 1vh;
   text-align: center;
   background: #ececec;
   height: auto;
@@ -10,16 +10,57 @@
 }
 
 .firstPoint {
-  padding: 30px 10px 30px 10px;
+  padding: 3vh 1vh 3vh 1vh;
+  height: 45vh;
 }
 .secondPoint {
-  padding: 30px 10px 30px 10px;
+  padding: 3vh 1vh 3vh 1vh;
+  height: 30vh;
 }
 .thirdPoint {
-  padding: 30px 10px 30px 10px;
+  padding: 3vh 1vh 3vh 1vh;
+  height: 30vh;
 }
 .fourthPoint {
-  padding: 30px 10px 30px 10px;
+  padding: 3vh 1vh 3vh 1vh;
+  height: 30vh;
+}
+.firstPoint img {
+  height: 35vh;
+}
+.secondPoint img,
+.thirdPoint img,
+.fourthPoint img {
+  height: 20vh;
+}
+
+.firstPoint li {
+  font-size: 1.5vh;
+}
+.secondPoint li,
+.thirdPoint li,
+.fourthPoint li {
+  font-size: 1vh;
+}
+
+.right-info {
+  box-shadow: 5px 5px 5px 5px gray;
+  text-align: center;
+  padding-top: 3vh;
+  vertical-align: middle;
+}
+
+.right-info li {
+  font-size: 2vh;
+  padding: 3vh 1vh 3vh 1vh;
+}
+
+.kiosk-page h1 {
+  text-align: center;
+  font-size: 3vh;
+}
+.kiosk-page h2 {
+  font-size: 2vh;
 }
 
 .kiosk-low {
@@ -36,7 +77,7 @@
 .pre-card,
 .temp-card,
 .hum-card {
-  min-height: 237px;
+  min-height: 80vh;
 }
 .ant-card-body {
   align-items: center;

@@ -1,17 +1,18 @@
 .kiosk-nav {
   width: 90%;
   margin: 0 auto;
-  margin-top: 30px;
-  height: 80px;
+  margin-top: 3vh;
+  height: 8vh;
   font-size: 20px;
 }
 .kiosk-today {
   float: left;
   width: 20%;
   box-sizing: border-box;
+  font-size: 1.7vh;
 }
 .kiosk-title {
-  font-size: 30px;
+  font-size: 1.8vh;
   text-align: center;
   float: left;
   margin-left: 20%;
@@ -19,6 +20,7 @@
   box-sizing: border-box;
 }
 .kiosk-weather {
+  font-size: 1.7vh;
   float: right;
   width: 40%;
   box-sizing: border-box;

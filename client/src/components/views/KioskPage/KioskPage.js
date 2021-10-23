@@ -16,23 +16,29 @@ function KioskPage() {
   return (
     <div className="kiosk-page">
       <Row gutter={16}>
-        <Col span={12} lg={12}>
-          <Card title="용당교" bordered={false} type="inner">
+        <Col span={24}>
+          <Card bordered={false} type="inner">
+            <h1>용당교</h1>
             <FirstPoint />
           </Card>
         </Col>
-        <Col span={12}>
-          <Card title="풍덕교" bordered={false} type="inner">
+      </Row>
+      <Row>
+        <Col span={8}>
+          <Card bordered={false} type="inner">
+            <h2>성남교</h2>
             <SecondPoint />
           </Card>
         </Col>
-        <Col span={12}>
-          <Card title="천변주차장" bordered={false} type="inner">
+        <Col span={8}>
+          <Card bordered={false} type="inner">
+            <h2>풍덕교</h2>
             <ThirdPoint />
           </Card>
         </Col>
-        <Col span={12}>
-          <Card title="순천만습지" bordered={false} type="inner">
+        <Col span={8}>
+          <Card bordered={false} type="inner">
+            <h2>순천만 습지</h2>
             <FourthPoint />
           </Card>
         </Col>
