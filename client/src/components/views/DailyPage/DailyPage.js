@@ -78,7 +78,7 @@ function DailyStatisticsPage(props) {
         <Col span={12}>
           <Card className="main-box">
             <div className="main-icon">
-              <div>
+              <div style={{ float: 'left' }}>
                 <GiRadarSweep />
               </div>
               <div>측정위치 5개소</div>
@@ -88,7 +88,7 @@ function DailyStatisticsPage(props) {
         <Col span={12}>
           <Card className="main-box">
             <div className="main-icon">
-              <div>
+              <div style={{ float: 'left' }}>
                 <ImWarning />
               </div>
               <ul>

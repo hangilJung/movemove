@@ -1,4 +1,4 @@
-@import "~antd/dist/antd.css";
+@import '~antd/dist/antd.css';
 
 .kiosk-page {
   width: 100%;
@@ -58,19 +58,6 @@
 .right-info {
   box-shadow: 5px 5px 5px 5px gray;
   padding-top: 3vh;
-<<<<<<< HEAD
-=======
-  vertical-align: middle;
-  height: 40vh;
-  padding: 0;
-}
-
-.right-info > ul {
-  margin: 0 auto;
-  padding: 0;
-  height: 40vh;
-  line-height: 6vh;
->>>>>>> e860d3e76ca04b960e0adb1f53665e4f3de18098
 }
 
 .right-info li {
