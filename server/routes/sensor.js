@@ -59,7 +59,6 @@ router.post('/kiosk/', async (req, res) => {
     sort: 'desc',
     limit: 10,
   });
-  console.log(getData.data.body);
   res.json(getData.data.body);
 });
 

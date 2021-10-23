@@ -42,7 +42,7 @@ function FourthPoint() {
   return (
     <div className="fourthPoint">
       <div style={{ float: 'left' }}>
-        <svg id="fillgauge4" width="400" height="500"></svg>
+        <svg id="fillgauge4" width="450" height="500"></svg>
       </div>
       <div>
         <ul>

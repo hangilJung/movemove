@@ -40,10 +40,7 @@ function FirstPoint() {
 
   return (
     <Row className="firstPoint">
-      <Col
-        span={12}
-        // style={{ float: 'left', marginLeft: 200 }}
-      >
+      <Col span={12}>
         <svg id="fillgauge1" width="900" height="900"></svg>
       </Col>
       <Col span={6} style={{ textAlign: 'center' }}>

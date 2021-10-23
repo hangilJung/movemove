@@ -2,9 +2,11 @@
   width: 90%;
   margin: 0 auto;
   margin-top: 3vh;
-  height: 8vh;
-  font-size: 20px;
+  height: 5vh;
+  padding: 0;
+  overflow: hidden;
 }
+
 .kiosk-today {
   float: left;
   width: 20%;

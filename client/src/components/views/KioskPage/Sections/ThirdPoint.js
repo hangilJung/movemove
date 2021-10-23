@@ -43,7 +43,7 @@ function ThirdPoint() {
   return (
     <div className="thirdPoint">
       <div style={{ float: 'left' }}>
-        <svg id="fillgauge3" width="400" height="500"></svg>
+        <svg id="fillgauge3" width="450" height="500"></svg>
       </div>
       <div>
         <ul>
