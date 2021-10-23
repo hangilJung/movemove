@@ -71,18 +71,21 @@ function DailyStatisticsPage(props) {
       <Title level={2}>일간 변화량</Title>
       <Title level={4}>{`${today(moment())}`}</Title>
       <br />
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card>아이콘</Card>
+      <Row gutter={50}>
+        <Col span={12}>
           <Card>
-            측정위치
-            <p>5개소</p>
+            <div>
+              <div style={{ float: 'left' }}>아이콘</div>
+              <div>측정위치</div>
+            </div>
           </Card>
         </Col>
-        <Col span={8}>
-          <Card>측정위치</Card>
+        <Col span={12}>
           <Card>
-            <p>개소수</p>
+            <div>
+              <div style={{ float: 'left' }}>아이콘</div>
+              <div>측정위치</div>
+            </div>
           </Card>
         </Col>
       </Row>
