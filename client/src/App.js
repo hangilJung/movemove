@@ -1,19 +1,20 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
-import PublicRoute from './lib/PublicRoute';
-import PrivateRoute from './lib/PrivateRoute';
-import Login from './components/views/LoginPage/Login';
-import Navbar from './components/views/NavBar/Navbar';
-import DailyPage from './components/views/DailyPage/DailyPage';
-import DateSearchPage from './components/views/DateSearchPage/DateSearchPage';
-import StatisticsPage from './components/views/StatisticsPage/StatisticsPage';
-import SettingPage from './components/views/SettingPage/SettingPage';
-import Footer from './components/views/Footer/Footer';
-import KioskPage from './components/views/KioskPage/KioskPage';
-import NotFound from './components/views/NotFoundPage';
-import TestPage from './components/views/TestPage/Test';
-import { Spin } from 'antd';
+import React, { Suspense } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import "./App.css";
+import PublicRoute from "./lib/PublicRoute";
+import PrivateRoute from "./lib/PrivateRoute";
+import Login from "./components/views/LoginPage/Login";
+import Navbar from "./components/views/NavBar/Navbar";
+import DailyPage from "./components/views/DailyPage/DailyPage";
+import DateSearchPage from "./components/views/DateSearchPage/DateSearchPage";
+import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
+import SettingPage from "./components/views/SettingPage/SettingPage";
+import Footer from "./components/views/Footer/Footer";
+import KioskPage from "./components/views/KioskPage/KioskPage";
+import NotFound from "./components/views/NotFoundPage";
+import TestPage from "./components/views/TestPage/Test";
+import { Spin } from "antd";
+import setPage from "./components/views/setPage/setPage";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <PublicRoute exact path="/kiosk" component={KioskPage} />
             <PublicRoute exact path="/test" component={TestPage} />
             <PublicRoute exact path="/notfound" component={NotFound} />
+            <PublicRoute exact path="/set" component={setPage} />
           </Switch>
         </div>
         <Footer />
