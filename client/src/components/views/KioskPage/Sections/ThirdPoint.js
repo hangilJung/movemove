@@ -107,6 +107,9 @@ function ThirdPoint() {
           </Card>
         </Col>
       </Row>
+      <div>
+        <svg id="fillgauge3" width="97%" height="250"></svg>
+      </div>
     </div>
   );
 }

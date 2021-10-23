@@ -107,6 +107,9 @@ function SecondPoint() {
           </Card>
         </Col>
       </Row>
+      <div>
+        <svg id="fillgauge2" width="97%" height="250"></svg>
+      </div>
     </div>
   );
 }

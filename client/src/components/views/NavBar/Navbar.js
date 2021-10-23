@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import KioskNav from './Sections/KioskNav';
@@ -16,7 +16,7 @@ function Navbar() {
         <KioskNav />
       </div>
     );
-  if (window.location.pathname === '/login') return <div></div>;
+  if (window.location.pathname === '/login') return <></>;
 
   return (
     <div>

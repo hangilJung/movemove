@@ -29,8 +29,6 @@ function FirstPoint() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(data);
-
   const waterData = data[data.length - 1].water_level;
   const preData = data[data.length - 1].precipitation;
   const tempData = data[data.length - 1].temperature;
@@ -108,6 +106,9 @@ function FirstPoint() {
           </Card>
         </Col>
       </Row>
+      <div>
+        <svg id="fillgauge1" width="97%" height="250"></svg>
+      </div>
     </div>
   );
 }

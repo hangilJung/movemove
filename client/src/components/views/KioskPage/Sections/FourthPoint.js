@@ -107,6 +107,9 @@ function FourthPoint() {
           </Card>
         </Col>
       </Row>
+      <div>
+        <svg id="fillgauge4" width="97%" height="250"></svg>
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ function KioskNav() {
 
   const [weatherData, setWeatherData] = useState({});
 
-  const today = moment().format('llll').slice(0, 16);
+  const today = moment().format('llll').slice(0, 17);
 
   useEffect(() => {
     axios.post('/api/weather/header').then((res) => {
@@ -38,7 +38,7 @@ function KioskNav() {
   ) {
     weather = <img src="img/눈.png" />;
   }
-  console.log(weatherData);
+  // console.log(weatherData);
   // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
 
   return (
@@ -46,7 +46,7 @@ function KioskNav() {
       <ul>
         <li className="kiosk-today">{today}</li>
         <p className="kiosk-title">
-          <a href="/">동천 모니터링 시스템</a>
+          <a href="/">순천시 모니터링 시스템</a>
         </p>
         <ul className="kiosk-weather">
           <li>{weather}</li>

@@ -8,11 +8,14 @@ import axios from 'axios';
 import moment from 'moment';
 import { Radio, Typography, Row, Col, Card } from 'antd';
 import '../../../Styles/Page.css';
+import '../../../Styles/Card.css';
 import accessToken from '../../../lib/accessToken';
 import FirstPoint from './Sections/FirstPoint';
 import SecondPoint from './Sections/SecondPoint';
 import ThirdPoint from './Sections/ThirdPoint';
 import FourthPoint from './Sections/FourthPoint';
+import { GiRadarSweep } from 'react-icons/gi';
+import { ImWarning } from 'react-icons/im';
 
 function DailyStatisticsPage(props) {
   const { Title } = Typography;
@@ -73,18 +76,26 @@ function DailyStatisticsPage(props) {
       <br />
       <Row gutter={50}>
         <Col span={12}>
-          <Card>
-            <div>
-              <div style={{ float: 'left' }}>아이콘</div>
-              <div>측정위치</div>
+          <Card className="main-box">
+            <div className="main-icon">
+              <div>
+                <GiRadarSweep />
+              </div>
+              <div>측정위치 5개소</div>
             </div>
           </Card>
         </Col>
         <Col span={12}>
-          <Card>
-            <div>
-              <div style={{ float: 'left' }}>아이콘</div>
-              <div>측정위치</div>
+          <Card className="main-box">
+            <div className="main-icon">
+              <div>
+                <ImWarning />
+              </div>
+              <ul>
+                <li>안전 : 3개소</li>
+                <li>주의 : 1개소</li>
+                <li>경고 : 1개소</li>
+              </ul>
             </div>
           </Card>
         </Col>
