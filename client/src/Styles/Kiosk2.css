@@ -6,8 +6,8 @@
   margin: 0 auto;
   padding: 1vh;
   text-align: center;
-  background: #ececec;
-  height: auto;
+  background: whitesmoke;
+  height: 900px;
   position: fixed;
   overflow: hidden;
   scrollbar-width: none;
@@ -31,7 +31,7 @@
   height: 100%;
 }
 .gauge img {
-  width: 20vh;
+  width: 10vh;
 }
 
 .kiosk-page h1 {

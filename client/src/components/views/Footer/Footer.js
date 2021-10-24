@@ -3,6 +3,7 @@ import '../../../Styles/Footer.css';
 
 function Footer() {
   if (window.location.pathname === '/kiosk') return null;
+  if (window.location.pathname === '/kiosk2') return null;
   return (
     <div className="footer">
       <div className="footer-img">
