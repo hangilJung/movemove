@@ -79,13 +79,13 @@ ul {
 }
 
 .kiosk-low {
-  color: blue;
+  color: #2f88ff;
 }
 .kiosk-safe {
-  color: green;
+  color: #ffdd15;
 }
 .kiosk-waring {
-  color: red;
+  color: #ff0202;
 }
 
 .water-card,

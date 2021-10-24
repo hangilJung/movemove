@@ -42,7 +42,7 @@ function SecondPoint() {
   return (
     <div className="secondPoint">
       <div style={{ float: 'left' }}>
-        <svg id="fillgauge2" width="170" height="170"></svg>
+        <svg id="fillgauge2" width="17vh" height="17vh"></svg>
       </div>
       <div>
         <ul>

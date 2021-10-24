@@ -70,7 +70,9 @@ function DailyStatisticsPage(props) {
 
   return (
     <div className="daily-page">
-      <Title level={4}>{`${today(moment())}`}</Title>
+      <Title level={4} style={{ fontSize: '5vh' }}>{`${today(
+        moment()
+      )}`}</Title>
       <br />
       <Row gutter={50}>
         <Col span={12}>
@@ -79,32 +81,58 @@ function DailyStatisticsPage(props) {
               <div
                 style={{
                   float: 'left',
-                  fontSize: 150,
+                  fontSize: '20vh',
+                  width: '50vh',
                 }}
               >
                 <GiRadarSweep />
               </div>
-              <div>측정위치 5개소</div>
+              <div
+                style={{
+                  float: 'right',
+                  width: '50vh',
+                  margin: '0 auto',
+                  fontSize: '2.9vh',
+                  paddingTop: '10vh',
+                }}
+              >
+                측정위치 4개소
+              </div>
             </div>
           </Card>
         </Col>
         <Col span={12}>
           <Card className="main-box">
             <div className="main-icon">
-              <div style={{ float: 'left' }}>
+              <div
+                style={{
+                  float: 'left',
+                  width: '50vh',
+                  fontSize: '20vh',
+                  color: '#FFDD15',
+                }}
+              >
                 <ImWarning />
               </div>
-              <ul>
-                <li>안전 : 3개소</li>
-                <li>주의 : 1개소</li>
-                <li>경고 : 1개소</li>
-              </ul>
+              <div
+                style={{
+                  float: 'right',
+                  width: '50vh',
+                  padding: '5vh 0 0 1vh',
+                }}
+              >
+                <ul>
+                  <li style={{ color: '#2F88FF' }}>안전 : 1개소</li>
+                  <li style={{ color: '#FFDD15' }}>주의 : 2개소</li>
+                  <li style={{ color: '#FF0202' }}>위험 : 1개소</li>
+                </ul>
+              </div>
             </div>
           </Card>
         </Col>
       </Row>
       <br />
-      <Row gutter={16}>
+      <Row gutter={170}>
         <Col span={6}>
           <FirstPoint />
         </Col>
