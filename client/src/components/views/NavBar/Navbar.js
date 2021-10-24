@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import KioskNav from './Sections/KioskNav';
+import KioskNav2 from './Sections/KioskNav2';
 import '../../../Styles/Navbar.css';
 
 function Navbar() {
@@ -14,6 +15,17 @@ function Navbar() {
         }}
       >
         <KioskNav />
+      </div>
+    );
+  if (window.location.pathname === '/kiosk2')
+    return (
+      <div
+        style={{
+          textAlign: 'center',
+          margin: '0 auto',
+        }}
+      >
+        <KioskNav2 />
       </div>
     );
   if (window.location.pathname === '/login') return <></>;
