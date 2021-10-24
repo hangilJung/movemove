@@ -41,7 +41,7 @@ function FirstPoint() {
   return (
     <Row className="firstPoint">
       <Col>
-        <svg id="fillgauge1" width="40vh" height="40vh"></svg>
+        <svg id="fillgauge1" width="20vh" height="20vh"></svg>
       </Col>
     </Row>
   );

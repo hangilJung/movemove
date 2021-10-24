@@ -42,7 +42,7 @@ function SecondPoint() {
   return (
     <div className="secondPoint" style={{ margin: 0, padding: 0 }}>
       <div>
-        <svg id="fillgauge2" width="17vh" height="17vh"></svg>
+        <svg id="fillgauge2" width="8vh" height="8vh"></svg>
       </div>
     </div>
   );
