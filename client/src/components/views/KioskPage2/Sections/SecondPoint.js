@@ -42,6 +42,7 @@ function SecondPoint() {
   return (
     <div className="secondPoint" style={{ margin: 0, padding: 0 }}>
       <div>
+        <p>성남교</p>
         <svg id="fillgauge2" width="8vh" height="8vh"></svg>
       </div>
     </div>

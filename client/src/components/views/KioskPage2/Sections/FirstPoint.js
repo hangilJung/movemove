@@ -41,6 +41,7 @@ function FirstPoint() {
   return (
     <Row className="firstPoint">
       <Col>
+        <p>용당교</p>
         <svg id="fillgauge1" width="20vh" height="20vh"></svg>
       </Col>
     </Row>

@@ -42,6 +42,7 @@ function FourthPoint() {
   return (
     <div className="fourthPoint" style={{ margin: 0, padding: 0 }}>
       <div>
+        <p>순천만 습지</p>
         <svg id="fillgauge4" width="8vh" height="8vh"></svg>
       </div>
     </div>

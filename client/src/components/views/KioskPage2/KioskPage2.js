@@ -8,11 +8,11 @@ import { Row, Col, Card } from 'antd';
 import '../../../Styles/Kiosk2.css';
 
 function KioskPage() {
-  useEffect(() => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 60000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 60000);
+  // }, []);
 
   return (
     <div className="kiosk-page">

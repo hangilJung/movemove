@@ -9,7 +9,7 @@ function KioskNav() {
 
   const [weatherData, setWeatherData] = useState({});
 
-  const today = moment().format('llll').slice(0, 17);
+  const today = moment().format('llll').slice(5, 17);
 
   useEffect(() => {
     axios.post('/api/weather/header').then((res) => {
