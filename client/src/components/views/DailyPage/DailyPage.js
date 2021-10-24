@@ -68,17 +68,20 @@ function DailyStatisticsPage(props) {
       .catch((err) => console.log(err));
   };
 
-  console.log(data);
   return (
     <div className="daily-page">
-      <Title level={2}>일간 변화량</Title>
       <Title level={4}>{`${today(moment())}`}</Title>
       <br />
       <Row gutter={50}>
         <Col span={12}>
           <Card className="main-box">
             <div className="main-icon">
-              <div style={{ float: 'left' }}>
+              <div
+                style={{
+                  float: 'left',
+                  fontSize: 150,
+                }}
+              >
                 <GiRadarSweep />
               </div>
               <div>측정위치 5개소</div>

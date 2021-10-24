@@ -38,16 +38,19 @@
   /* height: 25vh; */
 }
 .firstPoint img {
-  height: 30vh;
+  height: 28vh;
 }
 .secondPoint img,
 .thirdPoint img,
 .fourthPoint img {
-  height: 17vh;
+  height: 12vh;
 }
-
+ul {
+  padding: 0;
+}
 .firstPoint li {
-  font-size: 1.5vh;
+  font-size: 2vh;
+  text-align: center;
 }
 .secondPoint li,
 .thirdPoint li,
