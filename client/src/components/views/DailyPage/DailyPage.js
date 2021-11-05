@@ -146,6 +146,7 @@ function DailyStatisticsPage(props) {
           <FourthPoint />
         </Col>
       </Row>
+      <DailyGraph />
     </div>
   );
 }

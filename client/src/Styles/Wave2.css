@@ -1,0 +1,13 @@
+.turn {
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  0%,
+  100% {
+    transform: translateZ(-2em) rotate(360deg);
+  }
+  50% {
+    transform: translateZ(2em) rotate(25deg);
+  }
+}

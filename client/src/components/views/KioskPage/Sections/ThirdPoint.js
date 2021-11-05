@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import { Statistic, Row, Col, Card, Progress } from 'antd';
 import '../../../../Styles/Kiosk.css';
+import '../../../../Styles/Wave2.css';
 
 function ThirdPoint() {
   const [data, setData] = useState([{}]);
@@ -42,7 +43,7 @@ function ThirdPoint() {
 
   return (
     <div className="thirdPoint">
-      <div style={{ float: 'left' }}>
+      <div style={{ float: 'left' }} className="turn">
         <svg id="fillgauge3" width="17vh" height="17vh"></svg>
       </div>
       <div>

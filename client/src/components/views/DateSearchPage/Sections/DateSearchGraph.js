@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -9,9 +9,9 @@ import {
   Legend,
   //   Brush,
   ResponsiveContainer,
-  ReferenceLine,
 } from 'recharts';
 import '../../../../Styles/Graph.css';
+import { Row, Col } from 'antd';
 
 function DateSearchGraph(props) {
   const formatXAxis = (tickItem) => {
@@ -27,115 +27,121 @@ function DateSearchGraph(props) {
 
   return (
     <div className="search-chart">
-      <br />
-
-      <h3>수위</h3>
-      <ResponsiveContainer width="95%" height={300}>
-        <LineChart data={props.data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="created_at"
-            angle={0}
-            dx={10}
-            tickFormatter={formatXAxis}
-            allowDataOverflow={false}
-          />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            name="수위"
-            type="monotone"
-            dataKey="water_level"
-            stroke="#0088FE"
-            activeDot={{ r: 8 }}
-            interval="preserveStartEnd"
-          />
-          <ReferenceLine
-            y={dangerLevel}
-            stroke="red"
-            label={{ value: '위험수위', position: 'left' }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-      <br />
-      <h3>강수량</h3>
-      <ResponsiveContainer width="95%" height={300}>
-        <LineChart data={props.data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="created_at" tickFormatter={formatXAxis} angle={0} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            name="강수량"
-            type="monotone"
-            dataKey="precipitation"
-            stroke="#FF8042"
-            activeDot={{ r: 8 }}
-          />
-          <ReferenceLine
-            y={dangerLevel}
-            stroke="red"
-            label={{ value: '강수량 높음', position: 'left' }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-      <br />
-      <h3>온도</h3>
-      <ResponsiveContainer width="95%" height={300}>
-        <LineChart data={props.data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="created_at"
-            angle={0}
-            dx={10}
-            tickFormatter={formatXAxis}
-          />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            name="온도"
-            type="monotone"
-            dataKey="temperature"
-            stroke="#006633"
-            activeDot={{ r: 8 }}
-          />
-          <ReferenceLine
-            y={dangerLevel}
-            stroke="red"
-            label={{ value: '기온 높음', position: 'left' }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-      <h3>습도</h3>
-      <ResponsiveContainer width="95%" height={300}>
-        <LineChart data={props.data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis
-            dataKey="created_at"
-            angle={0}
-            dx={10}
-            tickFormatter={formatXAxis}
-          />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            name="습도"
-            type="monotone"
-            dataKey="humidity"
-            stroke="#000"
-            activeDot={{ r: 8 }}
-          />
-          <ReferenceLine
-            y={dangerLevel}
-            stroke="red"
-            label={{ value: '습도 높음', position: 'left' }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      <Row gutter={16}>
+        <Col span={12}>
+          <h3>수위 및 강수량</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={props.data}>
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#EF8C17" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#EF8C17" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="created_at"
+                angle={0}
+                dx={10}
+                tickFormatter={formatXAxis}
+                allowDataOverflow={false}
+              />
+              <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+              <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+              <YAxis yAxisId="center" orientation="right" stroke="#EF8C17" />
+              <Tooltip />
+              <Legend />
+              <Area
+                type="monotone"
+                dataKey="water_level"
+                stroke="#8884d8"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+                name="수위"
+                yAxisId="left"
+              />
+              <Area
+                type="monotone"
+                dataKey="precipitation"
+                stroke="#82ca9d"
+                fillOpacity={1}
+                fill="url(#colorPv)"
+                name="강수량"
+                yAxisId="right"
+              />
+              <Area
+                type="monotone"
+                dataKey="humidity"
+                stroke="#EF8C17"
+                fillOpacity={1}
+                fill="url(#colorTemp)"
+                name="예측데이터"
+                yAxisId="center"
+              />
+              {/* <ReferenceLine
+                y={dangerLevel}
+                stroke="red"
+                label={{ value: '위험수위', position: 'left' }}
+              /> */}
+            </AreaChart>
+          </ResponsiveContainer>
+        </Col>
+        <Col span={12}>
+          <h3>온도 및 습도</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <AreaChart data={props.data}>
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="created_at"
+                angle={0}
+                dx={10}
+                tickFormatter={formatXAxis}
+                allowDataOverflow={false}
+              />
+              <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+              <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+              <Tooltip />
+              <Legend />
+              <Area
+                type="monotone"
+                dataKey="temperature"
+                stroke="#8884d8"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+                name="온도"
+                yAxisId="left"
+              />
+              <Area
+                type="monotone"
+                dataKey="humidity"
+                stroke="#82ca9d"
+                fillOpacity={1}
+                fill="url(#colorPv)"
+                name="습도"
+                yAxisId="right"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </Col>
+      </Row>
     </div>
   );
 }

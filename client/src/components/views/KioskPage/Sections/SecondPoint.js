@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-import '../../../../Styles/Kiosk.css';
+import '../../../../Styles/Swing.css';
 
 function SecondPoint() {
   const [data, setData] = useState([{}]);
@@ -41,7 +41,7 @@ function SecondPoint() {
 
   return (
     <div className="secondPoint">
-      <div style={{ float: 'left' }}>
+      <div style={{ float: 'left' }} className="swing">
         <svg id="fillgauge2" width="17vh" height="17vh"></svg>
       </div>
       <div>

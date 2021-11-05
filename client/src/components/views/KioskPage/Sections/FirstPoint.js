@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { Row, Col, Card } from 'antd';
+// import 'animate.css';
 
 function FirstPoint() {
   const [data, setData] = useState([{}]);
@@ -39,28 +40,36 @@ function FirstPoint() {
   const humColor = humData < 40 ? 'blue' : humData < 75 ? 'green' : 'red';
 
   return (
-    <Row className="firstPoint">
-      <Col span={12}>
-        <svg id="fillgauge1" width="40vh" height="40vh"></svg>
-      </Col>
-      <Col span={6}>
+    <div className="1232">
+      {/* <Row className="firstPoint"> */}
+      {/* <Col */}
+      {/* span={12} */}
+      {/* className="animate__animated animate__swing animate__slower animate__infinite"     > */}
+      <svg
+        id="fillgauge1"
+        width={300}
+        height={300}
+        style={{
+          backgroundColor: '#f0f2f5',
+          borderRadius: 250,
+          margin: '80px auto',
+          textAlign: 'center',
+          backgroundSize: 'cover',
+        }}
+      ></svg>
+      {/* </Col> */}
+      {/* <Col span={6}>
         <ul>
           <li>위험 : 40M</li>
           <li>주의 : 20M</li>
         </ul>
         <img
-          src="img/gauge.png"
-          // style={{ marginLeft: '5.5vh' }}
-        />
-      </Col>
-      <Col span={6} className="right-info">
-        <ul>
-          <li style={{ color: '#2F88FF' }}>안전 : 2개소</li>
-          <li style={{ color: '#FFDD15' }}>주의 : 1개소</li>
-          <li style={{ color: '#FF0202' }}>위험 : 1개소</li>
-        </ul>
-      </Col>
-    </Row>
+         src="img/gauge.png"
+          style={{ marginLeft: '5.5vh' }}
+        /> 
+      </Col> */}
+      {/* </Row> */}
+    </div>
   );
 }
 export default FirstPoint;

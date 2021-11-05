@@ -14,6 +14,7 @@ import accessToken from '../../../lib/accessToken';
 
 function DateSearchPage(props) {
   const [data, setData] = useState([]);
+  const [refreshData, setrefreshData] = useState(0);
 
   const [placeId, setPlaceId] = useState('1');
   const [startDate, setStartDate] = useState(moment().format());
@@ -38,7 +39,7 @@ function DateSearchPage(props) {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [refreshData]);
 
   const onSubmitHandler = (event) => {
     // page refresh를 막아줌

@@ -1,51 +1,69 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import moment from 'moment';
-import { Radio } from 'antd';
-import accessToken from '../../../../lib/accessToken';
 import {
-  Bar,
   BarChart,
+  Bar,
   XAxis,
-  Label,
   YAxis,
+  CartesianGrid,
   Tooltip,
   Legend,
-  CartesianGrid,
+  Label,
   ResponsiveContainer,
 } from 'recharts';
-import { Row, Col, Card } from 'antd';
+import axios from 'axios';
+import locale from 'antd/lib/date-picker/locale/ko_KR';
+import moment from 'moment';
+import { Row, Col, Card, DatePicker, Button, Radio, Form } from 'antd';
+import { withRouter } from 'react-router';
+import accessToken from '../../../../lib/accessToken';
 import '../../../../Styles/Graph.css';
 
-function MonthGraph(props) {
+function YearGraph(props) {
   const [data, setData] = useState([]);
 
   const [placeId, setPlaceId] = useState('1');
 
-  const [startDate, setStartDate] = useState(
-    moment('2020-01-01').format('YYYY-MM-DD')
-  );
-  const [endDate, setEndDate] = useState(
-    moment('2020-12-31').format('YYYY-MM-DD')
-  );
+  const [startDate, setStartDate] = useState(moment().format('YYYYMMDD'));
+  const [endDate, setEndDate] = useState(moment().format('YYYYMMDD'));
+  const [createdAt, setCreatedAt] = useState(moment().format());
 
   let body = {
     placeId: placeId,
     startDate: startDate,
     endDate: endDate,
+    createdAt: createdAt,
   };
   useEffect(() => {
     accessToken(props);
 
     axios
-      .post('/api/month/', { body })
+      .post('/api/year/', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const onSubmitHandler = (event) => {
+    // page refresh를 막아줌
+    event.preventDefault();
+
+    body = {
+      placeId: placeId,
+      startDate: startDate,
+      endDate: endDate,
+      createdAt: createdAt,
+    };
+
+    axios
+      .post('/api/year', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const onPlaceHandler = async (e) => {
     // page refresh를 막아줌
@@ -58,7 +76,7 @@ function MonthGraph(props) {
     };
 
     axios
-      .post('/api/month/', { body })
+      .post('/api/year/', { body })
       .then((res) => {
         setData(res.data);
       })
@@ -66,24 +84,41 @@ function MonthGraph(props) {
   };
 
   const formatXAxis = (tickItem) => {
-    if (tickItem) return `${tickItem.slice(5, 7)}월`;
+    if (tickItem) return `${tickItem.slice(0, 4)}년`;
     else return tickItem;
   };
 
   return (
-    <div className="radar-chart">
-      <div>
-        <Radio.Group onChange={onPlaceHandler} defaultValue="">
-          <Radio.Button value="1">용당교</Radio.Button>
-          <Radio.Button value="2">풍덕교</Radio.Button>
-          <Radio.Button value="3">천변주차장</Radio.Button>
-          <Radio.Button value="4">순천만 생태공원</Radio.Button>
-        </Radio.Group>
-      </div>
+    <div className="bar-chart">
+      <Form>
+        <Form.Item>
+          <Radio.Group onChange={onPlaceHandler} defaultValue="1">
+            <Radio.Button value="1">용당교</Radio.Button>
+            <Radio.Button value="2">풍덕교</Radio.Button>
+            <Radio.Button value="3">천변주차장</Radio.Button>
+            <Radio.Button value="4">순천만 생태공원</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item>
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YYYY년')}
+            onChange={(date) => setStartDate(date)}
+            picker="year"
+          />
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YYYY년')}
+            onChange={(date) => setEndDate(date)}
+            picker="year"
+          />
+          <Button onClick={onSubmitHandler}>조회</Button>
+        </Form.Item>
+      </Form>
       <Row gutter={16}>
         <Col span={12}>
           <Card title="수위" bordered={false}>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="95%" height={300}>
               <BarChart
                 data={data}
                 margin={{
@@ -92,6 +127,7 @@ function MonthGraph(props) {
                   left: 20,
                   bottom: 5,
                 }}
+                maxBarSize={100}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
@@ -117,7 +153,7 @@ function MonthGraph(props) {
         </Col>
         <Col span={12}>
           <Card title="강수량" bordered={false}>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="95%" height={300}>
               <BarChart
                 data={data}
                 margin={{
@@ -126,6 +162,7 @@ function MonthGraph(props) {
                   left: 20,
                   bottom: 5,
                 }}
+                maxBarSize={100}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
@@ -151,7 +188,7 @@ function MonthGraph(props) {
         </Col>
         <Col span={12}>
           <Card title="온도" bordered={false}>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="95%" height={300}>
               <BarChart
                 data={data}
                 margin={{
@@ -160,6 +197,7 @@ function MonthGraph(props) {
                   left: 20,
                   bottom: 5,
                 }}
+                maxBarSize={100}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
@@ -185,7 +223,7 @@ function MonthGraph(props) {
         </Col>
         <Col span={12}>
           <Card title="습도" bordered={false}>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="95%" height={300}>
               <BarChart
                 data={data}
                 margin={{
@@ -194,6 +232,7 @@ function MonthGraph(props) {
                   left: 20,
                   bottom: 5,
                 }}
+                maxBarSize={100}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
@@ -222,4 +261,4 @@ function MonthGraph(props) {
   );
 }
 
-export default MonthGraph;
+export default withRouter(YearGraph);

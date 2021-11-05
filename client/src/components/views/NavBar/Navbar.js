@@ -6,17 +6,7 @@ import KioskNav2 from './Sections/KioskNav2';
 import '../../../Styles/Navbar.css';
 
 function Navbar() {
-  if (window.location.pathname === '/kiosk')
-    return (
-      <div
-        style={{
-          textAlign: 'center',
-          margin: '0 auto',
-        }}
-      >
-        <KioskNav />
-      </div>
-    );
+  if (window.location.pathname === '/kiosk') return <div></div>;
   if (window.location.pathname === '/kiosk2')
     return (
       <div
@@ -42,10 +32,7 @@ function Navbar() {
         }}
       >
         <div className="menu__logo">
-          <a href="/">
-            <img src="img/루미뚱이2.png" />
-            <h3></h3>
-          </a>
+          <a href="/"></a>
         </div>
         <div className="menu__container">
           <div className="menu_right">

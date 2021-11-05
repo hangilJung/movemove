@@ -14,6 +14,7 @@ import KioskPage from './components/views/KioskPage/KioskPage';
 import KioskPage2 from './components/views/KioskPage2/KioskPage2';
 import NotFound from './components/views/NotFoundPage';
 import TestPage from './components/views/TestPage/Test';
+import TestPage2 from './components/views/Test2Page/Test2';
 import { Spin } from 'antd';
 import setPage from './components/views/setPage/setPage';
 
@@ -43,6 +44,7 @@ function App() {
             <PublicRoute exact path="/kiosk" component={KioskPage} />
             <PublicRoute exact path="/kiosk2" component={KioskPage2} />
             <PublicRoute exact path="/test" component={TestPage} />
+            <PublicRoute exact path="/test2" component={TestPage2} />
             <PublicRoute exact path="/notfound" component={NotFound} />
             <PublicRoute exact path="/set" component={setPage} />
           </Switch>

@@ -6,14 +6,10 @@ function Footer() {
   // if (window.location.pathname === '/kiosk2') return null;
   return (
     <div className="footer">
-      <div className="footer-img">
-        <a href="https://www.suncheon.go.kr/kr/" type="_blank">
-          <img src="img/순천시.png" />
-        </a>
-        <a href="http://www.jcia.or.kr/cf/index.do" type="_blank">
-          <img src="img/진흥원.png" />
-        </a>
-      </div>
+      <p>
+        본 시스템은 (재)전남정보문화산업진흥원의 지원을 받아 제작된
+        시스템입니다.
+      </p>
     </div>
   );
 }

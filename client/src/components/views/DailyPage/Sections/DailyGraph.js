@@ -47,7 +47,8 @@ function DailyGraph(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-  // const dangerLevel = props.data[0]?.water_level_danger;
+
+  // const dangerLevel = data[0]?.water_level_danger;
 
   console.log(data);
 
@@ -86,7 +87,7 @@ function DailyGraph(props) {
             name="온도"
           />
           <Bar type="monotone" dataKey="humidity" fill="#32CD32" name="습도" />
-          <ReferenceLine
+          {/* <ReferenceLine
             // y={dangerLevel}
             stroke="red"
             label={{
@@ -95,7 +96,7 @@ function DailyGraph(props) {
               fill: 'red',
               fontSize: 15,
             }}
-          />
+          /> */}
           <Brush dataKey="water_level" height={10} stroke="#8884d8" />
         </ComposedChart>
       </ResponsiveContainer>
