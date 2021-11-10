@@ -1,23 +1,30 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, Fragment } from 'react';
-import axios from 'axios';
-import moment from 'moment';
-// import '../../../../Styles/Card.css';
+import React from 'react';
+import { Tabs } from 'antd';
+import RealTime from './Section/RealTime';
 import Daily from './Section/Daily';
 import Month from './Section/Month';
 import Year from './Section/Year';
-import Yearly from './Section/Yearly';
-import Highcharts from 'highcharts/highstock';
-import HighchartsReact from 'highcharts-react-official';
-import exporting from 'highcharts/modules/exporting';
-import exportData from 'highcharts/modules/export-data';
-// import exportingData from 'highcharts/modules/exporting-data';
-import { Form, Radio, Button } from 'antd';
-exporting(Highcharts);
-exportData(Highcharts);
 
 function FirstPoint() {
-  return <div></div>;
+  const { TabPane } = Tabs;
+  return (
+    <div>
+      <Tabs defaultActiveKey="1" centered>
+        <TabPane tab="실시간" key="real">
+          <RealTime />
+        </TabPane>
+        <TabPane tab="일별" key="daily">
+          <Daily />
+        </TabPane>
+        <TabPane tab="월별" key="month">
+          <Month />
+        </TabPane>
+        <TabPane tab="연도별" key="year">
+          <Year />
+        </TabPane>
+      </Tabs>
+    </div>
+  );
 }
+
 export default FirstPoint;

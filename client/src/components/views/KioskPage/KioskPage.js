@@ -1,117 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import moment from 'moment';
-import FirstPoint from './Sections/FirstPoint';
-import SecondPoint from './Sections/SecondPoint';
-import ThirdPoint from './Sections/ThirdPoint';
-import FourthPoint from './Sections/FourthPoint';
-import { Row, Col, Card } from 'antd';
-// import '../../../Styles/Kiosk.css';
-// import '../../../Styles/Wave2.css';
-import LiquidFillGauge from 'react-liquid-gauge';
-import { color } from 'd3-color';
+import FirstPoint from './PointSections/FirstPoint';
+import SecondPoint from './PointSections/SecondPoint';
+import ThirdPoint from './PointSections/ThirdPoint';
+import FourthPoint from './PointSections/FourthPoint';
+import Five from './PointSections/Five';
+import Weather from './PointSections/Weather';
 import 'animate.css';
 
 function KioskPage() {
-  const [data, setData] = useState([{}]);
-
-  const [StartDate, setStartDate] = useState(moment());
-  const [EndDate, setEndDate] = useState(moment());
-  const [CreatedAt, setCreatedAt] = useState(moment());
-  const waterData = data[data.length - 1].water_level;
-  const preData = data[data.length - 1].precipitation;
-  const tempData = data[data.length - 1].temperature;
-  const humData = data[data.length - 1].humidity;
-
-  let body = {
-    placeId: 1,
-    startDate: StartDate,
-    endDate: EndDate,
-    createdAt: CreatedAt,
-  };
-
-  useEffect(() => {
-    axios
-      .post('/api/daily/', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const data2 = waterData * 10;
-
-  const waterColor = data2 < 9 ? '#2f88ff' : data2 < 22 ? '#ffdd15' : '#ff0202';
-
-  // const colorList = {
-  //   color_1: color(waterColor),
-  // };
-
-  const gradientStops = [
-    {
-      key: '1%',
-      stopColor: color(waterColor),
-      stopOpacity: 0.8,
-      offset: '.117',
-    },
-  ];
-
-  console.log(waterData);
-
-  console.log('data2value: ' + data2);
-
   return (
-    <div
-      className="kiosk-page"
-      style={{
-        backgroundImage: "url('/img/kioskbackground.png')",
-        width: 550,
-        height: 450,
-        backgroundRepeat: 'no-repeat',
-        margin: '0 auto',
-      }}
-    >
+    <div style={{ width: 550, margin: 0, padding: 0 }}>
+      <div style={{ fontSize: 25, textAlign: 'center' }}>
+        <p style={{ margin: 0 }}>순천시 도시하천 실시간 모니터링 시스템</p>
+      </div>
       <div
-        className="testImage"
         style={{
-          backgroundImage: "url('/img/GPS.png')",
-          width: 100,
-          height: 100,
-          backgroundRepeat: 'no-repeat',
-          margin: '0 auto',
-          textAlign: 'center',
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          position: 'relative',
         }}
       >
-        <div className="testGauge" style={{ paddingTop: 20 }}>
-          <LiquidFillGauge
-            style={{
-              margin: '0 auto',
-              // opacity: 0.8,
-              backgroundColor: '#fff',
-              borderRadius: 35,
-            }}
-            width={70}
-            height={70}
-            value={data2}
-            percent="%"
-            textSize={1}
-            // riseAnimation
-            waveAnimation
-            waveFrequency={2}
-            waveAmplitude={2}
-            gradient
-            gradientStops={gradientStops}
-            circleStyle={{
-              fill: color('transparent').toString(),
-            }}
-            textStyle={{
-              fill: color('black').toString(),
-            }}
-            waveTextStyle={{
-              fill: color('black').toString(),
-            }}
-          />
+        <div style={{ position: 'absolute', zIndex: -1 }}>
+          <img src="img/Monitor.png" />
         </div>
+        {/* <div style={{ width: 40 }}>
+          <img src="img/GaugeBar.png" />
+        </div> */}
+      </div>
+      <br />
+      <div style={{ margin: '280px 0 0 15px', position: 'absolute' }}>
+        <div style={{ float: 'left', width: 110, margin: 10 }}>
+          <FirstPoint />
+        </div>
+        <div style={{ float: 'left', width: 110, margin: 10 }}>
+          <SecondPoint />
+        </div>
+        <div style={{ float: 'left', width: 110, margin: 10 }}>
+          <ThirdPoint />
+        </div>
+        <div style={{ float: 'left', width: 110, margin: 10 }}>
+          <FourthPoint />
+        </div>
+        {/* <div style={{ float: 'left', width: 130 }}>
+          <Five />
+        </div> */}
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          margin: '0 0 0 380px',
+          borderRadius: '10px',
+          backgroundColor: 'rgb(255, 255, 255, 0.6)',
+          boxShadow: '0px 0px 5px black',
+        }}
+      >
+        <Weather />
       </div>
     </div>
   );

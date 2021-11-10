@@ -7,6 +7,7 @@ import '../../../Styles/Navbar.css';
 
 function Navbar() {
   if (window.location.pathname === '/kiosk') return <div></div>;
+  if (window.location.pathname === '/kiosktest') return <div></div>;
   if (window.location.pathname === '/kiosk2')
     return (
       <div

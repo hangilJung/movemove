@@ -14,6 +14,7 @@ function KioskNav() {
   useEffect(() => {
     axios.post('/api/weather/header').then((res) => {
       setWeatherData(res.data.body[0]);
+      console.log(res.data.body[0]);
     });
   }, []);
 
@@ -38,7 +39,6 @@ function KioskNav() {
   ) {
     weather = <img src="img/눈.png" />;
   }
-  // console.log(weatherData);
   // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
 
   return (
