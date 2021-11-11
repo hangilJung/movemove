@@ -27,6 +27,7 @@ function FirstPoint() {
       .post('/api/kiosk/', { body })
       .then((res) => {
         setData(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -10,7 +10,6 @@ function Weather() {
   useEffect(() => {
     axios.post('/api/weather/header').then((res) => {
       setWeatherData(res.data.body[0]);
-      console.log(res.data.body[0]);
     });
   }, []);
 
@@ -28,6 +27,7 @@ function Weather() {
   ) {
     weather = <img src="img/snow.gif" style={{ width: 65, height: 55 }} />;
   }
+
   // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
 
   return (
@@ -37,6 +37,8 @@ function Weather() {
           width: 150,
           height: 80,
           position: 'relative',
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         <div
@@ -66,7 +68,7 @@ function Weather() {
             width: '100%',
             height: '100%',
             zIndex: 9999,
-            margin: '50px 0 0 10px',
+            margin: '50px 0 0 -30px',
             fontSize: 15,
           }}
         >

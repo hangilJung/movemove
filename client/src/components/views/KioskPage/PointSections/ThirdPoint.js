@@ -7,15 +7,13 @@ import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
-import { BiWind } from 'react-icons/bi';
 
-function FirstPoint() {
+function ThirdPoint() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
   const [EndDate, setEndDate] = useState(moment());
   const [CreatedAt, setCreatedAt] = useState(moment());
-  const [weatherData, setWeatherData] = useState({});
 
   let body = {
     placeId: 1,
@@ -31,20 +29,11 @@ function FirstPoint() {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-    axios
-      .post('/api/weather/header')
-      .then((res) => {
-        setWeatherData(res.data.body[0]);
-        console.log(res.data.body[0]);
-      })
-      .catch((err) => console.log(err));
   }, []);
 
   const waterData = data[data.length - 1].water_level;
-  const preData = data[data.length - 1].precipitation;
-  const windData = weatherData.wsd;
 
-  const data2 = waterData * 20;
+  const data2 = 4;
 
   const textShadow =
     '-0.3px -0.3px 0 #fff, 0.3px -0.3px 0 #fff, -0.3px 0.3px 0 #fff, 0.3px 0.3px 0 #fff';
@@ -62,45 +51,55 @@ function FirstPoint() {
 
   const waterText =
     data2 < 5 ? (
-      <p
+      <text
         style={{
           textShadow: `${textShadow}`,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         안전
-      </p>
+      </text>
     ) : data2 < 10 ? (
-      <p
+      <text
         style={{
           textShadow: `${textShadow}`,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         관심
-      </p>
+      </text>
     ) : data2 < 20 ? (
-      <p
+      <text
         style={{
           textShadow: `${textShadow}`,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         주의
-      </p>
+      </text>
     ) : data2 < 30 ? (
-      <p
+      <text
         style={{
           textShadow: `${textShadow}`,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         경계
-      </p>
+      </text>
     ) : (
-      <p
+      <text
         style={{
           textShadow: `${textShadow}`,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
         }}
       >
         심각
-      </p>
+      </text>
     );
 
   const gradientStops = [
@@ -126,22 +125,14 @@ function FirstPoint() {
 
   return (
     <div>
-      <div style={{ width: '100%', margin: '0 auto', textAlign: 'center' }}>
-        <h2>순천만습지</h2>
-      </div>
       <div
         style={{
           position: 'relative',
-          width: '100%',
-          height: '100%',
         }}
       >
         <div
           style={{
             position: 'absolute',
-            opacity: 0.7,
-            width: '100%',
-            height: '100%',
             zIndex: -1,
             margin: '0 auto',
           }}
@@ -206,21 +197,17 @@ function FirstPoint() {
           }}
           className="waterText"
         >
-          <p
+          <text
             style={{
               color: `${waterColor}`,
               margin: 0,
             }}
           >
             {waterText}
-          </p>
+          </text>
         </div>
-      </div>
-      <div style={{ marginTop: 32 }}>
-        <p>강수량 : {preData}mm/h</p>
-        <p>바 람 : {windData}m/s</p>
       </div>
     </div>
   );
 }
-export default FirstPoint;
+export default ThirdPoint;

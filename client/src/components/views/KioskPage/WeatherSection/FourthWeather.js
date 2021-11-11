@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-function FirstWeather() {
+function FourthWeather() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -47,24 +47,14 @@ function FirstWeather() {
         }}
       >
         <p style={{ margin: '0 auto', fontSize: 10 }}>
-          <img
-            src="img/pre.gif"
-            style={{
-              width: 30,
-              height: 'auto',
-            }}
-          />
+          <img src="img/pre.gif" style={{ width: 30, height: 'auto' }} />
           강수량 : {preData}mm/h
         </p>
         <hr />
         <p style={{ margin: '0 auto', fontSize: 10 }}>
           <img
             src="img/wind.gif"
-            style={{
-              width: 25,
-              height: 'auto',
-              marginRight: 5,
-            }}
+            style={{ width: 25, height: 'auto', marginRight: 5 }}
           />
           바 람 : {windData}m/s
         </p>
@@ -73,4 +63,4 @@ function FirstWeather() {
   );
 }
 
-export default FirstWeather;
+export default FourthWeather;

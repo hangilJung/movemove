@@ -1,9 +1,45 @@
-@font-face {
+/* @font-face {
   font-family: 'GmarketSansMedium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
     format('woff');
   font-weight: normal;
   font-style: normal;
+} */
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url('./Styles/Font/NotoSansKR-Light.woff2') format('woff2'),
+    url('./Styles/Font/NotoSansKR-Light.woff') format('woff'),
+    url('./Styles/Font/NotoSansKR-Light.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./Styles/Font/NotoSansKR-Regular.woff2') format('woff2'),
+    url('./Styles/Font/NotoSansKR-Regular.woff') format('woff'),
+    url('./Styles/Font/NotoSansKR-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./Styles/Font/NotoSansKR-Medium.woff2') format('woff2'),
+    url('./Styles/Font/NotoSansKR-Medium.woff') format('woff'),
+    url('./Styles/Font/NotoSansKR-Medium.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  font-style: normal;
+  font-weight: bold;
+  src: url('./Styles/Font/NotoSansKR-Bold.woff2') format('woff2'),
+    url('./Styles/Font/NotoSansKR-Bold.woff') format('woff'),
+    url('./Styles/Font/NotoSansKR-Bold.otf') format('truetype');
 }
 
 body {

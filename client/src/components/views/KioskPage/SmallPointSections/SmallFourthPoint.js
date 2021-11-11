@@ -8,7 +8,7 @@ import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
 
-function FourthPoint() {
+function SmallSecondPoint() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -48,6 +48,13 @@ function FourthPoint() {
       : data2 < 30
       ? 'rgb(255, 131, 0)'
       : 'rgb(255, 80, 80)';
+
+  const safeImg =
+    data2 < 30 ? (
+      <img src="img/safe.png" style={{ width: 30, height: 'auto' }} />
+    ) : (
+      <img src="img/danger.png" style={{ width: 30, height: 'auto' }} />
+    );
 
   const waterText =
     data2 < 5 ? (
@@ -135,11 +142,13 @@ function FourthPoint() {
             position: 'absolute',
             zIndex: -1,
             margin: '0 auto',
+            backgroundColor: '#FAFAFA',
+            borderRadius: '50%',
           }}
         >
           <LiquidFillGauge
-            width={110}
-            height={110}
+            width={70}
+            height={70}
             value={data2}
             percent="M"
             textSize={1}
@@ -192,8 +201,8 @@ function FourthPoint() {
           style={{
             display: 'absolute',
             textAlign: 'center',
-            width: 110,
-            paddingTop: 70,
+            width: 70,
+            paddingTop: 40,
           }}
           className="waterText"
         >
@@ -201,13 +210,34 @@ function FourthPoint() {
             style={{
               color: `${waterColor}`,
               margin: 0,
+              fontSize: 12,
             }}
           >
             {waterText}
           </text>
         </div>
       </div>
+      <div>
+        <img
+          src="img/Label.png"
+          style={{ width: 100, height: 'auto', marginLeft: -15, marginTop: 20 }}
+        />
+        <div style={{ marginTop: -31 }}>
+          <div style={{ marginLeft: -27 }}>{safeImg}</div>
+          <p
+            style={{
+              width: 100,
+              height: 'auto',
+              margin: '-27px 0 0 10px',
+              fontFamily: 'Noto Sans CJK KR',
+              fontStyle: 'normal',
+            }}
+          >
+            원용당교
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
-export default FourthPoint;
+export default SmallSecondPoint;

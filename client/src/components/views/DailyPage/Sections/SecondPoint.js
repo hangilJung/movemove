@@ -16,7 +16,7 @@ function FirstPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 2,
+    placeId: 1,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
