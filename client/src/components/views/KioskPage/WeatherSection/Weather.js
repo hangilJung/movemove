@@ -14,13 +14,13 @@ function Weather() {
   }, []);
 
   if (weatherData.weatherName === '맑음') {
-    weather = <img src="img/sunny.gif" style={{ width: 65, height: 55 }} />;
+    weather = <img src="img/sunny.gif" style={{ width: 65, height: 65 }} />;
   } else if (weatherData.weatherName === '흐림') {
-    weather = <img src="img/cloudy.gif" style={{ width: 65, height: 55 }} />;
+    weather = <img src="img/cloudy.gif" style={{ width: 65, height: 65 }} />;
   } else if (weatherData.weatherName === '비') {
-    weather = <img src="img/rain.gif" style={{ width: 65, height: 55 }} />;
+    weather = <img src="img/rain.gif" style={{ width: 65, height: 65 }} />;
   } else if (weatherData.weatherName === '구름많음') {
-    weather = <img src="img/cloud.gif" style={{ width: 65, height: 55 }} />;
+    weather = <img src="img/cloud.gif" style={{ width: 65, height: 65 }} />;
   } else if (
     weatherData.weatherName === '비/눈' ||
     weatherData.weatherName === '눈'

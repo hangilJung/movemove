@@ -41,20 +41,32 @@ function SecondWeather() {
     <div>
       <div
         style={{
-          marginTop: 32,
+          margin: '32px 0 0 0',
           fontFamily: 'Noto Sans CJK KR',
           fontStyle: 'normal',
         }}
       >
         <p style={{ margin: '0 auto', fontSize: 10 }}>
-          <img src="img/pre.gif" style={{ width: 30, height: 'auto' }} />
+          <img
+            src="img/pre.gif"
+            style={{
+              width: 25,
+              height: 'auto',
+            }}
+            alt="profile"
+          />
           강수량 : {preData}mm/h
         </p>
         <hr />
         <p style={{ margin: '0 auto', fontSize: 10 }}>
           <img
             src="img/wind.gif"
-            style={{ width: 25, height: 'auto', marginRight: 5 }}
+            style={{
+              width: 25,
+              height: 'auto',
+              marginRight: 5,
+            }}
+            alt="profile"
           />
           바 람 : {windData}m/s
         </p>

@@ -41,7 +41,7 @@ function FirstWeather() {
     <div>
       <div
         style={{
-          marginTop: 32,
+          margin: '32px 0 0 0',
           fontFamily: 'Noto Sans CJK KR',
           fontStyle: 'normal',
         }}
@@ -50,9 +50,10 @@ function FirstWeather() {
           <img
             src="img/pre.gif"
             style={{
-              width: 30,
+              width: 25,
               height: 'auto',
             }}
+            alt="profile"
           />
           강수량 : {preData}mm/h
         </p>
@@ -65,6 +66,7 @@ function FirstWeather() {
               height: 'auto',
               marginRight: 5,
             }}
+            alt="profile"
           />
           바 람 : {windData}m/s
         </p>

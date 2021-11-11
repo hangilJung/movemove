@@ -35,9 +35,6 @@ function ThirdPoint() {
 
   const data2 = 4;
 
-  const textShadow =
-    '-0.3px -0.3px 0 #fff, 0.3px -0.3px 0 #fff, -0.3px 0.3px 0 #fff, 0.3px 0.3px 0 #fff';
-
   const waterColor =
     data2 < 5
       ? 'rgb(169, 209, 142)'
@@ -51,75 +48,23 @@ function ThirdPoint() {
 
   const waterText =
     data2 < 5 ? (
-      <text
-        style={{
-          textShadow: `${textShadow}`,
-          fontFamily: 'Noto Sans CJK KR',
-          fontStyle: 'normal',
-        }}
-      >
-        안전
-      </text>
+      <img src="/img/level_1.png" style={{ width: 40 }} alt="profile" />
     ) : data2 < 10 ? (
-      <text
-        style={{
-          textShadow: `${textShadow}`,
-          fontFamily: 'Noto Sans CJK KR',
-          fontStyle: 'normal',
-        }}
-      >
-        관심
-      </text>
+      <img src="/img/level_2.png" style={{ width: 40 }} alt="profile" />
     ) : data2 < 20 ? (
-      <text
-        style={{
-          textShadow: `${textShadow}`,
-          fontFamily: 'Noto Sans CJK KR',
-          fontStyle: 'normal',
-        }}
-      >
-        주의
-      </text>
+      <img src="/img/level_3.png" style={{ width: 40 }} alt="profile" />
     ) : data2 < 30 ? (
-      <text
-        style={{
-          textShadow: `${textShadow}`,
-          fontFamily: 'Noto Sans CJK KR',
-          fontStyle: 'normal',
-        }}
-      >
-        경계
-      </text>
+      <img src="/img/level_4.png" style={{ width: 40 }} alt="profile" />
     ) : (
-      <text
-        style={{
-          textShadow: `${textShadow}`,
-          fontFamily: 'Noto Sans CJK KR',
-          fontStyle: 'normal',
-        }}
-      >
-        심각
-      </text>
+      <img src="/img/level_5.png" style={{ width: 40 }} alt="profile" />
     );
 
   const gradientStops = [
     {
       key: '1%',
       stopColor: color(waterColor),
-      stopOpacity: 0.8,
+      stopOpacity: 1,
       offset: '.117',
-    },
-    {
-      key: '50%',
-      stopColor: color(waterColor),
-      stopOpacity: 0.75,
-      offset: '50%',
-    },
-    {
-      key: '100%',
-      stopColor: color(waterColor).brighter(0.5).toString(),
-      stopOpacity: 0.5,
-      offset: '100%',
     },
   ];
 
@@ -151,6 +96,8 @@ function ThirdPoint() {
               const textPixels = (props.textSize * radius) / 2;
               const valueStyle = {
                 fontSize: textPixels,
+                textShadow:
+                  '-1px -1px 0 #eee, 1px -1px 0 #eee, -1px 1px 0 #eee, 1px 1px 0 #eee',
               };
               const percentStyle = {
                 fontSize: textPixels * 0.6,
