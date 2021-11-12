@@ -40,14 +40,14 @@ function SmallSecondPoint() {
 
   const waterColor =
     data2 < 5
-      ? 'rgb(169, 209, 142)'
+      ? 'rgb(21, 171, 0)'
       : data2 < 10
-      ? 'rgb(91, 155, 213)'
+      ? 'rgb(0, 59, 174)'
       : data2 < 20
-      ? 'rgb(255, 208, 20)'
+      ? 'rgb(255, 120, 0)'
       : data2 < 30
-      ? 'rgb(255, 131, 0)'
-      : 'rgb(255, 80, 80)';
+      ? 'rgb(200, 64, 13)'
+      : 'rgb(255, 43, 0)';
 
   const safeImg =
     data2 < 30 ? (
