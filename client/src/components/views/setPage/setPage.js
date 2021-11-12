@@ -3,9 +3,12 @@ import "../../../Styles/set.css";
 import { Row, Col, Card, Button } from "antd";
 
 function setPage() {
+  function riskSet() {
+    window.location.href = "/riskSet";
+  }
   return (
-    <div class="set-container">
-      <div class="set-title">
+    <div className="set-container">
+      <div className="set-title">
         <h1>설정</h1>
       </div>
       <div class="set-content">
@@ -14,7 +17,7 @@ function setPage() {
       <Row gutter={20}>
         <Col span={6}></Col>
         <Col span={6}>
-          <button className="btn-text">
+          <button className="btn-text" onClick={riskSet}>
             <h1>위험수치 설정</h1>
             <div>
               <img src="img/warning.png" width="50"></img>

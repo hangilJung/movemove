@@ -1,23 +1,24 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
-import PublicRoute from './lib/PublicRoute';
-import PrivateRoute from './lib/PrivateRoute';
-import Login from './components/views/LoginPage/Login';
-import Navbar from './components/views/NavBar/Navbar';
-import DailyPage from './components/views/DailyPage/DailyPage';
-import DateSearchPage from './components/views/DateSearchPage/DateSearchPage';
-import StatisticsPage from './components/views/StatisticsPage/StatisticsPage';
-import SettingPage from './components/views/SettingPage/SettingPage';
-import Footer from './components/views/Footer/Footer';
-import KioskPage from './components/views/KioskPage/KioskPage';
-import KioskPage2 from './components/views/KioskPage2/KioskPage2';
-import NotFound from './components/views/NotFoundPage';
-import TestPage from './components/views/TestPage/Test';
-import TestPage2 from './components/views/Test2Page/Test2';
-import { Spin } from 'antd';
-import setPage from './components/views/setPage/setPage';
-import KioskTest from './components/views/KioskTest';
+import React, { Suspense } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import "./App.css";
+import PublicRoute from "./lib/PublicRoute";
+import PrivateRoute from "./lib/PrivateRoute";
+import Login from "./components/views/LoginPage/Login";
+import Navbar from "./components/views/NavBar/Navbar";
+import DailyPage from "./components/views/DailyPage/DailyPage";
+import DateSearchPage from "./components/views/DateSearchPage/DateSearchPage";
+import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
+import SettingPage from "./components/views/SettingPage/SettingPage";
+import Footer from "./components/views/Footer/Footer";
+import KioskPage from "./components/views/KioskPage/KioskPage";
+import KioskPage2 from "./components/views/KioskPage2/KioskPage2";
+import NotFound from "./components/views/NotFoundPage";
+import TestPage from "./components/views/TestPage/Test";
+import TestPage2 from "./components/views/Test2Page/Test2";
+import { Spin } from "antd";
+import setPage from "./components/views/setPage/setPage";
+import KioskTest from "./components/views/KioskTest";
+import setRisk from "./components/views/setRiskPage/setRiskPage";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <PublicRoute exact path="/notfound" component={NotFound} />
             <PublicRoute exact path="/set" component={setPage} />
             <PublicRoute exact path="/kiosktest" component={KioskTest} />
+            <PublicRoute exact path="/setRisk" component={setRisk} />
           </Switch>
         </div>
         <Footer />
