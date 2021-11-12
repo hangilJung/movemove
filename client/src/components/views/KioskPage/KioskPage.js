@@ -51,9 +51,9 @@ function KioskPage(props) {
             style={{
               width: 150,
               position: 'absolute',
-              margin: '0 0 0 380px',
+              margin: '8px 0 0 380px',
               borderRadius: '10px',
-              backgroundColor: 'rgb(255, 255, 255, 0.6)',
+              backgroundColor: '#fff',
               boxShadow: '0px 0px 5px black',
             }}
           >
@@ -165,7 +165,7 @@ function KioskPage(props) {
               순천만 습지
             </p>
             <FirstPoint style={{ width: 110, height: 110 }} />
-            <FirstWeather />
+            <FirstWeather style={{}} />
           </div>
           <div
             style={{ float: 'left', width: 110, margin: '5px 10px 5px 10px ' }}

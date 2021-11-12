@@ -41,6 +41,152 @@ export default class CommonLib {
     );
   }
 
+  getWaterTextBottom(waterData) {
+    let imgName = 'level_1';
+
+    if (waterData > 80) {
+      imgName = 'level_5';
+    }
+
+    if (waterData <= 80) {
+      imgName = 'level_4';
+    }
+
+    if (waterData <= 50) {
+      imgName = 'level_3';
+    }
+
+    if (waterData <= 40) {
+      imgName = 'level_2';
+    }
+
+    if (waterData <= 30) {
+      imgName = 'level_1';
+    }
+
+    return (
+      <img
+        src={'/img/' + imgName + '.png'}
+        style={{
+          width: 45,
+          height: 'auto',
+          zIndex: 999,
+          position: 'absolute',
+          left: 33,
+        }}
+        alt="profile"
+      />
+    );
+  }
+
+  getPlaceId(place, safeImg) {
+    let placeId = '';
+
+    if (place === '1') {
+      <div style={{ marginTop: -31 }}>
+        <div style={{ marginLeft: -27 }}>{safeImg}</div>
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 5px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          순천만 습지
+        </p>
+      </div>;
+    }
+    if (place === '2') {
+      <div style={{ marginTop: -31 }}>
+        <div style={{ marginLeft: -27 }}>{safeImg}</div>
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 5px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          풍덕교
+        </p>
+      </div>;
+    }
+    if (place === '3') {
+      <div style={{ marginTop: -31 }}>
+        <div style={{ marginLeft: -27 }}>{safeImg}</div>
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 5px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          용당교
+        </p>
+      </div>;
+    }
+    if (place === '4') {
+      <div style={{ marginTop: -31 }}>
+        <div style={{ marginLeft: -27 }}>{safeImg}</div>
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 5px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          원용당교
+        </p>
+      </div>;
+    }
+    return placeId;
+  }
+
+  getTriangleImg(waterData) {
+    let imgName = 'triangle_1';
+
+    if (waterData > 80) {
+      imgName = 'triangle_5';
+    }
+
+    if (waterData <= 80) {
+      imgName = 'triangle_4';
+    }
+
+    if (waterData <= 50) {
+      imgName = 'triangle_3';
+    }
+
+    if (waterData <= 40) {
+      imgName = 'triangle_2';
+    }
+
+    if (waterData <= 30) {
+      imgName = 'triangle_1';
+    }
+
+    return (
+      <img
+        src={'/img/' + imgName + '.png'}
+        style={{
+          width: 20,
+          height: 'auto',
+          left: 25,
+          zIndex: 999,
+          position: 'absolute',
+        }}
+        alt="profile"
+      />
+    );
+  }
+
   getSafeImage(waterData) {
     if (waterData < 80) {
       return (
@@ -144,12 +290,76 @@ export default class CommonLib {
           const valueStyle = {
             fontSize: textPixels,
             textShadow:
-              '-0.9px -0.9px 0 #eee, 0.9px -0.9px 0 #eee, -0.9px 0.9px 0 #eee, 0.9px 0.9px 0 #eee',
+              '-0.9px -0.9px 0 #fff, 0.9px -0.9px 0 #fff, -0.9px 0.9px 0 #fff, 0.9px 0.9px 0 #eee',
           };
           const percentStyle = {
             fontSize: textPixels * 0.5,
             textShadow:
-              '-0.5px -0.5px 0 #eee, 0.5px -0.5px 0 #eee, -0.5px 0.5px 0 #eee, 0.5px 0.5px 0 #eee',
+              '-0.5px -0.5px 0 #fff, 0.5px -0.5px 0 #fff, -0.5px 0.5px 0 #fff, 0.5px 0.5px 0 #eee',
+          };
+
+          return (
+            <tspan>
+              <tspan className="value" style={valueStyle}>
+                {value}
+              </tspan>
+              <tspan style={percentStyle}>M</tspan>
+            </tspan>
+          );
+        }}
+        riseAnimation
+        waveAnimation
+        waveFrequency={1}
+        waveAmplitude={4}
+        gradient
+        gradientStops={gradientStops}
+        circleStyle={{
+          fill: waterColor,
+        }}
+        waveStyle={{
+          fill: waterColor,
+        }}
+        textStyle={{
+          fill: color(waterColor),
+          fontFamily: 'Arial',
+        }}
+        waveTextStyle={{
+          fill: color(waterColor),
+          fontFamily: 'Arial',
+        }}
+      />
+    );
+  }
+
+  getLiquidFillGaugeBottom(
+    waterData,
+    circlePercent,
+    gradientStops,
+    waterColor,
+    color
+  ) {
+    return (
+      <LiquidFillGauge
+        width={110}
+        height={110}
+        value={waterData}
+        textSize={1}
+        textOffsetX={0}
+        textOffsetY={0}
+        textRenderer={(props) => {
+          // 미터
+          const value = Math.round(waterData * 100) / 100;
+          const radius = Math.min(props.height / 2, props.width / 2);
+          const textPixels = (props.textSize * radius) / 1.7;
+          const valueStyle = {
+            fontSize: textPixels,
+            textShadow:
+              '-0.9px -0.9px 0 #fff, 0.9px -0.9px 0 #fff, -0.9px 0.9px 0 #fff, 0.9px 0.9px 0 #eee',
+          };
+          const percentStyle = {
+            fontSize: textPixels * 0.5,
+            textShadow:
+              '-0.5px -0.5px 0 #fff, 0.5px -0.5px 0 #fff, -0.5px 0.5px 0 #fff, 0.5px 0.5px 0 #eee',
           };
 
           return (

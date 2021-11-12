@@ -8,8 +8,9 @@ import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
+import GaugeLib from '../../../../lib/gaugeLib';
 
-function SmallFirstPoint(props) {
+function SmallFirstPoint() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -40,13 +41,16 @@ function SmallFirstPoint(props) {
     getWaterLevel = '-';
   }
 
-  const waterData = 65;
+  const waterData = 81;
 
   const circlePercent = 30;
 
   let cl = new CommonLib();
+  let gl = new GaugeLib();
 
   const safeImg = cl.getSafeImage(waterData);
+
+  const triangleImg = cl.getTriangleImg(waterData);
 
   const waterText = cl.getWaterText(waterData);
 
@@ -62,73 +66,12 @@ function SmallFirstPoint(props) {
     color
   );
 
-  console.log(data.risk);
-
-  return (
-    <div>
-      <div
-        style={{
-          position: 'relative',
-          width: 72,
-          height: 72,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              position: 'absolute',
-              zIndex: 60,
-              margin: '0 auto',
-              backgroundColor: '#eee',
-              borderRadius: '50%',
-            }}
-          >
-            {liquidFillGauge}
-          </div>
-
-          <div
-            style={{
-              display: 'absolute',
-              textAlign: 'center',
-              width: 70,
-              paddingTop: 40,
-            }}
-            className="waterText"
-          >
-            <text
-              style={{
-                color: `${waterColor}`,
-                margin: 0,
-                fontSize: 12,
-              }}
-            >
-              {waterText}
-            </text>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img
-          src="img/Label.png"
-          style={{ width: 100, height: 'auto', marginLeft: -15, marginTop: 15 }}
-          alt="profile"
-        />
-        <div style={{ marginTop: -31 }}>
-          <div style={{ marginLeft: -27 }}>{safeImg}</div>
-          <p
-            style={{
-              width: 100,
-              height: 'auto',
-              margin: '-27px 0 0 5px',
-              fontFamily: 'Noto Sans CJK KR',
-              fontStyle: 'normal',
-            }}
-          >
-            순천만 습지
-          </p>
-        </div>
-      </div>
-    </div>
+  return gl.getGauge(
+    liquidFillGauge,
+    triangleImg,
+    waterColor,
+    waterText,
+    safeImg
   );
 }
 export default SmallFirstPoint;
