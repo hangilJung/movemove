@@ -16,8 +16,9 @@ import moment from 'moment';
 import 'animate.css';
 import '../../../Styles/Kiosk.css';
 
-function KioskPage() {
+function KioskPage(props) {
   const toDay = moment().format('YYYY. MM. DD. (dd) HH:mm:ss');
+
   return (
     <div className="kiosk">
       <div
