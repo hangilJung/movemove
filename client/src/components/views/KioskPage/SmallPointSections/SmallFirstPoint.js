@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
@@ -25,13 +24,22 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
     axios
       .post('/api/minute/', { body })
       .then((res) => {
         setData(res.data);
+        console.log('5초');
       })
       .catch((err) => console.log(err));
-  }, []);
+
+    setTimeout(() => {
+      timeoutFunc();
+    }, 5000);
+  }
 
   let getWaterLevel = {};
 
@@ -41,7 +49,9 @@ function SmallFirstPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 81;
+  const placeName = body.placeId;
+
+  const waterData = ((getWaterLevel / 1.5) * 130).toFixed(1);
 
   const circlePercent = 30;
 
@@ -49,6 +59,8 @@ function SmallFirstPoint() {
   let gl = new GaugeLib();
 
   const safeImg = cl.getSafeImage(waterData);
+
+  const placeNameText = cl.getPlaceName(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 
@@ -71,7 +83,8 @@ function SmallFirstPoint() {
     triangleImg,
     waterColor,
     waterText,
-    safeImg
+    safeImg,
+    placeNameText
   );
 }
 export default SmallFirstPoint;

@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 import GaugeLib from '../../../../lib/gaugeLib';
 
-function FirstPoint() {
+function SecondPoint() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -25,13 +24,29 @@ function FirstPoint() {
   };
 
   useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
     axios
       .post('/api/minute/', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+
+    setTimeout(() => {
+      timeoutFunc();
+    }, 5000);
+  }
+
+  let getWaterLevel = {};
+
+  if (data.water_level !== 'undefined') {
+    getWaterLevel = data[data.length - 1].water_level;
+  } else {
+    getWaterLevel = '-';
+  }
 
   const waterData = 40;
 
@@ -56,4 +71,4 @@ function FirstPoint() {
 
   return gl.getGaugeBottom(liquidFillGauge, waterText, waterData, waterColor);
 }
-export default FirstPoint;
+export default SecondPoint;

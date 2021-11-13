@@ -13,7 +13,23 @@ function Weather() {
     });
   }, []);
 
-  weatherData.weatherName = '눈';
+  useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
+    axios
+      .post('/api/weather/header')
+      .then((res) => {
+        setWeatherData(res.data.body[0]);
+        console.log('날씨호출');
+      })
+      .catch((err) => console.log(err));
+
+    setTimeout(() => {
+      timeoutFunc();
+    }, 600000);
+  }
 
   if (weatherData.weatherName === '맑음') {
     weather = <img src="img/sunny.gif" style={{ width: 65, height: 65 }} />;
@@ -29,7 +45,6 @@ function Weather() {
   ) {
     weather = <img src="img/snow.gif" style={{ width: 65, height: 65 }} />;
   }
-
   // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
 
   return (
@@ -57,12 +72,13 @@ function Weather() {
         <p
           style={{
             position: 'absolute',
-            width: 30,
+            width: 50,
             height: 30,
             zIndex: 9999,
             margin: '25px 50px 30px 30px',
             fontSize: 18,
             right: 25,
+            textAlign: 'right',
           }}
         >
           {weatherData.tmp}℃

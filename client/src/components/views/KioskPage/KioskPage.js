@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SmallFirstPoint from './SmallPointSections/SmallFirstPoint';
 import SmallSecondPoint from './SmallPointSections/SmallSecondPoint';
 import SmallThirdPoint from './SmallPointSections/SmallThirdPoint';
@@ -17,7 +17,19 @@ import 'animate.css';
 import '../../../Styles/Kiosk.css';
 
 function KioskPage(props) {
-  const toDay = moment().format('YYYY. MM. DD. (dd) HH:mm:ss');
+  let timer = null;
+
+  const [time, setTime] = useState(moment());
+
+  useEffect(() => {
+    timer = setInterval(() => {
+      setTime(moment());
+      console.log('10초');
+    }, 6000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <div className="kiosk">
@@ -46,15 +58,15 @@ function KioskPage(props) {
               alt="profile"
             />
           </div>
-          {toDay}
+          {time.format('YYYY. MM. DD. (dd) HH:mm')}
           <div
             style={{
-              width: 150,
+              width: 160,
               position: 'absolute',
               margin: '8px 0 0 380px',
               borderRadius: '10px',
               backgroundColor: '#fff',
-              boxShadow: '0px 0px 5px black',
+              boxShadow: '0px 0px 5px #bbb',
             }}
           >
             <Weather />

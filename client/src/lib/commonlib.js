@@ -79,76 +79,6 @@ export default class CommonLib {
     );
   }
 
-  getPlaceId(place, safeImg) {
-    let placeId = '';
-
-    if (place === '1') {
-      <div style={{ marginTop: -31 }}>
-        <div style={{ marginLeft: -27 }}>{safeImg}</div>
-        <p
-          style={{
-            width: 100,
-            height: 'auto',
-            margin: '-27px 0 0 5px',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          순천만 습지
-        </p>
-      </div>;
-    }
-    if (place === '2') {
-      <div style={{ marginTop: -31 }}>
-        <div style={{ marginLeft: -27 }}>{safeImg}</div>
-        <p
-          style={{
-            width: 100,
-            height: 'auto',
-            margin: '-27px 0 0 5px',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          풍덕교
-        </p>
-      </div>;
-    }
-    if (place === '3') {
-      <div style={{ marginTop: -31 }}>
-        <div style={{ marginLeft: -27 }}>{safeImg}</div>
-        <p
-          style={{
-            width: 100,
-            height: 'auto',
-            margin: '-27px 0 0 5px',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          용당교
-        </p>
-      </div>;
-    }
-    if (place === '4') {
-      <div style={{ marginTop: -31 }}>
-        <div style={{ marginLeft: -27 }}>{safeImg}</div>
-        <p
-          style={{
-            width: 100,
-            height: 'auto',
-            margin: '-27px 0 0 5px',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          원용당교
-        </p>
-      </div>;
-    }
-    return placeId;
-  }
-
   getTriangleImg(waterData) {
     let imgName = 'triangle_1';
 
@@ -278,7 +208,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={70}
         height={70}
-        value={waterData}
+        value={circlePercent}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
@@ -342,7 +272,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={110}
         height={110}
-        value={waterData}
+        value={circlePercent}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
@@ -393,5 +323,68 @@ export default class CommonLib {
         }}
       />
     );
+  }
+
+  getPlaceName(placeName) {
+    if (placeName === 1) {
+      return (
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 5px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          순천만습지
+        </p>
+      );
+    }
+    if (placeName === 2) {
+      return (
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 15px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          풍덕교
+        </p>
+      );
+    }
+    if (placeName === 3) {
+      return (
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 15px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          용당교
+        </p>
+      );
+    }
+    if (placeName === 4) {
+      return (
+        <p
+          style={{
+            width: 100,
+            height: 'auto',
+            margin: '-27px 0 0 10px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          원용당교
+        </p>
+      );
+    }
   }
 }

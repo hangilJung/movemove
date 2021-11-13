@@ -10,7 +10,7 @@ import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 import GaugeLib from '../../../../lib/gaugeLib';
 
-function SmallFirstPoint() {
+function SmallFourthPoint() {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -25,13 +25,21 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
     axios
       .post('/api/minute/', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+
+    setTimeout(() => {
+      timeoutFunc();
+    }, 5000);
+  }
 
   let getWaterLevel = {};
 
@@ -41,6 +49,8 @@ function SmallFirstPoint() {
     getWaterLevel = '-';
   }
 
+  const placeName = 4;
+
   const waterData = 60;
 
   const circlePercent = 30;
@@ -49,6 +59,8 @@ function SmallFirstPoint() {
   let gl = new GaugeLib();
 
   const safeImg = cl.getSafeImage(waterData);
+
+  const placeNameText = cl.getPlaceName(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 
@@ -71,7 +83,8 @@ function SmallFirstPoint() {
     triangleImg,
     waterColor,
     waterText,
-    safeImg
+    safeImg,
+    placeNameText
   );
 }
-export default SmallFirstPoint;
+export default SmallFourthPoint;
