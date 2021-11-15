@@ -208,7 +208,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={70}
         height={70}
-        value={circlePercent}
+        value={waterData}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
@@ -272,7 +272,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={110}
         height={110}
-        value={circlePercent}
+        value={waterData}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
