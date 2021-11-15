@@ -19,6 +19,7 @@ import { Spin } from "antd";
 import setPage from "./components/views/setPage/setPage";
 import KioskTest from "./components/views/KioskTest";
 import setRisk from "./components/views/setRiskPage/setRiskPage";
+import setPassword from "./components/views/SetPassword/SetPassword";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             <PublicRoute exact path="/set" component={setPage} />
             <PublicRoute exact path="/kiosktest" component={KioskTest} />
             <PublicRoute exact path="/setRisk" component={setRisk} />
+            <PublicRoute exact path="/setPassword" component={setPassword} />
           </Switch>
         </div>
         <Footer />
