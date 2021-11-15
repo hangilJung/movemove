@@ -5,8 +5,8 @@ import PublicRoute from "./lib/PublicRoute";
 import PrivateRoute from "./lib/PrivateRoute";
 import Login from "./components/views/LoginPage/Login";
 import Navbar from "./components/views/NavBar/Navbar";
-import DailyPage from "./components/views/DailyPage/DailyPage";
 import DateSearchPage from "./components/views/DateSearchPage/DateSearchPage";
+import LandingPage from "./components/views/LandingPage/LandingPage";
 import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
 import SettingPage from "./components/views/SettingPage/SettingPage";
 import Footer from "./components/views/Footer/Footer";
@@ -36,9 +36,9 @@ function App() {
        */}
         <div>
           <Switch>
-            <PrivateRoute exact path="/" component={DailyPage} />
+            <PrivateRoute exact path="/" component={LandingPage} />
             <PublicRoute restricted exact path="/login" component={Login} />
-            <PrivateRoute exact path="/daily" component={DailyPage} />
+            <PrivateRoute exact path="/landing" component={LandingPage} />
             <PublicRoute exact path="/search" component={DateSearchPage} />
             <PrivateRoute exact path="/statistics" component={StatisticsPage} />
             <PrivateRoute exact path="/setting" component={SettingPage} />

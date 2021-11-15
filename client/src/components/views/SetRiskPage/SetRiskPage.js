@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function RiskSetPage() {
+function SetRiskPage() {
   return <div>riskPage</div>;
 }
 
-export default RiskSetPage;
+export default SetRiskPage;

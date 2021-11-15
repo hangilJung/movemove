@@ -16,8 +16,8 @@ function LeftMenu(props) {
       {/* <Menu.Item key="main" icon={<FcHome />}>
         <a href="/">Home</a>
       </Menu.Item> */}
-      <Menu.Item key="daily" icon={<FcWebcam />}>
-        <a href="/daily">메인</a>
+      <Menu.Item key="landing" icon={<FcWebcam />}>
+        <a href="/landing">메인</a>
       </Menu.Item>
       <Menu.Item key="search" icon={<FcWebcam />}>
         <a href="/search">날짜별검색</a>
