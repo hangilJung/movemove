@@ -15,7 +15,7 @@ import NotFound from "./components/views/NotFoundPage";
 import TestPage from "./components/views/TestPage/Test";
 import TestPage2 from "./components/views/Test2Page/Test2";
 import { Spin } from "antd";
-import SetPage from "./components/views/SetPage/setPage";
+import SetPage from "./components/views/SetPage/SetPage";
 import SetRisk from "./components/views/SetRiskPage/SetRiskPage";
 import SetPassword from "./components/views/SetPassword/SetPassword";
 
