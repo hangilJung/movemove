@@ -73,7 +73,7 @@ function DailyStatisticsPage(props) {
       <Title level={4} style={{ fontSize: '5vh' }}>{`${today(
         moment()
       )}`}</Title>
-      <br />
+      {/* <br />
       <Row gutter={16}>
         <Col span={12}>
           <Card className="main-box">
@@ -145,7 +145,7 @@ function DailyStatisticsPage(props) {
         <Col span={6}>
           <FourthPoint />
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 }

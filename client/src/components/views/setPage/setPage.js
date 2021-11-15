@@ -1,14 +1,14 @@
-import React from "react";
-import "../../../Styles/set.css";
-import { Row, Col, Breadcrumb } from "antd";
+import React from 'react';
+import '../../../Styles/set.css';
+import { Row, Col, Breadcrumb } from 'antd';
 
 function setPage() {
   function setRisk() {
-    window.location.href = "/riskSet";
+    window.location.href = '/riskSet';
   }
 
   function setPassword() {
-    window.location.href = "/setPassword";
+    window.location.href = '/setPassword';
   }
 
   return (

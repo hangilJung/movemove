@@ -4,6 +4,7 @@ import RightMenu from './Sections/RightMenu';
 import KioskNav from './Sections/KioskNav';
 import KioskNav2 from './Sections/KioskNav2';
 import '../../../Styles/Navbar.css';
+import { GiRingBox } from 'react-icons/gi';
 
 function Navbar() {
   if (window.location.pathname === '/kiosk') return <div></div>;
@@ -34,7 +35,12 @@ function Navbar() {
       >
         <div>
           <text
-            style={{ float: 'left', margin: '12px 0 0 500px', fontSize: 30 }}
+            style={{
+              float: 'left',
+              margin: '12px 0 0 500px',
+              fontSize: 30,
+              color: '#7975f6',
+            }}
           >
             순천시 도시하천 모니터링 시스템
           </text>
