@@ -14,22 +14,19 @@ function Weather() {
   }, []);
 
   useEffect(() => {
-    timeoutFunc();
+    weatherFunc();
   }, []);
 
-  function timeoutFunc() {
-    axios
-      .post('/api/weather/header')
-      .then((res) => {
-        setWeatherData(res.data.body[0]);
-        console.log('날씨호출');
-      })
-      .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      timeoutFunc();
-    }, 600000);
-  }
+  let weatherFunc = () => {
+    setInterval(() => {
+      axios
+        .post('/api/weather/header')
+        .then((res) => {
+          setWeatherData(res.data.body[0]);
+        })
+        .catch((err) => console.log(err));
+    }, 5000);
+  };
 
   if (weatherData.weatherName === '맑음') {
     weather = <img src="img/sunny.gif" style={{ width: 65, height: 65 }} />;

@@ -74,7 +74,7 @@ function DailyStatisticsPage(props) {
         moment()
       )}`}</Title>
       <br />
-      <Row gutter={50}>
+      <Row gutter={16}>
         <Col span={12}>
           <Card className="main-box">
             <div className="main-icon">
@@ -146,7 +146,6 @@ function DailyStatisticsPage(props) {
           <FourthPoint />
         </Col>
       </Row>
-      <DailyGraph />
     </div>
   );
 }

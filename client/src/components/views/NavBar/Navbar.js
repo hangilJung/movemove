@@ -32,8 +32,12 @@ function Navbar() {
           display: 'inline-block',
         }}
       >
-        <div className="menu__logo">
-          <a href="/"></a>
+        <div>
+          <text
+            style={{ float: 'left', margin: '12px 0 0 500px', fontSize: 30 }}
+          >
+            순천시 도시하천 모니터링 시스템
+          </text>
         </div>
         <div className="menu__container">
           <div className="menu_right">

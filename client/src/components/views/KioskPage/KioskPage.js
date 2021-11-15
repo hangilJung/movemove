@@ -24,11 +24,7 @@ function KioskPage(props) {
   useEffect(() => {
     timer = setInterval(() => {
       setTime(moment());
-      console.log('10초');
-    }, 6000);
-    return () => {
-      clearInterval(timer);
-    };
+    }, 10000);
   }, []);
 
   return (

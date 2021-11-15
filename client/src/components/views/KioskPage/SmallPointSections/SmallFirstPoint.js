@@ -24,22 +24,20 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
-    timeoutFunc();
+    intervalFunc();
   }, []);
 
-  function timeoutFunc() {
-    axios
-      .post('/api/minute/', { body })
-      .then((res) => {
-        setData(res.data);
-        console.log('5초');
-      })
-      .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      timeoutFunc();
+  let intervalFunc = () => {
+    setInterval(() => {
+      axios
+        .post('/api/minute/', { body })
+        .then((res) => {
+          setData(res.data);
+          console.log('313131313');
+        })
+        .catch((err) => console.log(err));
     }, 5000);
-  }
+  };
 
   let getWaterLevel = {};
 
@@ -51,7 +49,7 @@ function SmallFirstPoint() {
 
   const placeName = body.placeId;
 
-  const waterData = ((getWaterLevel / 1.5) * 130).toFixed(1);
+  const waterData = ((getWaterLevel / 2.5) * 130).toFixed(1);
 
   const circlePercent = 30;
 

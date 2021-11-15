@@ -25,21 +25,20 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
-    timeoutFunc();
+    intervalFunc();
   }, []);
 
-  function timeoutFunc() {
-    axios
-      .post('/api/minute/', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      timeoutFunc();
+  let intervalFunc = () => {
+    setInterval(() => {
+      axios
+        .post('/api/minute/', { body })
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((err) => console.log(err));
     }, 5000);
-  }
+  };
+
   let getWaterLevel = {};
 
   if (data.water_level !== 'undefined') {
