@@ -1,7 +1,14 @@
 // 'use strict';
 
 export default class GaugeLib {
-  getGauge(liquidFillGauge, triangleImg, waterColor, waterText, safeImg) {
+  getGauge(
+    liquidFillGauge,
+    triangleImg,
+    waterColor,
+    waterText,
+    safeImg,
+    placeNameText
+  ) {
     return (
       <div>
         <div
@@ -70,17 +77,7 @@ export default class GaugeLib {
           />
           <div style={{ marginTop: -31 }}>
             <div style={{ marginLeft: -27 }}>{safeImg}</div>
-            <p
-              style={{
-                width: 100,
-                height: 'auto',
-                margin: '-27px 0 0 5px',
-                fontFamily: 'Noto Sans CJK KR',
-                fontStyle: 'normal',
-              }}
-            >
-              순천만 습지
-            </p>
+            {placeNameText}
           </div>
         </div>
       </div>

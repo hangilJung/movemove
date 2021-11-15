@@ -25,14 +25,21 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
     axios
       .post('/api/minute/', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
 
+    setTimeout(() => {
+      timeoutFunc();
+    }, 5000);
+  }
   let getWaterLevel = {};
 
   if (data.water_level !== 'undefined') {
@@ -40,6 +47,8 @@ function SmallFirstPoint() {
   } else {
     getWaterLevel = '-';
   }
+
+  const placeName = 2;
 
   const waterData = 40;
 
@@ -49,6 +58,8 @@ function SmallFirstPoint() {
   let gl = new GaugeLib();
 
   const safeImg = cl.getSafeImage(waterData);
+
+  const placeNameText = cl.getPlaceName(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 
@@ -71,7 +82,8 @@ function SmallFirstPoint() {
     triangleImg,
     waterColor,
     waterText,
-    safeImg
+    safeImg,
+    placeNameText
   );
 }
 export default SmallFirstPoint;

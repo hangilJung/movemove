@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
@@ -25,15 +24,31 @@ function FirstPoint() {
   };
 
   useEffect(() => {
+    timeoutFunc();
+  }, []);
+
+  function timeoutFunc() {
     axios
       .post('/api/minute/', { body })
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
 
-  const waterData = 81;
+    setTimeout(() => {
+      timeoutFunc();
+    }, 5000);
+  }
+
+  let getWaterLevel = {};
+
+  if (data.water_level !== 'undefined') {
+    getWaterLevel = data[data.length - 1].water_level;
+  } else {
+    getWaterLevel = '-';
+  }
+
+  const waterData = ((getWaterLevel / 1.5) * 130).toFixed(1);
 
   const circlePercent = 30;
 

@@ -31,9 +31,6 @@ function LeftMenu(props) {
       <Menu.Item key="kiosk" icon={<FcSelfServiceKiosk />}>
         <a href="/kiosk">키오스크</a>
       </Menu.Item>
-      <Menu.Item key="kiosk" icon={<FcSelfServiceKiosk />}>
-        <a href="/kiosk2">키오스크2</a>
-      </Menu.Item>
     </Menu>
   );
 }

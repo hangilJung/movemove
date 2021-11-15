@@ -14,7 +14,6 @@ router.post('/minute', async (req, res) => {
     client_secret: req.body.client_secret,
     sort: 'desc',
   });
-  console.log(getData.data.body);
   res.json(getData.data.body);
 });
 
@@ -40,7 +39,6 @@ router.post('/month', async (req, res) => {
     client_secret: req.body.client_secret,
     sort: 'desc',
   });
-  console.log(getData.data.body);
   res.json(getData.data.body);
 });
 
