@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
 import "./App.css";
@@ -12,36 +11,13 @@ import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
 import SettingPage from "./components/views/SettingPage/SettingPage";
 import Footer from "./components/views/Footer/Footer";
 import KioskPage from "./components/views/KioskPage/KioskPage";
-import KioskPage2 from "./components/views/KioskPage2/KioskPage2";
 import NotFound from "./components/views/NotFoundPage";
 import TestPage from "./components/views/TestPage/Test";
 import TestPage2 from "./components/views/Test2Page/Test2";
 import { Spin } from "antd";
-import setPage from "./components/views/setPage/setPage";
-import KioskTest from "./components/views/KioskTest";
-import setRisk from "./components/views/setRiskPage/setRiskPage";
-import setPassword from "./components/views/SetPassword/SetPassword";
-=======
-import React, { Suspense } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import './App.css';
-import PublicRoute from './lib/PublicRoute';
-import PrivateRoute from './lib/PrivateRoute';
-import Login from './components/views/LoginPage/Login';
-import Navbar from './components/views/NavBar/Navbar';
-import DailyPage from './components/views/DailyPage/DailyPage';
-import DateSearchPage from './components/views/DateSearchPage/DateSearchPage';
-import StatisticsPage from './components/views/StatisticsPage/StatisticsPage';
-import SettingPage from './components/views/SettingPage/SettingPage';
-import Footer from './components/views/Footer/Footer';
-import KioskPage from './components/views/KioskPage/KioskPage';
-import NotFound from './components/views/NotFoundPage';
-import TestPage from './components/views/TestPage/Test';
-import TestPage2 from './components/views/Test2Page/Test2';
-import { Spin } from 'antd';
-import setPage from './components/views/setPage/setPage';
-import setRisk from './components/views/setRiskPage/setRiskPage';
->>>>>>> 3f255abfcf529f1a8a464902119d586faae277df
+import SetPage from "./components/views/SetPage/setPage";
+import SetRisk from "./components/views/SetRiskPage/SetRiskPage";
+import SetPassword from "./components/views/SetPassword/SetPassword";
 
 function App() {
   return (
@@ -70,9 +46,9 @@ function App() {
             <PublicRoute exact path="/test" component={TestPage} />
             <PublicRoute exact path="/test2" component={TestPage2} />
             <PublicRoute exact path="/notfound" component={NotFound} />
-            <PublicRoute exact path="/set" component={setPage} />
-            <PublicRoute exact path="/setRisk" component={setRisk} />
-            <PublicRoute exact path="/setPassword" component={setPassword} />
+            <PublicRoute exact path="/set" component={SetPage} />
+            <PublicRoute exact path="/setRisk" component={SetRisk} />
+            <PublicRoute exact path="/setPassword" component={SetPassword} />
           </Switch>
         </div>
         <Footer />

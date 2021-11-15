@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../Styles/set.css";
-import { Row, Col, Card, Button } from "antd";
+import { Row, Col, Breadcrumb } from "antd";
 
 function setPage() {
   function setRisk() {
@@ -13,6 +13,11 @@ function setPage() {
 
   return (
     <div className="set-container">
+      <Row>
+        <Breadcrumb>
+          <Breadcrumb.Item>설정</Breadcrumb.Item>
+        </Breadcrumb>
+      </Row>
       <div className="set-title">
         <h1>설정</h1>
       </div>
