@@ -46,9 +46,10 @@ function FirstPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = ((getWaterLevel / 1.5) * 130).toFixed(1);
+  const waterData = 4;
+  // ((getWaterLevel / 1.5) * 130).toFixed(1);
 
-  const circlePercent = 30;
+  const circlePercent = 80;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();

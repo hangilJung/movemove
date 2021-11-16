@@ -42,7 +42,7 @@ function Login() {
       })
       .then((data) => {
         sessionStorage.setItem('accessToken', data.data.accessToken);
-        window.location = '/daily';
+        window.location = '/landing';
       })
       .catch((err) => {
         console.log(err);
@@ -51,20 +51,14 @@ function Login() {
 
   return (
     <div className="login-page">
-      <img className="login-img" src="img/LoginImg.png" />
       <Form className="login-form" onKeyPress={onKeyPress}>
-        <br />
-        <br />
-        <h1 style={{ color: '#17A2B8' }}>순천 도시하천 모니터링 시스템</h1>
-        <br />
-        <br />
-        <br />
+        <p className="login-title">순천 도시하천 모니터링 시스템</p>
+
         <Form.Item>
           <Input
             type="text"
             onChange={idValue}
             placeholder="아이디를 입력해 주세요."
-            size="large"
           />
         </Form.Item>
         <Form.Item>
@@ -72,13 +66,20 @@ function Login() {
             type="password"
             onChange={passwordValue}
             placeholder="비밀번호를 입력해 주세요."
-            size="large"
           />
         </Form.Item>
-        <Button type="button" onClick={onLogin} style={{ color: '#17A2B8' }}>
-          로그인
+        <Button
+          type="button"
+          onClick={onLogin}
+          style={{ border: 'none', backgroundColor: '#e5e5e5' }}
+        >
+          <img className="login-btn" src="img/Login.png" alt="profile" />
         </Button>
       </Form>
+      <div className="logo">
+        <img src="img/suncheonsi.png" style={{ margin: '20px 10px 0 10px' }} />
+        <img src="img/joia.png" />
+      </div>
     </div>
   );
 }

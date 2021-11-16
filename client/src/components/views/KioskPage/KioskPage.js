@@ -203,7 +203,7 @@ function KioskPage(props) {
                 fontStyle: 'normal',
               }}
             >
-              용당교
+              조곡교
             </p>
             <ThirdPoint />
             <ThirdWeather />
@@ -220,7 +220,7 @@ function KioskPage(props) {
                 fontStyle: 'normal',
               }}
             >
-              원용당교
+              원조곡교
             </p>
             <FourthPoint />
             <FourthWeather />
