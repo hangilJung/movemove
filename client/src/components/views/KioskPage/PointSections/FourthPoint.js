@@ -46,9 +46,9 @@ function FourthPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 60;
+  const waterData = 0.3;
 
-  const circlePercent = 30;
+  const circlePercent = 20;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();

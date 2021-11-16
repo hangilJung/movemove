@@ -1,28 +1,31 @@
 'use strict';
 import LiquidFillGauge from 'react-liquid-gauge';
+import { FcSettings } from 'react-icons/fc';
+
+// 안전 30 관심 50 주의 60 경계 70 심각80
 
 export default class CommonLib {
   constructor() {}
   getWaterText(waterData) {
     let imgName = 'level_1';
 
-    if (waterData > 80) {
+    if (waterData >= 3) {
       imgName = 'level_5';
     }
 
-    if (waterData <= 80) {
+    if (waterData <= 2.5) {
       imgName = 'level_4';
     }
 
-    if (waterData <= 50) {
+    if (waterData <= 2) {
       imgName = 'level_3';
     }
 
-    if (waterData <= 40) {
+    if (waterData <= 1.5) {
       imgName = 'level_2';
     }
 
-    if (waterData <= 30) {
+    if (waterData <= 1) {
       imgName = 'level_1';
     }
 
@@ -44,23 +47,23 @@ export default class CommonLib {
   getWaterTextBottom(waterData) {
     let imgName = 'level_1';
 
-    if (waterData > 80) {
+    if (waterData >= 3) {
       imgName = 'level_5';
     }
 
-    if (waterData <= 80) {
+    if (waterData <= 2.5) {
       imgName = 'level_4';
     }
 
-    if (waterData <= 50) {
+    if (waterData <= 2) {
       imgName = 'level_3';
     }
 
-    if (waterData <= 40) {
+    if (waterData <= 1.5) {
       imgName = 'level_2';
     }
 
-    if (waterData <= 30) {
+    if (waterData <= 1) {
       imgName = 'level_1';
     }
 
@@ -82,23 +85,23 @@ export default class CommonLib {
   getTriangleImg(waterData) {
     let imgName = 'triangle_1';
 
-    if (waterData > 80) {
+    if (waterData >= 3) {
       imgName = 'triangle_5';
     }
 
-    if (waterData <= 80) {
+    if (waterData <= 2.5) {
       imgName = 'triangle_4';
     }
 
-    if (waterData <= 50) {
+    if (waterData <= 2) {
       imgName = 'triangle_3';
     }
 
-    if (waterData <= 40) {
+    if (waterData <= 1.5) {
       imgName = 'triangle_2';
     }
 
-    if (waterData <= 30) {
+    if (waterData <= 1) {
       imgName = 'triangle_1';
     }
 
@@ -153,21 +156,21 @@ export default class CommonLib {
   getWaterColor(waterData) {
     let colorRgb = 'rgb(21, 171, 0)';
 
-    if (waterData > 80) {
+    if (waterData >= 3) {
       colorRgb = 'rgb(255, 43, 0)';
     }
 
-    if (waterData <= 80) {
+    if (waterData <= 2.5) {
       colorRgb = 'rgb(200, 64, 13)';
     }
 
-    if (waterData <= 50) {
+    if (waterData <= 2) {
       colorRgb = 'rgb(255, 120, 0)';
     }
-    if (waterData <= 40) {
+    if (waterData <= 1.5) {
       colorRgb = 'rgb(0, 59, 174)';
     }
-    if (waterData <= 30) {
+    if (waterData <= 1) {
       colorRgb = 'rgb(21, 171, 0)';
     }
 
@@ -208,7 +211,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={70}
         height={70}
-        value={waterData}
+        value={circlePercent}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
@@ -272,7 +275,7 @@ export default class CommonLib {
       <LiquidFillGauge
         width={110}
         height={110}
-        value={waterData}
+        value={circlePercent}
         textSize={1}
         textOffsetX={0}
         textOffsetY={0}
@@ -352,7 +355,7 @@ export default class CommonLib {
             fontStyle: 'normal',
           }}
         >
-          풍덕교
+          조곡교
         </p>
       );
     }
@@ -378,6 +381,157 @@ export default class CommonLib {
             width: 100,
             height: 'auto',
             margin: '-27px 0 0 10px',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          원용당교
+        </p>
+      );
+    }
+  }
+
+  getCardData(waterData, waterColor, placeName, preData, cardImg, pointImg) {
+    return (
+      <div>
+        <div
+          style={{
+            position: 'relative',
+            top: 30,
+            padding: 0,
+          }}
+        >
+          <div
+            style={{
+              width: 200,
+              fontSize: 30,
+              color: '#7975F6',
+              position: 'absolute',
+              top: -30,
+            }}
+          >
+            {placeName}
+          </div>
+          <div
+            style={{ position: 'absolute', left: 220, top: -33, fontSize: 40 }}
+          >
+            <FcSettings />
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              left: -30,
+              top: 10,
+              fontSize: 20,
+              marginTop: 20,
+              color: '#ADADAD',
+            }}
+          >
+            <ul>
+              <li>수 위 : {waterData} M</li>
+              <li>강수량 : {preData} mm</li>
+            </ul>
+          </div>
+          <div style={{ top: 50 }}>
+            <div style={{ position: 'absolute', left: 0, top: 138 }}>
+              {cardImg}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  getCardImg(waterData) {
+    let cardImg = '';
+
+    if (waterData >= 3) {
+      cardImg = 'card_5';
+    }
+
+    if (waterData <= 2.5) {
+      cardImg = 'card_4';
+    }
+
+    if (waterData <= 2) {
+      cardImg = 'card_3';
+    }
+
+    if (waterData <= 1.5) {
+      cardImg = 'card_2';
+    }
+
+    if (waterData <= 1) {
+      cardImg = 'card_1';
+    }
+
+    return (
+      <div style={{ position: 'absolute', left: -10, top: -13 }}>
+        <img
+          src={'/img/' + cardImg + '.png'}
+          style={{
+            width: 260,
+            height: 'auto',
+            left: 20,
+            top: -20,
+            zIndex: 999,
+            position: 'absolute',
+          }}
+          alt="profile"
+        />
+      </div>
+    );
+  }
+
+  getPlaceText(placeName) {
+    if (placeName === 1) {
+      return (
+        <p
+          style={{
+            width: 200,
+            height: 'auto',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          순천만습지
+        </p>
+      );
+    }
+    if (placeName === 2) {
+      return (
+        <p
+          style={{
+            width: 200,
+            height: 'auto',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          조곡교
+        </p>
+      );
+    }
+    if (placeName === 3) {
+      return (
+        <p
+          style={{
+            width: 200,
+            height: 'auto',
+            fontFamily: 'Noto Sans CJK KR',
+            fontStyle: 'normal',
+          }}
+        >
+          용당교
+        </p>
+      );
+    }
+    if (placeName === 4) {
+      return (
+        <p
+          style={{
+            width: 200,
+            height: 'auto',
             fontFamily: 'Noto Sans CJK KR',
             fontStyle: 'normal',
           }}

@@ -46,7 +46,7 @@ function SecondPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 40;
+  const waterData = 1.5;
 
   const circlePercent = 30;
 

@@ -1,37 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
-import {
-  FcCalendar,
-  FcWebcam,
-  FcSettings,
-  FcStatistics,
-  FcHome,
-  FcSelfServiceKiosk,
-} from 'react-icons/fc';
+import { FcWebcam, FcSettings, FcSelfServiceKiosk } from 'react-icons/fc';
+import '../../../../Styles/Navbar.css';
 
 function LeftMenu(props) {
+  const [state, setstate] = useState();
+
   return (
-    <Menu mode={props.mode}>
-      {/* <Menu.Item key="main" icon={<FcHome />}>
-        <a href="/">Home</a>
-      </Menu.Item> */}
-      <Menu.Item key="landing" icon={<FcWebcam />}>
-        <a href="/landing">메인</a>
-      </Menu.Item>
-      <Menu.Item key="search" icon={<FcWebcam />}>
-        <a href="/search">날짜별검색</a>
-      </Menu.Item>
-      <Menu.Item key="statistics" icon={<FcWebcam />}>
-        <a href="/statistics">통계</a>
-      </Menu.Item>
-      <Menu.Item key="setting" icon={<FcSettings />}>
-        <a href="/setting">설정</a>
-      </Menu.Item>
-      <Menu.Item key="kiosk" icon={<FcSelfServiceKiosk />}>
-        <a href="/kiosk">키오스크</a>
-      </Menu.Item>
-    </Menu>
+    <div className="menu" style={{ position: 'absolute', top: 0 }}>
+      <Menu
+        style={{
+          backgroundColor: '#F1FBFF',
+          float: 'left',
+          width: 300,
+          margin: '30px 0 0 30px',
+          minWidth: 200,
+          height: '90vh',
+          border: 'none',
+        }}
+        mode={'inline'}
+      >
+        <Menu.Item
+          style={{
+            marginTop: '20vh',
+            height: '10vh',
+          }}
+          key="landing"
+        >
+          <a href="/landing">
+            <img
+              className="menu-btn"
+              style={{ width: 250 }}
+              src="img/main.png"
+              alt="profile"
+            />
+          </a>
+        </Menu.Item>
+
+        <Menu.Item key="statistics" style={{ height: '10vh' }}>
+          <a href="/statistics">
+            <img style={{ width: 250 }} src="img/static.png" alt="profile" />
+          </a>
+        </Menu.Item>
+        <Menu.Item key="setting" style={{ height: '10vh' }}>
+          <a href="/setting">
+            {' '}
+            <a href="/statistics">
+              <img style={{ width: 250 }} src="img/setting.png" alt="profile" />
+            </a>
+          </a>
+        </Menu.Item>
+        <Menu.Item key="kiosk" style={{ height: '10vh' }}>
+          <a href="/kiosk">
+            {' '}
+            <a href="/statistics">
+              <img style={{ width: 250 }} src="img/kiosk.png" alt="profile" />
+            </a>
+          </a>
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 }
 

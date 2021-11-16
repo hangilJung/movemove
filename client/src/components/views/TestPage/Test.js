@@ -10,7 +10,7 @@ function Test() {
   return (
     <div style={{ padding: 100 }}>
       <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="용당교" key="first">
+        <TabPane tab="조곡교" key="first">
           <FirstPoint />
         </TabPane>
         <TabPane tab="성남교" key="second">

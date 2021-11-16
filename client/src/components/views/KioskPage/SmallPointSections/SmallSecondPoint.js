@@ -49,7 +49,7 @@ function SmallFirstPoint() {
 
   const placeName = 2;
 
-  const waterData = 40;
+  const waterData = 1.5;
 
   const circlePercent = 30;
 

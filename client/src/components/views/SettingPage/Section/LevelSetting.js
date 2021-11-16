@@ -63,7 +63,7 @@ function LevelSetting(props) {
       <div className="level-form">
         <Row>
           <Col span={6}>
-            <Card title="용당교" bordered={false}>
+            <Card title="조곡교" bordered={false}>
               <input type="number" min="0" onChange={one} />
             </Card>
           </Col>

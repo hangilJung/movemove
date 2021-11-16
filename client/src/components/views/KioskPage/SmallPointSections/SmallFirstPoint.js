@@ -49,9 +49,10 @@ function SmallFirstPoint() {
 
   const placeName = body.placeId;
 
-  const waterData = ((getWaterLevel / 2.5) * 130).toFixed(1);
+  const waterData = 4;
+  // ((getWaterLevel / 2.5) * 130).toFixed(1);
 
-  const circlePercent = 30;
+  const circlePercent = 80;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();

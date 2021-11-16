@@ -49,9 +49,9 @@ function SmallThirdPoint() {
 
   const placeName = 3;
 
-  const waterData = 30;
+  const waterData = 2;
 
-  const circlePercent = 30;
+  const circlePercent = 45;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();

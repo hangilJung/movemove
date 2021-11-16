@@ -2,45 +2,16 @@
 
 @import '~antd/dist/antd.css';
 
-.menu {
-  border-bottom: solid 1px #e8e8e8;
-  /* overflow: auto hidden; */
-  box-shadow: 0 0 30px #f3f1f1;
-  background-color: white;
-  text-align: center;
-  width: 90%;
-  margin: 0 0 10px auto;
-  height: 70px;
-}
-
-.menu__logo {
-  margin: 0 auto;
-  float: left;
-  width: 20%;
-  box-sizing: border-box;
-}
-.menu__logo img {
-  width: 60px;
-  height: 60px;
-}
-
-.menu_right {
-  float: right;
-  width: 10%;
-  box-sizing: border-box;
-}
 .menu_left {
   float: left;
-  width: 10%;
+  width: 300px;
+  height: 100%;
   box-sizing: border-box;
-  margin-top: 10vh;
+  margin-top: 100px;
 }
 
-.menu__container .ant-menu-item a,
-.menu__container {
-  padding: 10px 15px;
+.menu-btn {
 }
-
-.menu__container .ant-menu-horizontal {
-  border-bottom: none;
+.menu-btn :active {
+  border: 1px solid black;
 }
