@@ -2,24 +2,13 @@ import React, { useEffect } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import KioskNav from './Sections/KioskNav';
-import KioskNav2 from './Sections/KioskNav2';
 import '../../../Styles/Navbar.css';
 import { GiRingBox } from 'react-icons/gi';
 
 function Navbar() {
   if (window.location.pathname === '/kiosk') return <div></div>;
   if (window.location.pathname === '/kiosktest') return <div></div>;
-  if (window.location.pathname === '/kiosk2')
-    return (
-      <div
-        style={{
-          textAlign: 'center',
-          margin: '0 auto',
-        }}
-      >
-        <KioskNav2 />
-      </div>
-    );
+
   if (window.location.pathname === '/login') return <></>;
 
   return (
@@ -37,7 +26,8 @@ function Navbar() {
           <text
             style={{
               float: 'left',
-              margin: '12px 0 0 500px',
+              width: '50%',
+              margin: '12px 0 0 100px',
               fontSize: 30,
               color: '#7975f6',
             }}

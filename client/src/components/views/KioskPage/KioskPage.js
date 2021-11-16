@@ -14,7 +14,6 @@ import FourthWeather from './WeatherSection/FourthWeather';
 import Weather from './WeatherSection/Weather';
 import moment from 'moment';
 import 'animate.css';
-import '../../../Styles/Kiosk.css';
 
 function KioskPage(props) {
   let timer = null;

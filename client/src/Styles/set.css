@@ -6,6 +6,7 @@
 
 .set-content {
   margin-bottom: 50px;
+  font-size: 1vw;
 }
 
 .set-con-btn {
@@ -48,4 +49,39 @@
   border-radius: 12px;
   border: 0;
   outline: 0;
+}
+
+.breadcrumb-font-size {
+  font-size: 2vw;
+}
+
+.btn-box {
+  text-align: center;
+}
+
+.btn-box__set-btn {
+  width: 12vw;
+  height: 35vh;
+  padding: 3vh;
+  margin: 1vw;
+}
+
+.btn-box__set-btn__set-btn {
+  margin: 1vw;
+}
+
+.btn-box__set-btn__text-box {
+  height: 3vh;
+  margin: 0 0 3vh 0;
+}
+
+.btn-box__set-btn__img-box {
+  height: 8vh;
+  margin: 0 0 5vh 0;
+}
+
+.img-size {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }

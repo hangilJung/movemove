@@ -8,14 +8,13 @@ import Navbar from "./components/views/NavBar/Navbar";
 import DateSearchPage from "./components/views/DateSearchPage/DateSearchPage";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
-import SettingPage from "./components/views/SettingPage/SettingPage";
 import Footer from "./components/views/Footer/Footer";
 import KioskPage from "./components/views/KioskPage/KioskPage";
 import NotFound from "./components/views/NotFoundPage";
 import TestPage from "./components/views/TestPage/Test";
 import TestPage2 from "./components/views/Test2Page/Test2";
 import { Spin } from "antd";
-import SetPage from "./components/views/SetPage/SetPage";
+import SettingPage from "./components/views/SetPage/SettingPage";
 import SetRisk from "./components/views/SetRiskPage/SetRiskPage";
 import SetPassword from "./components/views/SetPassword/SetPassword";
 
@@ -41,12 +40,11 @@ function App() {
             <PrivateRoute exact path="/landing" component={LandingPage} />
             <PublicRoute exact path="/search" component={DateSearchPage} />
             <PrivateRoute exact path="/statistics" component={StatisticsPage} />
-            <PrivateRoute exact path="/setting" component={SettingPage} />
             <PublicRoute exact path="/kiosk" component={KioskPage} />
             <PublicRoute exact path="/test" component={TestPage} />
             <PublicRoute exact path="/test2" component={TestPage2} />
             <PublicRoute exact path="/notfound" component={NotFound} />
-            <PublicRoute exact path="/set" component={SetPage} />
+            <PublicRoute exact path="/set" component={SettingPage} />
             <PublicRoute exact path="/setRisk" component={SetRisk} />
             <PublicRoute exact path="/setPassword" component={SetPassword} />
           </Switch>
