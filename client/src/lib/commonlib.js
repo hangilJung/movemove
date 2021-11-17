@@ -402,21 +402,23 @@ export default class CommonLib {
           }}
         >
           <div
+            style={{ position: 'absolute', left: 0, top: -33, fontSize: 40 }}
+          >
+            <FcSettings />
+          </div>
+          <div
             style={{
               width: 200,
               fontSize: 30,
               color: '#7975F6',
               position: 'absolute',
               top: -30,
+              left: 60,
             }}
           >
             {placeName}
           </div>
-          <div
-            style={{ position: 'absolute', left: 220, top: -33, fontSize: 40 }}
-          >
-            <FcSettings />
-          </div>
+
           <div
             style={{
               position: 'absolute',
@@ -432,8 +434,8 @@ export default class CommonLib {
               <li>강수량 : {preData} mm</li>
             </ul>
           </div>
-          <div style={{ top: 50 }}>
-            <div style={{ position: 'absolute', left: 0, top: 138 }}>
+          <div>
+            <div style={{ position: 'absolute', left: 0, top: 88 }}>
               {cardImg}
             </div>
           </div>
@@ -470,7 +472,7 @@ export default class CommonLib {
         <img
           src={'/img/' + cardImg + '.png'}
           style={{
-            width: 260,
+            width: '28vh', //260,
             height: 'auto',
             left: 20,
             top: -20,

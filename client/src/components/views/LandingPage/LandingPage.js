@@ -42,6 +42,10 @@ function DailyStatisticsPage(props) {
       .catch((err) => console.log(err));
   }, []);
 
+  // useEffect(() => {
+  //   weatherFunc();
+  // }, []);
+
   const onSelect = (e) => {
     body = {
       placeId: e.target.value,
@@ -61,57 +65,9 @@ function DailyStatisticsPage(props) {
   return (
     <div>
       <div>
-        <Row gutter={90}>
+        <Row gutter={90} style={{ paddingTop: 20 }}>
+          {/* -----------------Image----------- */}
           <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <FirstPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <SecondPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <ThirdPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <FourthPoint />
-            </Card>
-          </Col>
-          {/* -------------------------------2번째----------- */}
-          <Col span={6} style={{ paddingTop: 10 }}>
             <Card
               style={{
                 width: '100%',
@@ -123,7 +79,7 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
@@ -135,19 +91,21 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-                backgroundImage: 'url(/img/용당교.png)',
-                backgroundSize: 'cover',
-              }}
-            ></Card>
+          <Col span={6}>
+            <Card>
+              <div
+                style={{
+                  width: '100%',
+                  height: 250,
+                  border: '3px solid #e6e6e6',
+                  borderRadius: 30,
+                  backgroundImage: 'url(/img/용당교.png)',
+                  backgroundSize: 'cover',
+                }}
+              ></div>
+            </Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
@@ -159,7 +117,58 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          {/* ------------------Data------------------ */}
+          <Col span={6}>
+            <Card
+              style={{
+                width: '100%',
+                height: 200,
+                border: '3px solid #e6e6e6',
+                borderRadius: 30,
+              }}
+            >
+              <FirstPoint />
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card
+              style={{
+                width: '100%',
+                height: 200,
+                border: '3px solid #e6e6e6',
+                borderRadius: 30,
+              }}
+            >
+              <SecondPoint />
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card
+              style={{
+                width: '100%',
+                height: 200,
+                border: '3px solid #e6e6e6',
+                borderRadius: 30,
+              }}
+            >
+              <ThirdPoint />
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card
+              style={{
+                width: '100%',
+                height: 200,
+                border: '3px solid #e6e6e6',
+                borderRadius: 30,
+              }}
+            >
+              <FourthPoint />
+            </Card>
+          </Col>
+        </Row>
+        <Row gutter={90} style={{ paddingTop: 20 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
@@ -169,7 +178,7 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
@@ -179,7 +188,7 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
@@ -189,7 +198,7 @@ function DailyStatisticsPage(props) {
               }}
             ></Card>
           </Col>
-          <Col span={6} style={{ paddingTop: 10 }}>
+          <Col span={6}>
             <Card
               style={{
                 width: '100%',
