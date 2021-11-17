@@ -4,6 +4,8 @@ import SetTitle from "./Sections/SetTitle";
 function SettingPage() {
   useEffect(() => {}, []);
 
+  const pageDataList = {};
+
   return (
     <>
       <SetTitle />

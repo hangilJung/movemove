@@ -16,8 +16,8 @@ import TestPage from "./components/views/TestPage/Test";
 import TestPage2 from "./components/views/Test2Page/Test2";
 import { Spin } from "antd";
 import SettingPage from "./components/views/SetPage/SettingPage";
-import SetRisk from "./components/views/SetRiskPage/SetRiskPage";
-import SetPassword from "./components/views/SetPassword/SetPassword";
+import SettingRisk from "./components/views/SetPage/Sections/SetTitle";
+import SettingPassword from "./components/views/SetPage/Sections/SetTitle";
 
 function App() {
   return (
@@ -47,8 +47,12 @@ function App() {
             <PublicRoute exact path="/test2" component={TestPage2} />
             <PublicRoute exact path="/notfound" component={NotFound} />
             <PublicRoute exact path="/set" component={SettingPage} />
-            <PublicRoute exact path="/setRisk" component={SetRisk} />
-            <PublicRoute exact path="/setPassword" component={SetPassword} />
+            <PublicRoute exact path="/setRisk" component={SettingRisk} />
+            <PublicRoute
+              exact
+              path="/setPassword"
+              component={SettingPassword}
+            />
           </Switch>
         </div>
         <Footer />
