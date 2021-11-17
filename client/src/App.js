@@ -8,6 +8,7 @@ import Navbar from "./components/views/NavBar/Navbar";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import DateSearchPage from "./components/views/DateSearchPage/DateSearchPage";
 import StatisticsPage from "./components/views/StatisticsPage/StatisticsPage";
+import SettingPage from "./components/views/SettingPage/SettingPage";
 import Header from "./components/views/Header/Header";
 import Footer from "./components/views/Footer/Footer";
 import KioskPage from "./components/views/KioskPage/KioskPage";
@@ -15,9 +16,9 @@ import NotFound from "./components/views/NotFoundPage";
 import TestPage from "./components/views/TestPage/Test";
 import TestPage2 from "./components/views/Test2Page/Test2";
 import { Spin } from "antd";
-import SettingPage from "./components/views/SetPage/SettingPage";
-import SettingRisk from "./components/views/SetPage/Sections/SetTitle";
-import SettingPassword from "./components/views/SetPage/Sections/SetTitle";
+import SetPage from "./components/views/SetPage/SetPage";
+import SetRisk from "./components/views/SetRiskPage/SetRiskPage";
+import SetPassword from "./components/views/SetPassword/SetPassword";
 
 function App() {
   return (
@@ -45,9 +46,9 @@ function App() {
           <PrivateRoute exact path="/test" component={TestPage} />
           <PublicRoute exact path="/kiosk" component={KioskPage} />
           <PublicRoute exact path="/notfound" component={NotFound} />
-          <PublicRoute exact path="/set" component={SettingPage} />
-          <PublicRoute exact path="/setRisk" component={SettingRisk} />
-          <PublicRoute exact path="/setPassword" component={SettingPassword} />
+          <PublicRoute exact path="/set" component={SetPage} />
+          <PublicRoute exact path="/setRisk" component={SetRisk} />
+          <PublicRoute exact path="/setPassword" component={SetPassword} />
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
