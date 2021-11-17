@@ -7,7 +7,7 @@ import { Tabs } from 'antd';
 function SettingPage() {
   const { TabPane } = Tabs;
   return (
-    <div className="setting">
+    <div className="setting" style={{ width: 1400 }}>
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="비밀번호 변경" key="admin">
           <AdminSetting />

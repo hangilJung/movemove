@@ -16,17 +16,17 @@ function StatisticsPage(props) {
   return (
     <div className="statistics-page">
       <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="연간 통계" key="year">
-          <Year />
-        </TabPane>
-        <TabPane tab="월간 통계" key="month">
-          <Month />
+        <TabPane tab="시간 통계" key="hour">
+          <Hour />
         </TabPane>
         <TabPane tab="일간 통계" key="daily">
           <Daily />
         </TabPane>
-        <TabPane tab="시간 통계" key="hour">
-          <Hour />
+        <TabPane tab="월간 통계" key="month">
+          <Month />
+        </TabPane>
+        <TabPane tab="연간 통계" key="year">
+          <Year />
         </TabPane>
       </Tabs>
     </div>

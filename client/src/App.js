@@ -43,6 +43,7 @@ function App() {
           <PublicRoute exact path="/search" component={DateSearchPage} />
           <PrivateRoute exact path="/statistics" component={StatisticsPage} />
           <PrivateRoute exact path="/setting" component={SettingPage} />
+          <PrivateRoute exact path="/test" component={TestPage} />
           <PublicRoute exact path="/kiosk" component={KioskPage} />
           <PublicRoute exact path="/notfound" component={NotFound} />
           <PublicRoute exact path="/set" component={SetPage} />
