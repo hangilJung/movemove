@@ -35,6 +35,7 @@ function App() {
            PublicRoute => 아무나 출입 가능
            PublicRoute restricted => 로그인한 유저 출입 불가
        */}
+<<<<<<< HEAD
         <div>
           <Switch>
             <PrivateRoute exact path="/" component={LandingPage} />
@@ -56,6 +57,24 @@ function App() {
           </Switch>
         </div>
         <Footer />
+=======
+        <Switch>
+          <PrivateRoute exact path="/" component={LandingPage} />
+          <PublicRoute restricted exact path="/login" component={Login} />
+          <PrivateRoute exact path="/landing" component={LandingPage} />
+          <PublicRoute exact path="/search" component={DateSearchPage} />
+          <PrivateRoute exact path="/statistics" component={StatisticsPage} />
+          <PrivateRoute exact path="/setting" component={SettingPage} />
+          <PublicRoute exact path="/kiosk" component={KioskPage} />
+          <PublicRoute exact path="/test" component={TestPage} />
+          <PublicRoute exact path="/test2" component={TestPage2} />
+          <PublicRoute exact path="/notfound" component={NotFound} />
+          <PublicRoute exact path="/set" component={SetPage} />
+          <PublicRoute exact path="/setRisk" component={SetRisk} />
+          <PublicRoute exact path="/setPassword" component={SetPassword} />
+        </Switch>
+        {/* <Footer /> */}
+>>>>>>> 985fefb7d3ec7c445fa08e0b4785559188194a5a
       </BrowserRouter>
     </Suspense>
   );

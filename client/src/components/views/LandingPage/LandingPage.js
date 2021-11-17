@@ -110,7 +110,6 @@ function DailyStatisticsPage(props) {
               <FourthPoint />
             </Card>
           </Col>
-          <div></div>
           {/* -------------------------------2번째----------- */}
           <Col span={6} style={{ paddingTop: 10 }}>
             <Card

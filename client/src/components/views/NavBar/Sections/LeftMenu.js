@@ -8,13 +8,13 @@ function LeftMenu(props) {
   const [state, setstate] = useState();
 
   return (
-    <div className="menu" style={{ position: 'absolute', top: 0 }}>
+    <div className="test1" style={{ top: 0 }}>
       <Menu
         style={{
           backgroundColor: '#F1FBFF',
           float: 'left',
           width: 300,
-          margin: '30px 0 0 30px',
+          margin: '-60px 0 0 30px',
           minWidth: 200,
           height: '90vh',
           border: 'none',

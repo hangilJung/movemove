@@ -46,13 +46,14 @@ function Header(props) {
       style={{
         height: 120,
         margin: '0 auto',
+        float: 'right',
+        width: '80%',
       }}
     >
       <div
         style={{
-          width: 1040,
-          margin: '20px 0 0 370px',
-          textAlign: 'left',
+          margin: '20px 0 0 30px',
+          float: 'left',
         }}
       >
         <text
@@ -70,7 +71,7 @@ function Header(props) {
         style={{
           float: 'right',
           fontSize: 17,
-          // margin: '32px 0 0 0',
+          margin: '20px 60px 0 0',
           fontWeight: 700,
           fontFamily: 'Noto Sans CJK KR',
           fontStyle: 'normal',
@@ -85,7 +86,10 @@ function Header(props) {
             </Menu>
           )} */}
           {idTrue && (
-            <Menu mode="horizontal" style={{ border: 'none' }}>
+            <Menu
+              mode="horizontal"
+              style={{ border: 'none', marginLeft: '30px' }}
+            >
               <Menu.Item key="logout">
                 <a onClick={onLogout}>
                   <img
