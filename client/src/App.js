@@ -46,9 +46,9 @@ function App() {
           <PublicRoute exact path="/test" component={TestPage} />
           <PublicRoute exact path="/test2" component={TestPage2} />
           <PublicRoute exact path="/notfound" component={NotFound} />
-          <PublicRoute exact path="/set" component={SetPage} />
-          <PublicRoute exact path="/setRisk" component={SetRisk} />
-          <PublicRoute exact path="/setPassword" component={SetPassword} />
+          <PublicRoute exact path="/set" component={SettingPage} />
+          <PublicRoute exact path="/setRisk" component={SettingRisk} />
+          <PublicRoute exact path="/setPassword" component={SettingPassword} />
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>
