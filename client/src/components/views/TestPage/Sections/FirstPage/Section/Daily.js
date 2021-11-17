@@ -81,7 +81,7 @@ function Daily(props) {
     chart: {
       // type: 'area', // bar차트. 아무 설정이 없으면 line chart가 된다.
       // zoomType: 'x',
-      width: 800,
+      width: 600,
       panning: {
         enabled: true,
         type: 'area',
@@ -179,7 +179,7 @@ function Daily(props) {
     chart: {
       // type: 'area', // bar차트. 아무 설정이 없으면 line chart가 된다.
       // zoomType: 'x',
-      width: 800,
+      width: 600,
       panning: {
         enabled: true,
         type: 'area',
@@ -306,7 +306,7 @@ function Daily(props) {
       <div style={{ float: 'left' }}>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </div>
-      <div style={{ float: 'left' }}>
+      <div style={{ float: 'right' }}>
         <HighchartsReact highcharts={Highcharts} options={secondOptions} />
       </div>
     </div>

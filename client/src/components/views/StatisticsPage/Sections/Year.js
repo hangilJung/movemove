@@ -93,9 +93,9 @@ function YearGraph(props) {
       <Form>
         <Form.Item>
           <Radio.Group onChange={onPlaceHandler} defaultValue="1">
-            <Radio.Button value="1">조곡교</Radio.Button>
-            <Radio.Button value="2">풍덕교</Radio.Button>
-            <Radio.Button value="3">천변주차장</Radio.Button>
+            <Radio.Button value="1">원용당교</Radio.Button>
+            <Radio.Button value="2">용당교</Radio.Button>
+            <Radio.Button value="3">조곡교</Radio.Button>
             <Radio.Button value="4">순천만 생태공원</Radio.Button>
           </Radio.Group>
         </Form.Item>

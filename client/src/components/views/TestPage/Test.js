@@ -8,7 +8,16 @@ import FourthPoint from './Sections/FourthPoint';
 function Test() {
   const { TabPane } = Tabs;
   return (
-    <div style={{ padding: 100 }}>
+    <div
+      className="test11"
+      style={{
+        width: 1400,
+        height: 'auto',
+        // minWidth: 1000,
+        display: 'inline-block',
+        margin: '0 0 0 15vh',
+      }}
+    >
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="조곡교" key="first">
           <FirstPoint />
