@@ -51,7 +51,7 @@ function App() {
           <PublicRoute exact path="/setRisk" component={SetRisk} />
           <PublicRoute exact path="/setPassword" component={SetPassword} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </Suspense>
   );
