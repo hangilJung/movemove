@@ -20,9 +20,6 @@ import SettingPage from './components/views/SettingPage/SettingPage';
 import AdminSetting from './components/views/SettingPage/Section/AdminSetting';
 import WarningSetting from './components/views/SettingPage/Section/WarningSetting';
 
-import SetPage from './components/views/SetPage/SetPage';
-import SetRisk from './components/views/SetRiskPage/SetRiskPage';
-import SetPassword from './components/views/SetPassword/SetPassword';
 import Test from './components/views/TestPage/Test';
 
 // --------------------Monitor------------------
@@ -138,14 +135,7 @@ function App() {
                   />
 
                   <PublicRoute exact path="/notfound" component={NotFound} />
-                  <PublicRoute exact path="/set" component={SetPage} />
-                  <PublicRoute exact path="/setRisk" component={SetRisk} />
                   <PublicRoute exact path="/test" component={Test} />
-                  <PublicRoute
-                    exact
-                    path="/setPassword"
-                    component={SetPassword}
-                  />
                   <PublicRoute exact path="/kiosk" component={Kiosk} />
                 </Content>
 
