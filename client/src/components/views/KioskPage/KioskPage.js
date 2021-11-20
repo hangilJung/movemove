@@ -27,14 +27,15 @@ function KioskPage(props) {
   }, []);
 
   return (
-    <div className="kiosk">
+    <div>
       <div
         style={{
-          width: 550,
+          width: 530,
           margin: 0,
           padding: 0,
           fontFamily: 'Noto Sans CJK KR',
           fontStyle: 'normal',
+          borderRadius: 50,
         }}
       >
         <div style={{ textAlign: 'center', height: 30 }}>
@@ -53,12 +54,14 @@ function KioskPage(props) {
               alt="profile"
             />
           </div>
-          {time.format('YYYY. MM. DD. (dd) HH:mm')}
+          <div style={{ marginRight: -10 }}>
+            {time.format('YYYY. MM. DD. (dd) HH:mm')}
+          </div>
           <div
             style={{
               width: 160,
               position: 'absolute',
-              margin: '8px 0 0 380px',
+              margin: '8px 0 0 370px',
               borderRadius: '10px',
               backgroundColor: '#fff',
               boxShadow: '0px 0px 5px #bbb',
@@ -76,29 +79,27 @@ function KioskPage(props) {
           }}
         >
           <div>
-            <div style={{ position: 'absolute', zIndex: 1, marginTop: 80 }}>
+            <div
+              style={{
+                position: 'absolute',
+                zIndex: 1,
+                marginTop: 80,
+                left: -10,
+              }}
+            >
               <img
                 src="img/river.png"
                 style={{
                   width: 550,
                   height: 'auto',
-                  boxShadow: '0 0 15px 10px #fff',
+                  // boxShadow: '0 0 15px 10px #bbb',
                 }}
-                alt="profile"
-              />
-            </div>
-            <div
-              style={{ position: 'absolute', zIndex: 3, top: 228, left: -7 }}
-            >
-              <img
-                src="img/suncheon.png"
-                style={{ width: 250, height: 'auto' }}
                 alt="profile"
               />
             </div>
           </div>
           <div
-            style={{ position: 'absolute', top: 330, left: 375, zIndex: 999 }}
+            style={{ position: 'absolute', top: 315, left: 365, zIndex: 999 }}
           >
             <img
               src="img/GaugeBar.png"
@@ -110,8 +111,8 @@ function KioskPage(props) {
           <div
             style={{
               position: 'absolute',
-              top: 240,
-              left: 50,
+              top: 225,
+              left: 48,
               zIndex: 999,
             }}
           >
@@ -120,7 +121,7 @@ function KioskPage(props) {
           <div
             style={{
               position: 'absolute',
-              top: 110,
+              top: 92,
               left: 60,
               zIndex: 999,
             }}
@@ -130,8 +131,8 @@ function KioskPage(props) {
           <div
             style={{
               position: 'absolute',
-              top: 160,
-              left: 340,
+              top: 148,
+              left: 297,
               zIndex: 999,
             }}
           >
@@ -140,8 +141,8 @@ function KioskPage(props) {
           <div
             style={{
               position: 'absolute',
-              top: 185,
-              left: 445,
+              top: 173,
+              left: 455,
               zIndex: 999,
             }}
           >
@@ -152,13 +153,16 @@ function KioskPage(props) {
         <br />
         <div
           style={{
-            margin: '345px 0 0 15px',
+            margin: '345px 0 0 0',
             position: 'absolute',
+            paddingLeft: 15,
             zIndex: 999,
+            width: 530,
+            // boxShadow: '5px 5px 5px #bbb',
           }}
         >
           <div
-            style={{ float: 'left', width: 110, margin: '5px 10px 5px 10px ' }}
+            style={{ float: 'left', width: 110, margin: '5px 0px 5px 0px ' }}
           >
             <p
               style={{
@@ -186,7 +190,7 @@ function KioskPage(props) {
                 fontStyle: 'normal',
               }}
             >
-              풍덕교
+              조곡교
             </p>
             <SecondPoint />
             <SecondWeather />
@@ -203,7 +207,7 @@ function KioskPage(props) {
                 fontStyle: 'normal',
               }}
             >
-              조곡교
+              용당교
             </p>
             <ThirdPoint />
             <ThirdWeather />
@@ -220,7 +224,7 @@ function KioskPage(props) {
                 fontStyle: 'normal',
               }}
             >
-              원조곡교
+              원용당교
             </p>
             <FourthPoint />
             <FourthWeather />

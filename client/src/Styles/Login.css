@@ -3,7 +3,7 @@
   position: relative;
   margin: 0 auto;
   height: 100vh;
-  background-color: #e5e5e5;
+  background-color: #f1fbff;
 }
 
 .login-title {
@@ -36,7 +36,7 @@
   opacity: 1;
   width: 120px;
   height: 'auto';
-  background-color: #e5e5e5;
+  background-color: #f1fbff;
 }
 
 .logo {

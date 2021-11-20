@@ -17,7 +17,7 @@ function FourthPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 4,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -46,7 +46,7 @@ function FourthPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 0.3;
+  const waterData = getWaterLevel;
 
   const circlePercent = 20;
 

@@ -63,153 +63,167 @@ function DailyStatisticsPage(props) {
   };
 
   return (
-    <div>
-      <div>
-        <Row gutter={90} style={{ paddingTop: 20 }}>
-          {/* -----------------Image----------- */}
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-                backgroundImage: 'url(/img/순천만선착장.png)',
-                backgroundSize: 'cover',
-              }}
-            ></Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-                backgroundImage: 'url(/img/조곡교.png)',
-                backgroundSize: 'cover',
-              }}
-            ></Card>
-          </Col>
-          <Col span={6}>
-            <Card>
-              <div
+    <div
+      style={{
+        zIndex: 9999,
+        padding: '0 0px 0 90px',
+        height: '100%',
+        minWidth: 1400,
+      }}
+    >
+      <Row>
+        <Row gutter={50}>
+          {/* -----------------1번----------- */}
+          <Col span={8}>
+            <Col>
+              <Card
                 style={{
-                  width: '100%',
-                  height: 250,
-                  border: '3px solid #e6e6e6',
+                  width: 400,
+                  boxShadow: '5px 5px 10px #bbb',
+                  height: 230,
                   borderRadius: 30,
-                  backgroundImage: 'url(/img/용당교.png)',
-                  backgroundSize: 'cover',
                 }}
-              ></div>
-            </Card>
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    backgroundImage: 'url(/img/순천만선착장.png)',
+                    backgroundSize: 'cover',
+                    marginTop: -10,
+                  }}
+                ></div>
+              </Card>
+            </Col>
+            <Col>
+              <Card
+                style={{
+                  width: 400,
+                  height: 180,
+                  borderRadius: 30,
+                  marginTop: 5,
+                  boxShadow: '5px 5px 10px #bbb',
+                }}
+              >
+                <FirstPoint />
+              </Card>
+            </Col>
           </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-                backgroundImage: 'url(/img/원용당교.png)',
-                backgroundSize: 'cover',
-              }}
-            ></Card>
+
+          {/* -----------------2번----------- */}
+          <Col span={8}>
+            <Col span={6}>
+              <Card
+                style={{
+                  width: 400,
+                  boxShadow: '5px 5px 10px #bbb',
+                  height: 230,
+                  borderRadius: 30,
+                }}
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    backgroundImage: 'url(/img/조곡교.png)',
+                    backgroundSize: 'cover',
+                    marginTop: -10,
+                  }}
+                ></div>
+              </Card>
+            </Col>
+            <Col>
+              <Card
+                style={{
+                  width: 400,
+                  height: 180,
+                  borderRadius: 30,
+                  marginTop: 5,
+                  boxShadow: '5px 5px 10px #bbb',
+                }}
+              >
+                <SecondPoint />
+              </Card>
+            </Col>
           </Col>
-          {/* ------------------Data------------------ */}
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 200,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <FirstPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 200,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <SecondPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 200,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <ThirdPoint />
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 200,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            >
-              <FourthPoint />
-            </Card>
-          </Col>
-        </Row>
-        <Row gutter={90} style={{ paddingTop: 20 }}>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            ></Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            ></Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            ></Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              style={{
-                width: '100%',
-                height: 250,
-                border: '3px solid #e6e6e6',
-                borderRadius: 30,
-              }}
-            ></Card>
+
+          {/* -----------------3번----------- */}
+          <Col span={8}>
+            <Col>
+              <Card
+                style={{
+                  width: 400,
+                  boxShadow: '5px 5px 10px #bbb',
+                  height: 230,
+                  borderRadius: 30,
+                }}
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    backgroundImage: 'url(/img/용당교.png)',
+                    backgroundSize: 'cover',
+                    marginTop: -10,
+                  }}
+                ></div>
+              </Card>
+            </Col>
+            <Col span={6}>
+              <Card
+                style={{
+                  width: 400,
+                  height: 180,
+                  borderRadius: 30,
+                  marginTop: 5,
+                  boxShadow: '5px 5px 10px #bbb',
+                }}
+              >
+                <ThirdPoint />
+              </Card>
+            </Col>
           </Col>
         </Row>
-      </div>
+
+        <Row gutter={50} style={{ marginTop: 20 }}>
+          {/* -----------------4번----------- */}
+          <Col span={8}>
+            <Col>
+              <Card
+                style={{
+                  width: 400,
+                  boxShadow: '5px 5px 10px #bbb',
+                  height: 230,
+                  borderRadius: 30,
+                }}
+              >
+                <div
+                  style={{
+                    width: '100%',
+                    height: 200,
+                    backgroundImage: 'url(/img/원용당교.png)',
+                    backgroundSize: 'cover',
+                    marginTop: -10,
+                  }}
+                ></div>
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card
+                style={{
+                  width: 400,
+                  height: 180,
+                  borderRadius: 30,
+                  marginTop: 5,
+                  boxShadow: '5px 5px 10px #bbb',
+                }}
+              >
+                <FourthPoint />
+              </Card>
+            </Col>
+          </Col>
+        </Row>
+      </Row>
     </div>
   );
 }

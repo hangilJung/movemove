@@ -282,7 +282,7 @@ function Daily(props) {
 
   return (
     <div>
-      <div style={{ marign: '0 auto', textAlign: 'center' }}>
+      <div style={{ margin: '0 auto', textAlign: 'center' }}>
         <h>{monthData[0]}</h>
         <Form.Item>
           <DatePicker

@@ -18,7 +18,7 @@ function SmallFourthPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 4,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -46,10 +46,9 @@ function SmallFourthPoint() {
   } else {
     getWaterLevel = '-';
   }
+  const placeName = body.placeId;
 
-  const placeName = 4;
-
-  const waterData = 0.3;
+  const waterData = getWaterLevel;
 
   const circlePercent = 20;
 
@@ -58,7 +57,7 @@ function SmallFourthPoint() {
 
   const safeImg = cl.getSafeImage(waterData);
 
-  const placeNameText = cl.getPlaceName(placeName);
+  const placeNameText = cl.getPlaceText(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 

@@ -18,7 +18,7 @@ function SmallFirstPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 2,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -47,9 +47,9 @@ function SmallFirstPoint() {
     getWaterLevel = '-';
   }
 
-  const placeName = 2;
+  const placeName = body.placeId;
 
-  const waterData = 1.5;
+  const waterData = getWaterLevel;
 
   const circlePercent = 30;
 
@@ -58,7 +58,7 @@ function SmallFirstPoint() {
 
   const safeImg = cl.getSafeImage(waterData);
 
-  const placeNameText = cl.getPlaceName(placeName);
+  const placeNameText = cl.getPlaceText(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 

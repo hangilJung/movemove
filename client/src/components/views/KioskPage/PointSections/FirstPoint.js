@@ -46,7 +46,7 @@ function FirstPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 4;
+  const waterData = getWaterLevel;
   // ((getWaterLevel / 1.5) * 130).toFixed(1);
 
   const circlePercent = 80;

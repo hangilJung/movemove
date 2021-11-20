@@ -1,11 +1,13 @@
 'use strict';
 import LiquidFillGauge from 'react-liquid-gauge';
 import { FcSettings } from 'react-icons/fc';
+import { Button } from 'antd';
 
 // 안전 30 관심 50 주의 60 경계 70 심각80
 
 export default class CommonLib {
   constructor() {}
+
   getWaterText(waterData) {
     let imgName = 'level_1';
 
@@ -121,7 +123,7 @@ export default class CommonLib {
   }
 
   getSafeImage(waterData) {
-    if (waterData < 80) {
+    if (waterData < 3) {
       return (
         <img
           src="img/safe.png"
@@ -328,7 +330,7 @@ export default class CommonLib {
     );
   }
 
-  getPlaceName(placeName) {
+  getPlaceText(placeName) {
     if (placeName === 1) {
       return (
         <p
@@ -391,7 +393,66 @@ export default class CommonLib {
     }
   }
 
-  getCardData(waterData, waterColor, placeName, preData, cardImg, pointImg) {
+  getCardTitle(placeName) {
+    let cardTitle = '';
+
+    if (placeName === 1) {
+      cardTitle = '순천만습지';
+    }
+    if (placeName === 2) {
+      cardTitle = '조곡교';
+    }
+    if (placeName === 3) {
+      cardTitle = '용당교';
+    }
+    if (placeName === 4) {
+      cardTitle = '원용당교';
+    }
+
+    return (
+      <p
+        style={{
+          width: 200,
+          height: 'auto',
+          marginLeft: 5,
+          fontFamily: 'Noto Sans CJK KR',
+          fontStyle: 'normal',
+        }}
+      >
+        {cardTitle}
+      </p>
+    );
+  }
+
+  getPlaceButton(placeName) {
+    let placeButton = '';
+
+    if (placeName === 1) {
+      placeButton = '/first';
+    }
+    if (placeName === 2) {
+      placeButton = '/second';
+    }
+    if (placeName === 3) {
+      placeButton = '/third';
+    }
+    if (placeName === 4) {
+      placeButton = '/fourth';
+    }
+
+    return { placeButton };
+  }
+
+  getCardData(
+    waterData,
+    waterColor,
+    placeName,
+    preData,
+    cardImg,
+    placeButton,
+    placeText
+    // placeNameText
+  ) {
     return (
       <div>
         <div
@@ -401,29 +462,37 @@ export default class CommonLib {
             padding: 0,
           }}
         >
-          <div
-            style={{ position: 'absolute', left: 0, top: -33, fontSize: 40 }}
+          <Button
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: -38,
+              fontSize: 40,
+              border: 'none',
+            }}
+            href={placeButton.placeButton}
           >
             <FcSettings />
-          </div>
+          </Button>
+
           <div
             style={{
               width: 200,
               fontSize: 30,
               color: '#7975F6',
               position: 'absolute',
-              top: -30,
+              top: -43,
               left: 60,
             }}
           >
-            {placeName}
+            {placeText}
           </div>
 
           <div
             style={{
               position: 'absolute',
-              left: -30,
-              top: 10,
+              left: 20,
+              top: -5,
               fontSize: 20,
               marginTop: 20,
               color: '#ADADAD',
@@ -435,7 +504,7 @@ export default class CommonLib {
             </ul>
           </div>
           <div>
-            <div style={{ position: 'absolute', left: 0, top: 88 }}>
+            <div style={{ position: 'absolute', left: 40, top: 55 }}>
               {cardImg}
             </div>
           </div>
@@ -472,7 +541,7 @@ export default class CommonLib {
         <img
           src={'/img/' + cardImg + '.png'}
           style={{
-            width: '28vh', //260,
+            width: 300,
             height: 'auto',
             left: 20,
             top: -20,
@@ -485,62 +554,80 @@ export default class CommonLib {
     );
   }
 
-  getPlaceText(placeName) {
-    if (placeName === 1) {
-      return (
-        <p
-          style={{
-            width: 200,
-            height: 'auto',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          순천만습지
-        </p>
-      );
-    }
-    if (placeName === 2) {
-      return (
-        <p
-          style={{
-            width: 200,
-            height: 'auto',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          조곡교
-        </p>
-      );
-    }
-    if (placeName === 3) {
-      return (
-        <p
-          style={{
-            width: 200,
-            height: 'auto',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          용당교
-        </p>
-      );
-    }
-    if (placeName === 4) {
-      return (
-        <p
-          style={{
-            width: 200,
-            height: 'auto',
-            fontFamily: 'Noto Sans CJK KR',
-            fontStyle: 'normal',
-          }}
-        >
-          원용당교
-        </p>
-      );
-    }
-  }
+  // getPlaceText(placeName) {
+  //   let placeText = '';
+
+  //   if (placeName === 1) {
+  //     <p> 순천만습지</p>;
+  //   }
+  //   if (placeName === 2) {
+  //     <p> 조곡교</p>;
+  //   }
+  //   if (placeName === 1) {
+  //     <p> 용당교</p>;
+  //   }
+  //   if (placeName === 1) {
+  //     <p> 원용당교</p>;
+  //   }
+
+  //   return <div>{placeText}</div>;
 }
+//   if (placeName === 1) {
+//     return (
+//       <p
+//         style={{
+//           width: 200,
+//           height: 'auto',
+//           fontFamily: 'Noto Sans CJK KR',
+//           fontStyle: 'normal',
+//         }}
+//       >
+//         ㅁㄴㅇㄷㄹ
+//       </p>
+//     );
+//   }
+
+//   if (placeName === 2) {
+//     return (
+//       <p
+//         style={{
+//           width: 200,
+//           height: 'auto',
+//           fontFamily: 'Noto Sans CJK KR',
+//           fontStyle: 'normal',
+//         }}
+//       >
+//         조곡교
+//       </p>
+//     );
+//   }
+//   if (placeName === 3) {
+//     return (
+//       <p
+//         style={{
+//           width: 200,
+//           height: 'auto',
+//           fontFamily: 'Noto Sans CJK KR',
+//           fontStyle: 'normal',
+//         }}
+//       >
+//         용당교
+//       </p>
+//     );
+//   }
+//   if (placeName === 4) {
+//     return (
+//       <p
+//         style={{
+//           width: 200,
+//           height: 'auto',
+//           fontFamily: 'Noto Sans CJK KR',
+//           fontStyle: 'normal',
+//         }}
+//       >
+//         원용당교
+//       </p>
+//     );
+//   }
+// }
+// }

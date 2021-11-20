@@ -17,7 +17,7 @@ function ThirdPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 3,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -46,7 +46,7 @@ function ThirdPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 2;
+  const waterData = getWaterLevel;
 
   const circlePercent = 45;
 

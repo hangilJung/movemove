@@ -11,7 +11,7 @@ function FirstWeather() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 4,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,

@@ -7,7 +7,7 @@ import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 
-function FirstPoint() {
+function FirstPoint(props) {
   const [data, setData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
@@ -38,7 +38,7 @@ function FirstPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = ((getWaterLevel / 1.5) * 130).toFixed(1);
+  const waterData = getWaterLevel;
 
   let preData = {};
 
@@ -52,14 +52,22 @@ function FirstPoint() {
 
   let cl = new CommonLib();
 
-  const waterText = cl.getWaterTextBottom(waterData);
-
   const waterColor = cl.getWaterColor(waterData);
 
-  const placeText = cl.getPlaceText(placeName);
+  const placeTitle = cl.getCardTitle(placeName);
 
   const cardImg = cl.getCardImg(waterData);
 
-  return cl.getCardData(waterData, waterColor, placeText, preData, cardImg);
+  const placeButton = cl.getPlaceButton(placeName);
+
+  return cl.getCardData(
+    waterData,
+    waterColor,
+    placeName,
+    preData,
+    cardImg,
+    placeButton,
+    placeTitle
+  );
 }
 export default FirstPoint;

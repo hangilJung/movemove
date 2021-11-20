@@ -17,7 +17,7 @@ function SecondPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 2,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -46,7 +46,7 @@ function SecondPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 1.5;
+  const waterData = getWaterLevel;
 
   const circlePercent = 30;
 

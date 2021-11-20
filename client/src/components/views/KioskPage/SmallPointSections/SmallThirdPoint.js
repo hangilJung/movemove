@@ -18,7 +18,7 @@ function SmallThirdPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 3,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -47,9 +47,9 @@ function SmallThirdPoint() {
     getWaterLevel = '-';
   }
 
-  const placeName = 3;
+  const placeName = body.placeId;
 
-  const waterData = 2;
+  const waterData = getWaterLevel;
 
   const circlePercent = 45;
 
@@ -58,7 +58,7 @@ function SmallThirdPoint() {
 
   const safeImg = cl.getSafeImage(waterData);
 
-  const placeNameText = cl.getPlaceName(placeName);
+  const placeNameText = cl.getPlaceText(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 

@@ -43,7 +43,6 @@ function Weather() {
     weather = <img src="img/snow.gif" style={{ width: 65, height: 65 }} />;
   }
   // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
-
   return (
     <div>
       <div
@@ -56,16 +55,17 @@ function Weather() {
           marginTop: 5,
         }}
       >
+        {/* -----------------날씨그림--------------------------------- */}
         <div
           style={{
             position: 'absolute',
             zIndex: 9000,
-            margin: 2,
-            left: 4,
+            margin: '-2px 0 0 5px',
           }}
         >
           {weather}
         </div>
+        {/* -----------------온도--------------------------------- */}
         <p
           style={{
             position: 'absolute',
@@ -80,6 +80,7 @@ function Weather() {
         >
           {weatherData.tmp}℃
         </p>
+        {/* -----------------날씨텍스트--------------------------------- */}
         <p
           style={{
             position: 'absolute',
@@ -93,6 +94,7 @@ function Weather() {
           {weatherData.weatherName}
         </p>
 
+        {/* -----------------지역 및 정보--------------------------------- */}
         <div style={{ marginLeft: 60 }}>
           <p style={{ fontSize: 15, margin: '0 0 5px 20px' }}>풍덕동</p>
           <div style={{ margin: '0 0 0 20px' }}>

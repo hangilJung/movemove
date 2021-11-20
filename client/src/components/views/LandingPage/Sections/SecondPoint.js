@@ -15,7 +15,7 @@ function FirstPoint() {
   const [CreatedAt, setCreatedAt] = useState(moment());
 
   let body = {
-    placeId: 1,
+    placeId: 2,
     startDate: StartDate,
     endDate: EndDate,
     createdAt: CreatedAt,
@@ -38,7 +38,7 @@ function FirstPoint() {
     getWaterLevel = '-';
   }
 
-  const waterData = 2;
+  const waterData = getWaterLevel;
 
   let preData = {};
 
@@ -52,14 +52,22 @@ function FirstPoint() {
 
   let cl = new CommonLib();
 
-  const waterText = cl.getWaterTextBottom(waterData);
-
   const waterColor = cl.getWaterColor(waterData);
 
-  const placeText = cl.getPlaceText(placeName);
+  const placeTitle = cl.getCardTitle(placeName);
 
   const cardImg = cl.getCardImg(waterData);
 
-  return cl.getCardData(waterData, waterColor, placeText, preData, cardImg);
+  const placeButton = cl.getPlaceButton(placeName);
+
+  return cl.getCardData(
+    waterData,
+    waterColor,
+    placeName,
+    preData,
+    cardImg,
+    placeButton,
+    placeTitle
+  );
 }
 export default FirstPoint;

@@ -71,7 +71,7 @@ function Login() {
         <Button
           type="button"
           onClick={onLogin}
-          style={{ border: 'none', backgroundColor: '#e5e5e5' }}
+          style={{ border: 'none', backgroundColor: '#f1fbff' }}
         >
           <img className="login-btn" src="img/Login.png" alt="profile" />
         </Button>

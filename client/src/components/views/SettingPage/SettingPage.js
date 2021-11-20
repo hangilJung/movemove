@@ -1,22 +1,47 @@
 import React from 'react';
-import AdminSetting from './Section/AdminSetting';
-import LevelSetting from './Section/LevelSetting';
 import '../../../Styles/Page.css';
-import { Tabs } from 'antd';
+import { Row, Col, Button } from 'antd';
 
 function SettingPage() {
-  const { TabPane } = Tabs;
   return (
-    <div className="setting" style={{ width: 1400 }}>
-      <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="비밀번호 변경" key="admin">
-          <AdminSetting />
-        </TabPane>
-        <TabPane tab="위험수위 변경" key="level">
-          <LevelSetting />
-        </TabPane>
-      </Tabs>
-    </div>
+    <Row className="setting" style={{ height: '100vh%', minWidth: 1400 }}>
+      <Col span={6}></Col>
+      <Col span={6}>
+        <Button
+          href="/warning"
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            backgroundColor: '#F0F2F5',
+          }}
+        >
+          <img
+            src="img/warningbtn.png"
+            alt="warning"
+            style={{ width: '100%' }}
+          />
+        </Button>
+      </Col>
+      <Col span={6}>
+        <Button
+          href="/adminsetting"
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            backgroundColor: '#F0F2F5',
+          }}
+        >
+          <img
+            src="img/passwordbtn.png"
+            alt="warning"
+            style={{ width: '100%' }}
+          />
+        </Button>
+      </Col>
+      <Col span={6}></Col>
+    </Row>
   );
 }
 

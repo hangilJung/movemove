@@ -33,7 +33,6 @@ function SmallFirstPoint() {
         .post('/api/minute/', { body })
         .then((res) => {
           setData(res.data);
-          console.log('313131313');
         })
         .catch((err) => console.log(err));
     }, 5000);
@@ -49,17 +48,17 @@ function SmallFirstPoint() {
 
   const placeName = body.placeId;
 
-  const waterData = 4;
-  // ((getWaterLevel / 2.5) * 130).toFixed(1);
+  const waterData = getWaterLevel;
 
-  const circlePercent = 80;
+  const circlePercent = 70;
+  // getWaterLevel * 5;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();
 
   const safeImg = cl.getSafeImage(waterData);
 
-  const placeNameText = cl.getPlaceName(placeName);
+  const placeNameText = cl.getPlaceText(placeName);
 
   const triangleImg = cl.getTriangleImg(waterData);
 
