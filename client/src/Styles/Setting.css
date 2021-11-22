@@ -20,3 +20,20 @@
 ul {
   list-style: none;
 }
+
+.warning-form {
+  padding-top: 70px;
+  min-width: 1400px;
+}
+
+.card_input Input {
+  border-radius: 15px;
+  background-color: 'red';
+  width: 230px;
+}
+.card_input_tag {
+  margin-top: 20px;
+}
+span {
+  font-size: 20px;
+}

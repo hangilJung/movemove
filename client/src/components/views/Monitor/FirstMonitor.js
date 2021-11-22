@@ -11,6 +11,7 @@ exporting(Highcharts);
 
 function FirstMonitor(props) {
   const [data, setData] = useState([{}]);
+  const [warningData, setWarningData] = useState([{}]);
 
   const [placeId, setPlaceId] = useState(props.value);
   const [startDate, setStartDate] = useState(moment().format());
@@ -39,8 +40,6 @@ function FirstMonitor(props) {
     createdDate.push(data.created_at);
   });
 
-  console.log(props.value);
-
   const dateXaxis = createdDate.map((createdAt) => {
     return moment(createdAt).format('HH시 mm분');
   });
@@ -55,13 +54,13 @@ function FirstMonitor(props) {
   useEffect(() => {
     accessToken(props);
 
-    axios
-      .post('/api/minute', { body })
-      .then((res) => {
-        setData(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+    axios.post('/api/warningdata', { body }).then((res) => {
+      setWarningData(res.data.body[0]);
+    });
+
+    axios.post('/api/minute', { body }).then((res) => {
+      setData(res.data);
+    });
   }, []);
 
   // 메인차트
@@ -525,6 +524,9 @@ function FirstMonitor(props) {
 
   // 위험설정값
 
+  let firstBoundary = warningData.water_level_boundary;
+  let firstDanger = warningData.water_level_danger;
+
   // 수위 최근값
 
   let getWaterLevel = {};
@@ -579,12 +581,15 @@ function FirstMonitor(props) {
         fontFamily: 'Noto Sans CJK KR',
         fontStyle: 'normal',
         textAlign: 'center',
+        height: '100%',
+        width: 1400,
       }}
     >
       <div>
         <div
           style={{
             marginTop: 20,
+            marginLeft: 450,
             height: 60,
             fontSize: 30,
             padding: '0 0 10px 0',
@@ -608,7 +613,8 @@ function FirstMonitor(props) {
               }}
               title="위험도"
             >
-              위험도
+              <p> 경계수위 : {firstBoundary}</p>
+              <p>위험수위 : {firstDanger}</p>
             </Card>
             <Card
               style={{
@@ -684,6 +690,7 @@ function FirstMonitor(props) {
                 marginBottom: 10,
                 paddingTop: 40,
                 paddingLeft: 40,
+                width: 1180,
               }}
             >
               <Charts />
@@ -693,6 +700,7 @@ function FirstMonitor(props) {
                 backgroundColor: '#fff',
                 borderRadius: 20,
                 paddingLeft: 40,
+                width: 1180,
               }}
             >
               <SecondCharts />

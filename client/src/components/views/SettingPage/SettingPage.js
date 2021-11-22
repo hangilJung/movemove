@@ -1,12 +1,14 @@
 import React from 'react';
-import '../../../Styles/Page.css';
 import { Row, Col, Button } from 'antd';
 
 function SettingPage() {
   return (
-    <Row className="setting" style={{ height: '100vh%', minWidth: 1400 }}>
-      <Col span={6}></Col>
-      <Col span={6}>
+    <Row
+      className="setting"
+      style={{ height: '100vh', minWidth: 1400, marginTop: 80 }}
+    >
+      <Col span={3}></Col>
+      <Col span={9}>
         <Button
           href="/warning"
           style={{
@@ -23,7 +25,7 @@ function SettingPage() {
           />
         </Button>
       </Col>
-      <Col span={6}>
+      <Col span={9}>
         <Button
           href="/adminsetting"
           style={{
@@ -40,7 +42,7 @@ function SettingPage() {
           />
         </Button>
       </Col>
-      <Col span={6}></Col>
+      <Col span={3}></Col>
     </Row>
   );
 }

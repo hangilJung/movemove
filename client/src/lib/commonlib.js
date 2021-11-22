@@ -8,64 +8,35 @@ import { Button } from 'antd';
 export default class CommonLib {
   constructor() {}
 
-  getWaterText(waterData) {
-    let imgName = 'level_1';
+  getCirclePercent(waterData, Danger, Boundary, Caution, Attention) {
+    let circlePercent = '';
 
-    if (waterData >= 3) {
-      imgName = 'level_5';
+    if (waterData >= Danger) {
+      circlePercent = 80;
+    } else if (waterData >= Boundary) {
+      circlePercent = 60;
+    } else if (waterData >= Caution) {
+      circlePercent = 50;
+    } else if (waterData >= Attention) {
+      circlePercent = 40;
+    } else {
+      circlePercent = 30;
     }
-
-    if (waterData <= 2.5) {
-      imgName = 'level_4';
-    }
-
-    if (waterData <= 2) {
-      imgName = 'level_3';
-    }
-
-    if (waterData <= 1.5) {
-      imgName = 'level_2';
-    }
-
-    if (waterData <= 1) {
-      imgName = 'level_1';
-    }
-
-    return (
-      <img
-        src={'/img/' + imgName + '.png'}
-        style={{
-          width: 25,
-          height: 'auto',
-          left: 23,
-          zIndex: 999,
-          position: 'absolute',
-        }}
-        alt="profile"
-      />
-    );
+    return circlePercent;
   }
 
-  getWaterTextBottom(waterData) {
+  getWaterTextBottom(waterData, Danger, Boundary, Caution, Attention) {
     let imgName = 'level_1';
 
-    if (waterData >= 3) {
+    if (waterData >= Danger) {
       imgName = 'level_5';
-    }
-
-    if (waterData <= 2.5) {
+    } else if (waterData >= Boundary) {
       imgName = 'level_4';
-    }
-
-    if (waterData <= 2) {
+    } else if (waterData >= Caution) {
       imgName = 'level_3';
-    }
-
-    if (waterData <= 1.5) {
+    } else if (waterData >= Attention) {
       imgName = 'level_2';
-    }
-
-    if (waterData <= 1) {
+    } else {
       imgName = 'level_1';
     }
 
@@ -84,26 +55,48 @@ export default class CommonLib {
     );
   }
 
-  getTriangleImg(waterData) {
+  getWaterText(waterData, Danger, Boundary, Caution, Attention) {
+    let imgName = 'level_1';
+
+    if (waterData >= Danger) {
+      imgName = 'level_5';
+    } else if (waterData >= Boundary) {
+      imgName = 'level_4';
+    } else if (waterData >= Caution) {
+      imgName = 'level_3';
+    } else if (waterData >= Attention) {
+      imgName = 'level_2';
+    } else {
+      imgName = 'level_1';
+    }
+
+    return (
+      <img
+        src={'/img/' + imgName + '.png'}
+        style={{
+          width: 25,
+          height: 'auto',
+          left: 23,
+          zIndex: 999,
+          position: 'absolute',
+        }}
+        alt="profile"
+      />
+    );
+  }
+
+  getTriangleImg(waterData, Danger, Boundary, Caution, Attention) {
     let imgName = 'triangle_1';
 
-    if (waterData >= 3) {
+    if (waterData >= Danger) {
       imgName = 'triangle_5';
-    }
-
-    if (waterData <= 2.5) {
+    } else if (waterData >= Boundary) {
       imgName = 'triangle_4';
-    }
-
-    if (waterData <= 2) {
+    } else if (waterData >= Caution) {
       imgName = 'triangle_3';
-    }
-
-    if (waterData <= 1.5) {
+    } else if (waterData >= Attention) {
       imgName = 'triangle_2';
-    }
-
-    if (waterData <= 1) {
+    } else {
       imgName = 'triangle_1';
     }
 
@@ -122,8 +115,8 @@ export default class CommonLib {
     );
   }
 
-  getSafeImage(waterData) {
-    if (waterData < 3) {
+  getSafeImage(waterData, Danger) {
+    if (waterData < Danger) {
       return (
         <img
           src="img/safe.png"
@@ -155,27 +148,20 @@ export default class CommonLib {
     }
   }
 
-  getWaterColor(waterData) {
+  getWaterColor(waterData, Danger, Boundary, Caution, Attention) {
     let colorRgb = 'rgb(21, 171, 0)';
 
-    if (waterData >= 3) {
+    if (waterData >= Danger) {
       colorRgb = 'rgb(255, 43, 0)';
-    }
-
-    if (waterData <= 2.5) {
+    } else if (waterData >= Boundary) {
       colorRgb = 'rgb(200, 64, 13)';
-    }
-
-    if (waterData <= 2) {
+    } else if (waterData >= Caution) {
       colorRgb = 'rgb(255, 120, 0)';
-    }
-    if (waterData <= 1.5) {
+    } else if (waterData >= Attention) {
       colorRgb = 'rgb(0, 59, 174)';
-    }
-    if (waterData <= 1) {
+    } else {
       colorRgb = 'rgb(21, 171, 0)';
     }
-
     return colorRgb;
   }
 

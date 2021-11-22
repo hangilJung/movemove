@@ -1,9 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import KioskPage from './KioskPage';
 import Videos from './Videos';
 import Snowfall from 'react-snowfall';
 
 function Kiosk() {
+  let weatherEffect = null;
+
+  const [weatherData, setWeatherData] = useState({});
+
+  useEffect(() => {
+    axios.post('/api/weather/header').then((res) => {
+      setWeatherData(res.data.body[0]);
+    });
+  }, []);
+
+  useEffect(() => {
+    weatherFunc();
+  }, []);
+
+  let weatherFunc = () => {
+    setInterval(() => {
+      axios
+        .post('/api/weather/header')
+        .then((res) => {
+          setWeatherData(res.data.body[0]);
+        })
+        .catch((err) => console.log(err));
+    }, 5000);
+  };
+
+  if (weatherData.weatherName === '비/눈' || weatherData.weatherName === '눈') {
+    weatherEffect = (
+      <Snowfall snowflakeCount={450} style={{ zIndex: 9999, width: 530 }} />
+    );
+  } else if (weatherData.weatherName === '비') {
+    // weatherEffect = rainEffect;
+  }
+  // weatherName: 날씨, tmp: 현재기온, tmn: 최저기온, ?: 최고기온, pop: 강수확률
+
   return (
     <div
       style={{
@@ -13,7 +48,8 @@ function Kiosk() {
         // paddingLeft: 20,
       }}
     >
-      <Snowfall snowflakeCount={450} style={{ zIndex: 9999, width: 530 }} />
+      {weatherEffect}
+      {/* <Snowfall snowflakeCount={450} style={{ zIndex: 9999, width: 530 }} /> */}
       <div
         style={{
           width: 524,

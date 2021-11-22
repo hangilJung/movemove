@@ -14,6 +14,7 @@ import FourthWeather from './WeatherSection/FourthWeather';
 import Weather from './WeatherSection/Weather';
 import moment from 'moment';
 import 'animate.css';
+import Snowfall from 'react-snowfall';
 
 function KioskPage(props) {
   let timer = null;
@@ -28,6 +29,7 @@ function KioskPage(props) {
 
   return (
     <div>
+      {/* <Snowfall snowflakeCount={450} style={{ zIndex: 9999, width: 530 }} /> */}
       <div
         style={{
           width: 530,

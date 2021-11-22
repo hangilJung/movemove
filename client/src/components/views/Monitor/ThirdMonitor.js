@@ -5,11 +5,13 @@ import accessToken from '../../../lib/accessToken';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
+import { Row, Col, Card } from 'antd';
 
 exporting(Highcharts);
 
-function FirstMonitor(props) {
+function ThirdMonitor(props) {
   const [data, setData] = useState([{}]);
+  const [warningData, setWarningData] = useState([{}]);
 
   const [placeId, setPlaceId] = useState(props.value);
   const [startDate, setStartDate] = useState(moment().format());
@@ -38,8 +40,6 @@ function FirstMonitor(props) {
     createdDate.push(data.created_at);
   });
 
-  console.log(props.value);
-
   const dateXaxis = createdDate.map((createdAt) => {
     return moment(createdAt).format('HH시 mm분');
   });
@@ -54,18 +54,19 @@ function FirstMonitor(props) {
   useEffect(() => {
     accessToken(props);
 
-    axios
-      .post('/api/minute', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
+    axios.post('/api/warningdata', { body }).then((res) => {
+      setWarningData(res.data.body[2]);
+    });
+
+    axios.post('/api/minute', { body }).then((res) => {
+      setData(res.data);
+    });
   }, []);
 
   // 메인차트
   const WaterChart = (props) => {
     return (
-      <div style={{ width: 1400 }}>
+      <div style={{ width: 1100 }}>
         <HighchartsReact highcharts={Highcharts} options={props.options} />
         <WaterMasterChart />
       </div>
@@ -78,7 +79,7 @@ function FirstMonitor(props) {
       <div>
         <div
           style={{
-            width: 1400,
+            width: 1100,
           }}
         >
           <HighchartsReact highcharts={Highcharts} options={props.options} />
@@ -108,9 +109,6 @@ function FirstMonitor(props) {
       },
       yAxis: [
         {
-          labels: {
-            enabled: true,
-          },
           plotLines: [
             {
               color: '#FF0000',
@@ -126,10 +124,6 @@ function FirstMonitor(props) {
         {
           title: {
             text: '강수량',
-          },
-
-          labels: {
-            enabled: true,
           },
           opposite: true,
         },
@@ -303,7 +297,7 @@ function FirstMonitor(props) {
   // 메인차트
   const TempChart = (props) => {
     return (
-      <div style={{ width: 1400 }}>
+      <div style={{ width: 1100 }}>
         <HighchartsReact highcharts={Highcharts} options={props.options} />
         <TempMasterChart />
       </div>
@@ -316,7 +310,7 @@ function FirstMonitor(props) {
       <div>
         <div
           style={{
-            width: 1400,
+            width: 1100,
           }}
         >
           <HighchartsReact highcharts={Highcharts} options={props.options} />
@@ -528,27 +522,194 @@ function FirstMonitor(props) {
     );
   };
 
+  // 위험설정값
+
+  let thirdBoundary = warningData.water_level_boundary;
+  let thirdDanger = warningData.water_level_danger;
+
+  // 수위 최근값
+
+  let getWaterLevel = {};
+
+  if (data.water_level !== 'undefined') {
+    getWaterLevel = data[data.length - 1].water_level;
+  } else {
+    getWaterLevel = '-';
+  }
+
+  const waterBoxData = getWaterLevel;
+
+  // 강수량 최근값
+
+  let getPreLevel = {};
+
+  if (data.precipitation !== 'undefined') {
+    getPreLevel = data[data.length - 1].precipitation;
+  } else {
+    getPreLevel = '-';
+  }
+
+  const preBoxData = getPreLevel;
+
+  //온도 최근값
+
+  let getTempData = {};
+
+  if (data.temperature !== 'undefined') {
+    getTempData = data[data.length - 1].temperature;
+  } else {
+    getTempData = '-';
+  }
+
+  const tempBoxData = getTempData;
+
+  //습도 최근값
+
+  let getHumData = {};
+
+  if (data.humidity !== 'undefined') {
+    getHumData = data[data.length - 1].humidity;
+  } else {
+    getHumData = '-';
+  }
+
+  const humBoxData = getHumData;
+
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: '#fff',
-          borderRadius: 20,
-          marginBottom: 10,
-        }}
-      >
-        <Charts />
-      </div>
-      <div
-        style={{
-          backgroundColor: '#fff',
-          borderRadius: 20,
-        }}
-      >
-        <SecondCharts />
+    <div
+      style={{
+        fontFamily: 'Noto Sans CJK KR',
+        fontStyle: 'normal',
+        textAlign: 'center',
+        height: '100%',
+        width: 1400,
+      }}
+    >
+      <div>
+        <div
+          style={{
+            marginTop: 20,
+            marginLeft: 450,
+            height: 60,
+            fontSize: 30,
+            padding: '0 0 10px 0',
+          }}
+        >
+          <p>용당교 실시간 모니터링</p>
+        </div>
+        <Row gutter={16} style={{ marginTop: 30, fontSize: 17 }}>
+          <Col span={4} style={{ marginLeft: 30, width: 300 }}>
+            <Card
+              style={{
+                width: 200,
+                height: 150,
+                marginLeft: 50,
+                backgroundColor: '#fff',
+                borderRadius: 20,
+              }}
+              headStyle={{
+                height: 50,
+                fontSize: 20,
+              }}
+              title="위험도"
+            >
+              <p> 경계수위 : {thirdBoundary}</p>
+              <p>위험수위 : {thirdDanger}</p>
+            </Card>
+            <Card
+              style={{
+                width: 200,
+                height: 110,
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                margin: '30px 0 0 50px',
+              }}
+              headStyle={{
+                height: 40,
+                fontSize: 20,
+              }}
+              title="수위"
+            >
+              {waterBoxData}M
+            </Card>
+            <Card
+              style={{
+                width: 200,
+                height: 110,
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                margin: '30px 0 0 50px',
+              }}
+              headStyle={{
+                height: 40,
+                fontSize: 20,
+              }}
+              title="강수량"
+            >
+              {preBoxData}mm
+            </Card>
+            <Card
+              style={{
+                width: 200,
+                height: 110,
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                margin: '30px 0 0 50px',
+              }}
+              headStyle={{
+                height: 40,
+                fontSize: 20,
+              }}
+              bodyStyle={{ margin: '0 auto' }}
+              title="온도"
+            >
+              {tempBoxData}℃
+            </Card>
+            <Card
+              style={{
+                width: 200,
+                height: 110,
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                margin: '30px 0 0 50px',
+              }}
+              headStyle={{
+                height: 40,
+                fontSize: 20,
+              }}
+              title="습도"
+            >
+              {humBoxData}%
+            </Card>
+          </Col>
+          <Col span={18} style={{ marginLeft: 80 }}>
+            <div
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                marginBottom: 10,
+                paddingTop: 40,
+                paddingLeft: 40,
+                width: 1180,
+              }}
+            >
+              <Charts />
+            </div>
+            <div
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 20,
+                paddingLeft: 40,
+                width: 1180,
+              }}
+            >
+              <SecondCharts />
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
   );
 }
 
-export default FirstMonitor;
+export default ThirdMonitor;

@@ -11,7 +11,6 @@ import Nav from './components/views/Nav/Nav';
 
 import HeaderMenu from './components/views/HeaderMenu/HeaderMenu';
 import Footer from './components/views/Footer/Footer';
-import KioskPage from './components/views/KioskPage/KioskPage';
 import Kiosk from './components/views/KioskPage/Kiosk';
 import NotFound from './components/views/NotFoundPage';
 
@@ -136,6 +135,8 @@ function App() {
 
                   <PublicRoute exact path="/notfound" component={NotFound} />
                   <PublicRoute exact path="/test" component={Test} />
+
+                  {/* ---------------------kiosk */}
                   <PublicRoute exact path="/kiosk" component={Kiosk} />
                 </Content>
 

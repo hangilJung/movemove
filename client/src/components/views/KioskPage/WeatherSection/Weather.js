@@ -96,7 +96,7 @@ function Weather() {
 
         {/* -----------------지역 및 정보--------------------------------- */}
         <div style={{ marginLeft: 60 }}>
-          <p style={{ fontSize: 15, margin: '0 0 5px 20px' }}>풍덕동</p>
+          <p style={{ fontSize: 15, margin: '0 0 5px 20px' }}>순천시</p>
           <div style={{ margin: '0 0 0 20px' }}>
             <p style={{ fontSize: 10, margin: 0 }}>
               강수확률 : {weatherData.pop}%

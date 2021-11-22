@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import 'animate.css';
 import '../../../../Styles/Text.css';
@@ -12,6 +11,7 @@ import GaugeLib from '../../../../lib/gaugeLib';
 
 function SmallFourthPoint() {
   const [data, setData] = useState([{}]);
+  const [warningData, setWarningData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
   const [EndDate, setEndDate] = useState(moment());
@@ -34,9 +34,14 @@ function SmallFourthPoint() {
         .post('/api/minute/', { body })
         .then((res) => {
           setData(res.data);
+          console.log(res.data);
         })
         .catch((err) => console.log(err));
     }, 5000);
+
+    axios.post('/api/warningdata', { body }).then((res) => {
+      setWarningData(res.data.body[3]);
+    });
   };
 
   let getWaterLevel = {};
@@ -46,24 +51,54 @@ function SmallFourthPoint() {
   } else {
     getWaterLevel = '-';
   }
+
   const placeName = body.placeId;
 
   const waterData = getWaterLevel;
 
-  const circlePercent = 20;
+  let Attention = warningData.water_level_attention;
+  let Caution = warningData.water_level_caution;
+  let Boundary = warningData.water_level_boundary;
+  let Danger = warningData.water_level_danger;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();
 
-  const safeImg = cl.getSafeImage(waterData);
+  const safeImg = cl.getSafeImage(waterData, Danger);
 
   const placeNameText = cl.getPlaceText(placeName);
 
-  const triangleImg = cl.getTriangleImg(waterData);
+  const triangleImg = cl.getTriangleImg(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
 
-  const waterText = cl.getWaterText(waterData);
+  const circlePercent = cl.getCirclePercent(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
 
-  const waterColor = cl.getWaterColor(waterData);
+  const waterText = cl.getWaterText(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
+
+  const waterColor = cl.getWaterColor(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
 
   const gradientStops = cl.getGradientStops(color, waterColor);
 

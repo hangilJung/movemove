@@ -78,4 +78,12 @@ router.post('/warning/', async (req, res) => {
   const getData = await request(ipAddress + '/sensor/risk', req.body);
 });
 
+router.post('/warningdata/', async (req, res) => {
+  const getData = await request(
+    ipAddress + '/sensor/riskinformation',
+    req.body
+  );
+  res.json(getData.data);
+});
+
 module.exports = router;

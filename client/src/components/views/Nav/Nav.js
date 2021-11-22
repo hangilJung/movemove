@@ -21,11 +21,6 @@ function Nav() {
         defaultSelectedKeys={['1']}
         style={{ backgroundColor: '#fff', height: '100vh' }}
       >
-        {/* <img
-          src="img/citylogo.png"
-          alt="profile"
-          style={{ width: 300, height: 'auto', margin: '0 0 35px 0' }}
-        /> */}
         <div
           style={{
             fontFamily: 'Noto Sans CJK KR',
@@ -77,7 +72,7 @@ function Nav() {
             {' '}
           </Button>
         </Menu.Item>
-        <Menu.Item key="statistics" style={{ height: 80 }}>
+        <Menu.Item key="setting" style={{ height: 80 }}>
           <Button
             href="/setting"
             type="primary"
@@ -96,8 +91,7 @@ function Nav() {
         </Menu.Item>
         <Menu.Item key="kiosk" style={{ height: 80 }}>
           <Button
-            href="/kiosk"
-            type="primary"
+            onClick={() => window.open('/kiosk', '_blank')}
             style={{
               width: '100%',
               height: 80,

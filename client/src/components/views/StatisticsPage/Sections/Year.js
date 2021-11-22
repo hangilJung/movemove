@@ -559,7 +559,9 @@ function Year(props) {
             style={{ width: 160 }}
           />
 
-          <Button onClick={onSubmitHandler}>조회</Button>
+          <Button onClick={onSubmitHandler}>
+            <p>조회</p>
+          </Button>
         </Form.Item>
       </Form>
       <div>

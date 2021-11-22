@@ -12,7 +12,6 @@ exporting(Highcharts);
 
 function Month(props) {
   const [data, setData] = useState([{}]);
-  const [refreshData, setrefreshData] = useState(0);
 
   const [placeId, setPlaceId] = useState('1');
   const [startDate, setStartDate] = useState(moment().format());
@@ -61,7 +60,7 @@ function Month(props) {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [refreshData]);
+  }, []);
 
   const onSubmitHandler = (event) => {
     // page refresh를 막아줌
@@ -559,7 +558,9 @@ function Month(props) {
             style={{ width: 160 }}
           />
 
-          <Button onClick={onSubmitHandler}>조회</Button>
+          <Button onClick={onSubmitHandler}>
+            <p>조회</p>
+          </Button>
         </Form.Item>
       </Form>
       <div>
