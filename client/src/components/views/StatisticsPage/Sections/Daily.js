@@ -6,15 +6,47 @@ import locale from 'antd/lib/date-picker/locale/ko_KR';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
-import { DatePicker, Form, Button } from 'antd';
+import { DatePicker, Form, Button, Select } from 'antd';
 
 exporting(Highcharts);
 
 function Daily(props) {
   const [data, setData] = useState([{}]);
-  const [refreshData, setrefreshData] = useState(0);
-
   const [placeId, setPlaceId] = useState('1');
+  const [warningData, setWarningData] = useState([{}]);
+  const [setup, setSetup] = useState([
+    {
+      place_id: 1,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 2,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 3,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 4,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+  ]);
+
+  const { Option } = Select;
+
   const [startDate, setStartDate] = useState(moment().format());
   const [endDate, setEndDate] = useState(moment().format());
   const [createdAt, setCreatedAt] = useState(moment().format());
@@ -41,9 +73,11 @@ function Daily(props) {
     createdDate.push(data.created_at);
   });
 
-  const dateXaxis = createdDate.map((createdAt) => {
-    return moment(createdAt).format('HH시');
-  });
+  // const dateXaxis = createdDate.map((createdAt) => {
+  //   return createdAt + '시';
+  // });
+
+  // const dateXaxis = moment(createdDate).format('DD일 HH시');
 
   let body = {
     placeId: placeId,
@@ -59,10 +93,21 @@ function Daily(props) {
       .post('/api/daily', { body })
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [placeId]);
+
+  // const dateXaxis = createdDate;
+
+  function dateXaxis(createdDate) {
+    return createdDate.map((createdAt) => {
+      return createdAt + '시';
+    });
+  }
+
+  const handleChange = (value) => {
+    setPlaceId(value);
+  };
 
   const onSubmitHandler = (event) => {
     // page refresh를 막아줌
@@ -72,10 +117,31 @@ function Daily(props) {
       .post('/api/daily', { body })
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
+
+  let firstDanger = [];
+
+  let secondDanger = [];
+
+  let thirdDanger = [];
+
+  let fourthDanger = [];
+
+  data.map((data) => {
+    if (data.place_id === 1) {
+      firstDanger.push(data.water_level_danger);
+    } else if (data.place_id === 2) {
+      secondDanger.push(data.water_level_danger);
+    } else if (data.place_id === 3) {
+      thirdDanger.push(data.water_level_danger);
+    } else if (data.place_id === 4) {
+      fourthDanger.push(data.water_level_danger);
+    }
+  });
+
+  // const dangerLevel = data[0].water_level_danger;
 
   // 메인차트
   const WaterChart = (props) => {
@@ -118,7 +184,7 @@ function Daily(props) {
       },
       title: { text: '수위 및 강수량' },
       xAxis: {
-        categories: dateXaxis,
+        categories: createdDate,
         tickInterval: 1,
       },
       yAxis: [
@@ -126,13 +192,13 @@ function Daily(props) {
           labels: {
             enabled: true,
           },
-          plotLines: [
-            {
-              color: '#FF0000',
-              width: 2,
-              value: 1,
-            },
-          ],
+          // plotLines: [
+          //   {
+          //     color: '#FF0000',
+          //     width: 2,
+          //     value: dangerLevel,
+          //   },
+          // ],
           title: {
             text: '수위',
           },
@@ -356,7 +422,7 @@ function Daily(props) {
 
       title: { text: '온도 및 습도' },
       xAxis: {
-        categories: dateXaxis,
+        categories: createdDate,
         tickInterval: 1,
       },
       yAxis: [
@@ -551,6 +617,16 @@ function Daily(props) {
         fontSize: 20,
       }}
     >
+      <Select
+        defaultValue="지역"
+        style={{ width: 120, marginBottom: 30 }}
+        onChange={handleChange}
+      >
+        <Option value="1">순천만습지</Option>
+        <Option value="2">조곡교</Option>
+        <Option value="3">용당교</Option>
+        <Option value="4">원용당교</Option>
+      </Select>
       <Form style={{ margin: '-50px 0 0 500px' }}>
         <Form.Item>
           <DatePicker
@@ -574,7 +650,22 @@ function Daily(props) {
         </Form.Item>
       </Form>
       <div>
-        <p>일간 시간별 평균 데이터</p>
+        <p>일간 평균 데이터</p>
+        <Button
+          href="/dailytable"
+          style={{
+            zIndex: 999,
+            border: 'none ',
+            boxShadow: 'none',
+            width: 60,
+          }}
+        >
+          <img
+            src="img/tableicon.png"
+            alt="tableicon"
+            style={{ width: '100%' }}
+          />
+        </Button>
         <div
           style={{
             backgroundColor: '#fff',

@@ -34,14 +34,13 @@ function SmallFirstPoint() {
         .post('/api/minute/', { body })
         .then((res) => {
           setData(res.data);
-          console.log(res.data);
         })
         .catch((err) => console.log(err));
-    }, 5000);
 
-    axios.post('/api/warningdata', { body }).then((res) => {
-      setWarningData(res.data.body[0]);
-    });
+      axios.post('/api/warningdata', { body }).then((res) => {
+        setWarningData(res.data.body[0]);
+      });
+    }, 5000);
   };
 
   let getWaterLevel = {};

@@ -34,10 +34,8 @@ router.post('/daily', async (req, res) => {
 router.post('/month', async (req, res) => {
   const getData = await request(ipAddress + '/sensor/month', {
     place_id: req.body.body.placeId,
-    start_date: req.body.body.startDate.split('T')[0],
-    end_date: req.body.body.endDate.split('T')[0],
-    client_secret: req.body.client_secret,
-    sort: 'desc',
+    start_date: req.body.body.startDate,
+    end_date: req.body.body.endDate,
   });
   res.json(getData.data.body);
 });

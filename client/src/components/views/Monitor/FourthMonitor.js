@@ -5,9 +5,11 @@ import accessToken from '../../../lib/accessToken';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
-import { Row, Col, Card } from 'antd';
+import exportingData from 'highcharts/modules/export-data';
+import { Row, Col, Card, Button } from 'antd';
 
 exporting(Highcharts);
+exportingData(Highcharts);
 
 function FourthMonitor(props) {
   const [data, setData] = useState([{}]);
@@ -109,13 +111,14 @@ function FourthMonitor(props) {
       },
       yAxis: [
         {
-          plotLines: [
-            {
-              color: '#FF0000',
-              width: 2,
-              value: 1,
-            },
-          ],
+          // plotLines: [
+          //   {
+          //     color: '#FF0000',
+          //     width: 2,
+          //     value: fourthDanger,
+          //     zindex: 9999,
+          //   },
+          // ],
           title: {
             text: '수위',
           },
@@ -683,6 +686,24 @@ function FourthMonitor(props) {
             </Card>
           </Col>
           <Col span={18} style={{ marginLeft: 80 }}>
+            <Button
+              href="/fourthtable"
+              style={{
+                position: 'absolute',
+                zIndex: 999,
+                top: 45,
+                left: 80,
+                border: 'none ',
+                boxShadow: 'none',
+                width: 60,
+              }}
+            >
+              <img
+                src="img/tableicon.png"
+                alt="tableicon"
+                style={{ width: '100%' }}
+              />
+            </Button>
             <div
               style={{
                 backgroundColor: '#fff',

@@ -10,7 +10,6 @@ axios
     end_date: '2021-10-23',
   })
   .then((res) => {
-    console.log(res.data);
     waterLevel = res.data[0].water_level;
   })
   .catch((err) => console.log(err));

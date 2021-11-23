@@ -6,11 +6,11 @@ import Month from './Sections/Month';
 import Year from './Sections/Year';
 import accessToken from '../../../lib/accessToken';
 import { Select, Tabs } from 'antd';
+import { GiBodyBalance } from 'react-icons/gi';
 
-function StatisticsPage(props) {
+function StatisticsPage() {
   const [data, setData] = useState([{}]);
-  const [refreshData, setrefreshData] = useState(0);
-  const [placeId, setPlaceId] = useState('1');
+  const [placeId, setPlaceId] = useState('');
   const [startDate, setStartDate] = useState(moment().format());
   const [endDate, setEndDate] = useState(moment().format());
   const [createdAt, setCreatedAt] = useState(moment().format());
@@ -25,30 +25,23 @@ function StatisticsPage(props) {
     createdAt: createdAt,
   };
 
-  useEffect(() => {
-    accessToken(props);
+  // useEffect(() => {
+  //   accessToken(props);
 
+  //   axios
+  //     .post('/api/daily', { body })
+  //     .then((res) => {
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  const handleChange = (value) => {
+    setPlaceId(value);
     axios
-      .post('/api/minute', { body })
+      .post('/api/daily', { body })
       .then((res) => {
         setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const onPointBtn = (value) => {
-    body = {
-      placeId: value,
-      startDate: startDate,
-      endDate: endDate,
-      createdAt: createdAt,
-    };
-    console.log(body);
-    axios
-      .post('/api/minute', { body })
-      .then((res) => {
-        setData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -62,20 +55,9 @@ function StatisticsPage(props) {
         marginLeft: 100,
       }}
     >
-      <Select
-        defaultValue="지역"
-        style={{ width: 120, marginBottom: 30 }}
-        onChange={onPointBtn}
-      >
-        <Option value="1">순천만습지</Option>
-        <Option value="2">조곡교</Option>
-        <Option value="3">용당교</Option>
-        <Option value="4">원용당교</Option>
-      </Select>
-
       <Tabs defaultActiveKey="1" type="card">
-        <TabPane tab="일간" key="1" style={{}}>
-          <Daily />
+        <TabPane tab="일간" key="1">
+          <Daily value={placeId} />
         </TabPane>
         <TabPane tab="월간" key="2">
           <Month />

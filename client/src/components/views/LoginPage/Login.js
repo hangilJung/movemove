@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Form, Input, Button } from 'antd';
 import '../../../Styles/Login.css';
-import { GiConsoleController } from 'react-icons/gi';
+import '../../../Styles/Page.css';
 
 function Login() {
   let id = '';
@@ -72,7 +72,7 @@ function Login() {
         <Button
           type="button"
           onClick={onLogin}
-          style={{ border: 'none', backgroundColor: '#f1fbff' }}
+          style={{ border: 'none', backgroundColor: '#fff' }}
         >
           <img className="login-btn" src="img/Login.png" alt="profile" />
         </Button>

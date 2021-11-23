@@ -7,8 +7,9 @@ import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 
-function FirstPoint(props) {
+function FirstPoint() {
   const [data, setData] = useState([{}]);
+  const [warningData, setWarningData] = useState([{}]);
 
   const [StartDate, setStartDate] = useState(moment());
   const [EndDate, setEndDate] = useState(moment());
@@ -28,6 +29,9 @@ function FirstPoint(props) {
         setData(res.data);
       })
       .catch((err) => console.log(err));
+    axios.post('/api/warningdata', { body }).then((res) => {
+      setWarningData(res.data.body[0]);
+    });
   }, []);
 
   let getWaterLevel = {};
@@ -39,6 +43,11 @@ function FirstPoint(props) {
   }
 
   const waterData = getWaterLevel;
+
+  let Attention = warningData.water_level_attention;
+  let Caution = warningData.water_level_caution;
+  let Boundary = warningData.water_level_boundary;
+  let Danger = warningData.water_level_danger;
 
   let preData = {};
 
@@ -52,11 +61,23 @@ function FirstPoint(props) {
 
   let cl = new CommonLib();
 
-  const waterColor = cl.getWaterColor(waterData);
+  const waterColor = cl.getWaterColor(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
 
   const placeTitle = cl.getCardTitle(placeName);
 
-  const cardImg = cl.getCardImg(waterData);
+  const cardImg = cl.getCardImg(
+    waterData,
+    Danger,
+    Boundary,
+    Caution,
+    Attention
+  );
 
   const placeButton = cl.getPlaceButton(placeName);
 

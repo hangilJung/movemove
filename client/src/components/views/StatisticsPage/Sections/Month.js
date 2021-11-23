@@ -6,17 +6,69 @@ import locale from 'antd/lib/date-picker/locale/ko_KR';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
 import exporting from 'highcharts/modules/exporting';
-import { DatePicker, Form, Button } from 'antd';
+import { DatePicker, Form, Button, Select } from 'antd';
 
 exporting(Highcharts);
 
 function Month(props) {
   const [data, setData] = useState([{}]);
-
   const [placeId, setPlaceId] = useState('1');
-  const [startDate, setStartDate] = useState(moment().format());
-  const [endDate, setEndDate] = useState(moment().format());
+  const [warningData, setWarningData] = useState([{}]);
+  const [setup, setSetup] = useState([
+    {
+      place_id: 1,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 2,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 3,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+    {
+      place_id: 4,
+      water_level_attention: '',
+      water_level_caution: '',
+      water_level_boundary: '',
+      water_level_danger: '',
+    },
+  ]);
+
+  const { Option } = Select;
+
+  const [startDate, setStartDate] = useState(moment().format('YYYY-MM-01'));
+  const [endDate, setEndDate] = useState(
+    moment(
+      moment(startDate)
+        .add(1, 'months')
+        .format('YYYY-MM' + '-01')
+    )
+      .subtract(1, 'days')
+      .format('YYYY-MM-DD')
+  );
   const [createdAt, setCreatedAt] = useState(moment().format());
+
+  useEffect(() => {
+    accessToken(props);
+
+    axios
+      .post('/api/month', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   let waterData = [];
   let preData = [];
@@ -40,9 +92,11 @@ function Month(props) {
     createdDate.push(data.created_at);
   });
 
-  const dateXaxis = createdDate.map((createdAt) => {
-    return moment(createdAt).format('DD일');
-  });
+  // const dateXaxis = createdDate.map((createdAt) => {
+  //   return createdAt + '시';
+  // });
+
+  // const dateXaxis = moment(createdDate).format('DD일 HH시');
 
   let body = {
     placeId: placeId,
@@ -51,16 +105,9 @@ function Month(props) {
     createdAt: createdAt,
   };
 
-  useEffect(() => {
-    accessToken(props);
-
-    axios
-      .post('/api/month', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const handleChange = (value) => {
+    setPlaceId(value);
+  };
 
   const onSubmitHandler = (event) => {
     // page refresh를 막아줌
@@ -73,6 +120,29 @@ function Month(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  let firstDanger = [];
+
+  let secondDanger = [];
+
+  let thirdDanger = [];
+
+  let fourthDanger = [];
+
+  data.map((data) => {
+    if (data.place_id === 1) {
+      firstDanger.push(data.water_level_danger);
+    } else if (data.place_id === 2) {
+      secondDanger.push(data.water_level_danger);
+    } else if (data.place_id === 3) {
+      thirdDanger.push(data.water_level_danger);
+    } else if (data.place_id === 4) {
+      fourthDanger.push(data.water_level_danger);
+    }
+  });
+
+  // const placeNumber = placeId - 1;
+  // console.log('placeNumber: ' + placeNumber);
 
   // 메인차트
   const WaterChart = (props) => {
@@ -115,7 +185,7 @@ function Month(props) {
       },
       title: { text: '수위 및 강수량' },
       xAxis: {
-        categories: dateXaxis,
+        categories: createdDate,
         tickInterval: 1,
       },
       yAxis: [
@@ -123,13 +193,13 @@ function Month(props) {
           labels: {
             enabled: true,
           },
-          plotLines: [
-            {
-              color: '#FF0000',
-              width: 2,
-              value: 1,
-            },
-          ],
+          // plotLines: [
+          //   {
+          //     color: '#FF0000',
+          //     width: 2,
+          //     value: dangerLevel,
+          //   },
+          // ],
           title: {
             text: '수위',
           },
@@ -353,7 +423,7 @@ function Month(props) {
 
       title: { text: '온도 및 습도' },
       xAxis: {
-        categories: dateXaxis,
+        categories: createdDate,
         tickInterval: 1,
       },
       yAxis: [
@@ -548,12 +618,29 @@ function Month(props) {
         fontSize: 20,
       }}
     >
-      <Form style={{ margin: '-50px 0 0 600px' }}>
+      <Select
+        defaultValue="지역"
+        style={{ width: 120, marginBottom: 30 }}
+        onChange={handleChange}
+      >
+        <Option value="1">순천만습지</Option>
+        <Option value="2">조곡교</Option>
+        <Option value="3">용당교</Option>
+        <Option value="4">원용당교</Option>
+      </Select>
+      <Form style={{ margin: '-50px 0 0 500px' }}>
         <Form.Item>
           <DatePicker
             locale={locale}
-            placeholder={moment().format('YYYY년 MM월 ')}
+            placeholder={moment().format('YYYY년 MM월')}
             onChange={(date) => setStartDate(date)}
+            picker="month"
+            style={{ width: 160 }}
+          />
+          <DatePicker
+            locale={locale}
+            placeholder={moment().format('YYYY년 MM월')}
+            onChange={(date) => setEndDate(date)}
             picker="month"
             style={{ width: 160 }}
           />
@@ -564,7 +651,22 @@ function Month(props) {
         </Form.Item>
       </Form>
       <div>
-        <p>월간 일평균 데이터</p>
+        <p>월간 평균 데이터</p>
+        <Button
+          href="/monthtable"
+          style={{
+            zIndex: 999,
+            border: 'none ',
+            boxShadow: 'none',
+            width: 60,
+          }}
+        >
+          <img
+            src="img/tableicon.png"
+            alt="tableicon"
+            style={{ width: '100%' }}
+          />
+        </Button>
         <div
           style={{
             backgroundColor: '#fff',

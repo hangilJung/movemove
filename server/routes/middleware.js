@@ -47,7 +47,6 @@ const request = async (url, body) => {
       token.accessToken = await getAccessToken.data.body.accessToken;
       dataJSON = await JSON.stringify(token);
       fs.writeFileSync(__dirname + '/../accessToken.json', dataJSON);
-      console.log(__dirname);
       const access = await axios.post(url, body, {
         headers: {
           authorization: getAccessToken.data.body.accessToken,

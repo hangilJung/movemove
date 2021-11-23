@@ -16,7 +16,7 @@ import moment from 'moment';
 import 'animate.css';
 import Snowfall from 'react-snowfall';
 
-function KioskPage(props) {
+function KioskPage() {
   let timer = null;
 
   const [time, setTime] = useState(moment());
@@ -24,7 +24,7 @@ function KioskPage(props) {
   useEffect(() => {
     timer = setInterval(() => {
       setTime(moment());
-    }, 10000);
+    }, 5000);
   }, []);
 
   return (

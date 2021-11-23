@@ -44,7 +44,7 @@ function HeaderMenu(props) {
     <div style={{}}>
       <Row
         style={{
-          backgroundColor: '#F0F2F5',
+          backgroundColor: '#fff',
           minWidth: 1400,
         }}
       >
@@ -70,7 +70,7 @@ function HeaderMenu(props) {
         >
           {toDay}
         </Col>
-        <Col span={6} style={{ backgroundColor: '#F0F2F5' }}>
+        <Col span={6} style={{ backgroundColor: '#fff' }}>
           {/* {!idTrue && (
             <Menu mode="horizontal">
               <Menu.Item key="login" icon={<GrLogin />}>
@@ -81,7 +81,7 @@ function HeaderMenu(props) {
           {idTrue && (
             <Menu
               mode="horizontal"
-              style={{ border: 'none', backgroundColor: '#F0F2F5' }}
+              style={{ border: 'none', backgroundColor: '#fff' }}
             >
               <Menu.Item key="logout">
                 <a onClick={onLogout}>

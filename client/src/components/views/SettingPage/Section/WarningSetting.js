@@ -7,9 +7,8 @@ import { Row, Col, li, Button, Typography, Form, Card, Input } from 'antd';
 import { withRouter } from 'react-router';
 import '../../../../Styles/Setting.css';
 
-function WarningSetting(props) {
+function Warning(props) {
   const [data, setData] = useState([{}]);
-
   const [setup, setSetup] = useState([
     {
       place_id: 1,
@@ -46,7 +45,6 @@ function WarningSetting(props) {
       .post('/api/warningdata/')
       .then((res) => {
         setData(res.data.body);
-        console.log(res.data.body);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -103,6 +101,7 @@ function WarningSetting(props) {
         data.water_level_attention = e.target.value;
       }
     });
+    // return { firstAttention, oneAttention };
   };
   const oneCaution = (e) => {
     setup.map((data) => {
@@ -223,19 +222,20 @@ function WarningSetting(props) {
       .post('/api/warning', setup)
       .then(
         alert('변경사항이 적용되었습니다.'),
-        props.history.push('/setting'),
+        props.history.push('/warning'),
         window.location.reload()
       );
   };
+
   return (
     <div
       style={{
-        backgroundColor: '#F0F2F5',
+        backgroundColor: '#fff',
         width: '100%',
         height: '100vh',
         fontFamily: 'Noto Sans CJK KR',
         fontStyle: 'normal',
-        maxHeight: 855,
+        manHeight: 855,
         maxWidth: 1800,
         padding: 10,
       }}
@@ -260,8 +260,8 @@ function WarningSetting(props) {
                     <span>관심: </span>
                     <Input
                       type="number"
-                      min="0"
                       onChange={oneAttention}
+                      min="0"
                       size="large"
                       placeholder={firstAttention}
                     />
@@ -412,7 +412,7 @@ function WarningSetting(props) {
             <Col span={6}>
               <Card
                 title="원용당교"
-                bordered={true}
+                bordered={false}
                 headStyle={{ fontSize: 30 }}
                 style={{
                   backgroundColor: '#fff',
@@ -486,4 +486,4 @@ function WarningSetting(props) {
   );
 }
 
-export default withRouter(WarningSetting);
+export default withRouter(Warning);

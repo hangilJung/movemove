@@ -15,7 +15,7 @@ function SettingPage() {
             width: '100%',
             height: '100%',
             border: 'none',
-            backgroundColor: '#F0F2F5',
+            backgroundColor: '#fff',
           }}
         >
           <img
@@ -32,7 +32,7 @@ function SettingPage() {
             width: '100%',
             height: '100%',
             border: 'none',
-            backgroundColor: '#F0F2F5',
+            backgroundColor: '#fff',
           }}
         >
           <img

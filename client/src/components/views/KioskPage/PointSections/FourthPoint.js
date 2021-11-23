@@ -36,11 +36,10 @@ function FourthPoint() {
           setData(res.data);
         })
         .catch((err) => console.log(err));
+      axios.post('/api/warningdata', { body }).then((res) => {
+        setWarningData(res.data.body[3]);
+      });
     }, 5000);
-
-    axios.post('/api/warningdata', { body }).then((res) => {
-      setWarningData(res.data.body[3]);
-    });
   };
 
   let getWaterLevel = {};

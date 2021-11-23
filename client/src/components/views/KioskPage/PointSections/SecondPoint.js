@@ -36,11 +36,10 @@ function SecondPoint() {
           setData(res.data);
         })
         .catch((err) => console.log(err));
+      axios.post('/api/warningdata', { body }).then((res) => {
+        setWarningData(res.data.body[1]);
+      });
     }, 5000);
-
-    axios.post('/api/warningdata', { body }).then((res) => {
-      setWarningData(res.data.body[1]);
-    });
   };
 
   let getWaterLevel = {};

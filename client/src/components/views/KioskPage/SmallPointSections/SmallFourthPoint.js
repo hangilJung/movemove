@@ -34,14 +34,12 @@ function SmallFourthPoint() {
         .post('/api/minute/', { body })
         .then((res) => {
           setData(res.data);
-          console.log(res.data);
         })
         .catch((err) => console.log(err));
+      axios.post('/api/warningdata', { body }).then((res) => {
+        setWarningData(res.data.body[3]);
+      });
     }, 5000);
-
-    axios.post('/api/warningdata', { body }).then((res) => {
-      setWarningData(res.data.body[3]);
-    });
   };
 
   let getWaterLevel = {};

@@ -499,26 +499,18 @@ export default class CommonLib {
     );
   }
 
-  getCardImg(waterData) {
+  getCardImg(waterData, Danger, Boundary, Caution, Attention) {
     let cardImg = '';
 
-    if (waterData >= 3) {
+    if (waterData >= Danger) {
       cardImg = 'card_5';
-    }
-
-    if (waterData <= 2.5) {
+    } else if (waterData >= Boundary) {
       cardImg = 'card_4';
-    }
-
-    if (waterData <= 2) {
+    } else if (waterData >= Caution) {
       cardImg = 'card_3';
-    }
-
-    if (waterData <= 1.5) {
+    } else if (waterData >= Attention) {
       cardImg = 'card_2';
-    }
-
-    if (waterData <= 1) {
+    } else {
       cardImg = 'card_1';
     }
 
