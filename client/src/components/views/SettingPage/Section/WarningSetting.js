@@ -306,7 +306,7 @@ function Warning(props) {
 
     await axios
       .post('/api/warning', setup)
-      .then(alert('변경사항이 적용되었습니다.'), props.history.push('/warning'))
+      .then(alert('변경사항이 적용되었습니다.'), props.history.push('/setting'))
       .catch((err) => console.log(err));
   };
 
