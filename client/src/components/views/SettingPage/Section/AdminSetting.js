@@ -109,6 +109,9 @@ function AdminSetting(props) {
           기존 비밀번호를 입력하고 새 비밀번호, 새 비밀번호 확인란을 입력해
           주세요.
         </p>
+        <p style={{ fontSize: 15, color: '#727272' }}>
+          비밀번호는 공백을 제외한 10자리 이내로 입력해 주세요.{' '}
+        </p>
         <br />
         <div style={{ width: '60vh', margin: '0 auto' }}>
           <Input
@@ -148,6 +151,7 @@ function AdminSetting(props) {
               backgroundColor: '#7771F6',
               color: 'white',
               marginTop: 30,
+              padding: 0,
             }}
             shape="round"
             size="large"

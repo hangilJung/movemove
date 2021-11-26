@@ -562,6 +562,16 @@ function Warning(props) {
               </Card>
             </Col>
           </Row>
+          <p
+            style={{
+              fontFamily: 'Noto Sans CJK KR',
+              fontStyle: 'normal',
+              fontSize: 17,
+              margin: '50px 0 -10px 0',
+            }}
+          >
+            위험 수위는 0~99.9까지 설정할 수 있습니다.
+          </p>
           <Button
             onClick={onSubmit}
             size="large"
