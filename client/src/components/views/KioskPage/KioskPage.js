@@ -57,7 +57,7 @@ function KioskPage() {
             />
           </div>
           <div style={{ marginRight: -10 }}>
-            {time.format('YYYY. MM. DD. (dd) HH:mm')}
+            {time.format('YYYY. MM. DD. HH:mm')}
           </div>
           <div
             style={{

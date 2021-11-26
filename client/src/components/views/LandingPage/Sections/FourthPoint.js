@@ -7,7 +7,7 @@ import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 
-function FourthPoint(props) {
+function FourthPoint() {
   const [data, setData] = useState([{}]);
   const [warningData, setWarningData] = useState([{}]);
 

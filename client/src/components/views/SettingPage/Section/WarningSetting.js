@@ -3,7 +3,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Row, Col, li, Button, Typography, Form, Card, Input } from 'antd';
+import {
+  Row,
+  Col,
+  li,
+  Button,
+  Typography,
+  Form,
+  Card,
+  Input,
+  message,
+} from 'antd';
 import { withRouter } from 'react-router';
 import '../../../../Styles/Setting.css';
 
@@ -98,29 +108,48 @@ function Warning(props) {
   const oneAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        data.water_level_attention = e.target.value;
+        if (e.target.value >= 0 && e.target.value <= firstCaution[0]) {
+          data.water_level_attention = e.target.value;
+        } else {
+          alert('정상적인 수치를 입력해 주세요.');
+        }
       }
     });
-    // return { firstAttention, oneAttention };
   };
+
   const oneCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        data.water_level_caution = e.target.value;
+        if (
+          0 < e.target.value &&
+          e.target.value >= data.water_level_attention
+        ) {
+          data.water_level_caution = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const oneBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        data.water_level_boundary = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
+          data.water_level_boundary = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const oneDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        data.water_level_danger = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
+          data.water_level_danger = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -128,28 +157,47 @@ function Warning(props) {
   const twoAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        data.water_level_attention = e.target.value;
+        if (e.target.value >= 0 && e.target.value <= secondCaution[0]) {
+          data.water_level_attention = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const twoCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        data.water_level_caution = e.target.value;
+        if (
+          0 < e.target.value &&
+          e.target.value >= data.water_level_attention
+        ) {
+          data.water_level_caution = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const twoBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        data.water_level_boundary = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
+          data.water_level_boundary = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const twoDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        data.water_level_danger = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
+          data.water_level_danger = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -157,28 +205,47 @@ function Warning(props) {
   const threeAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        data.water_level_attention = e.target.value;
+        if (e.target.value >= 0 && e.target.value <= thirdCaution[0]) {
+          data.water_level_attention = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const threeCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        data.water_level_caution = e.target.value;
+        if (
+          0 < e.target.value &&
+          e.target.value >= data.water_level_attention
+        ) {
+          data.water_level_caution = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const threeBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        data.water_level_boundary = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
+          data.water_level_boundary = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
   const threeDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        data.water_level_danger = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
+          data.water_level_danger = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -186,7 +253,11 @@ function Warning(props) {
   const fourAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        data.water_level_attention = e.target.value;
+        if (e.target.value >= 0 && e.target.value <= fourthCaution[0]) {
+          data.water_level_attention = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -194,7 +265,14 @@ function Warning(props) {
   const fourCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        data.water_level_caution = e.target.value;
+        if (
+          0 < e.target.value &&
+          e.target.value >= data.water_level_attention
+        ) {
+          data.water_level_caution = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -202,7 +280,11 @@ function Warning(props) {
   const fourBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        data.water_level_boundary = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
+          data.water_level_boundary = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -210,7 +292,11 @@ function Warning(props) {
   const fourDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        data.water_level_danger = e.target.value;
+        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
+          data.water_level_danger = e.target.value;
+        } else {
+          alert('수치를 확인해 주세요.');
+        }
       }
     });
   };
@@ -218,13 +304,10 @@ function Warning(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const result = await axios
+    await axios
       .post('/api/warning', setup)
-      .then(
-        alert('변경사항이 적용되었습니다.'),
-        props.history.push('/warning'),
-        window.location.reload()
-      );
+      .then(alert('변경사항이 적용되었습니다.'), props.history.push('/warning'))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -261,7 +344,7 @@ function Warning(props) {
                     <Input
                       type="number"
                       onChange={oneAttention}
-                      min="0"
+                      min={0}
                       size="large"
                       placeholder={firstAttention}
                     />
@@ -270,9 +353,9 @@ function Warning(props) {
                     <span>주의: </span>
                     <Input
                       type="number"
-                      min="0"
                       onChange={oneCaution}
                       size="large"
+                      min={0}
                       placeholder={firstCaution}
                     />
                   </div>
@@ -280,20 +363,22 @@ function Warning(props) {
                     <span>경계: </span>
                     <Input
                       type="number"
-                      min="0"
+                      min={0}
                       onChange={oneBoundary}
                       size="large"
                       placeholder={firstBoundary}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
                     <span>심각: </span>
                     <Input
                       type="number"
-                      min="0"
+                      min={0}
                       onChange={oneDanger}
                       size="large"
                       placeholder={firstDanger}
+                      maxLength={2}
                     />
                   </div>
                 </div>
@@ -319,6 +404,7 @@ function Warning(props) {
                       onChange={twoAttention}
                       size="large"
                       placeholder={secondAttention}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -329,6 +415,7 @@ function Warning(props) {
                       onChange={twoCaution}
                       size="large"
                       placeholder={secondCaution}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -339,6 +426,7 @@ function Warning(props) {
                       onChange={twoBoundary}
                       size="large"
                       placeholder={secondBoundary}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -349,6 +437,7 @@ function Warning(props) {
                       onChange={twoDanger}
                       size="large"
                       placeholder={secondDanger}
+                      maxLength={2}
                     />
                   </div>
                 </div>
@@ -374,6 +463,7 @@ function Warning(props) {
                       onChange={threeAttention}
                       size="large"
                       placeholder={thirdAttention}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -384,6 +474,7 @@ function Warning(props) {
                       onChange={threeCaution}
                       size="large"
                       placeholder={thirdCaution}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -394,6 +485,7 @@ function Warning(props) {
                       onChange={threeBoundary}
                       size="large"
                       placeholder={thirdBoundary}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -404,6 +496,7 @@ function Warning(props) {
                       onChange={threeDanger}
                       size="large"
                       placeholder={thirdDanger}
+                      maxLength={2}
                     />
                   </div>
                 </div>
@@ -429,6 +522,7 @@ function Warning(props) {
                       onChange={fourAttention}
                       size="large"
                       placeholder={fourthAttention}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -439,6 +533,7 @@ function Warning(props) {
                       onChange={fourCaution}
                       size="large"
                       placeholder={fourthCaution}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -449,6 +544,7 @@ function Warning(props) {
                       onChange={fourBoundary}
                       size="large"
                       placeholder={fourthBoundary}
+                      maxLength={2}
                     />
                   </div>
                   <div className="card_input_tag">
@@ -459,6 +555,7 @@ function Warning(props) {
                       onChange={fourDanger}
                       size="large"
                       placeholder={fourthDanger}
+                      maxLength={2}
                     />
                   </div>
                 </div>

@@ -10,13 +10,12 @@ function HeaderMenu(props) {
 
   const [idTrue, setIdTrue] = useState('');
 
-  //   const [idTrue, setIdTrue] = useState('');
-
   const onLogout = () => {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
     setIdTrue('');
-    props.history.push('/login');
+    // props.history.push('/login');
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -37,11 +36,8 @@ function HeaderMenu(props) {
     }, 300);
   }, []);
 
-  // if (window.location.pathname === '/login') return <div></div>;
-  // if (window.location.pathname === '/kiosk') return <div></div>;
-
   return (
-    <div style={{}}>
+    <div>
       <Row
         style={{
           backgroundColor: '#fff',

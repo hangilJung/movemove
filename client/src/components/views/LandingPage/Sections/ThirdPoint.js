@@ -7,7 +7,7 @@ import 'animate.css';
 import '../../../../Styles/Text.css';
 import CommonLib from '../../../../lib/commonlib';
 
-function ThirdPoint(props) {
+function ThirdPoint() {
   const [data, setData] = useState([{}]);
   const [warningData, setWarningData] = useState([{}]);
 

@@ -70,24 +70,36 @@ function FirstMonitorTable(props) {
     {
       title: '수위',
       dataIndex: 'water_level',
+      render: (water_level) => {
+        return <text>{water_level}M</text>;
+      },
       key: 'water_level',
       align: 'center',
     },
     {
       title: '강수량',
       dataIndex: 'precipitation',
+      render: (precipitation) => {
+        return <text>{precipitation}mm</text>;
+      },
       key: 'precipitation',
       align: 'center',
     },
     {
       title: '온도',
       dataIndex: 'temperature',
+      render: (temperature) => {
+        return <text>{temperature}℃</text>;
+      },
       key: 'temperature',
       align: 'center',
     },
     {
       title: '습도',
       dataIndex: 'humidity',
+      render: (humidity) => {
+        return <text>{humidity}%</text>;
+      },
       key: 'humidity',
       align: 'center',
     },

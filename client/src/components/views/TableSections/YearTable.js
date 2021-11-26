@@ -80,7 +80,7 @@ function YearTable(props) {
       title: '시간',
       dataIndex: `created_at`,
       render: (created_at) => {
-        return <p>{created_at}월</p>;
+        return <text>{created_at}월</text>;
       },
       key: 'created_at',
       align: 'center',
@@ -136,8 +136,8 @@ function YearTable(props) {
       }}
     >
       <Select
-        defaultValue="지역"
-        style={{ width: 120, marginBottom: 30 }}
+        defaultValue="순천만습지"
+        style={{ width: 160, marginBottom: 30 }}
         onChange={handleChange}
       >
         <Option value="1">순천만습지</Option>

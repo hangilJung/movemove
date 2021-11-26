@@ -619,8 +619,8 @@ function Month(props) {
       }}
     >
       <Select
-        defaultValue="지역"
-        style={{ width: 120, marginBottom: 30 }}
+        defaultValue="순천만습지"
+        style={{ width: 160, marginBottom: 30 }}
         onChange={handleChange}
       >
         <Option value="1">순천만습지</Option>

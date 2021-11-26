@@ -49,7 +49,8 @@ function Kiosk() {
       }}
     >
       {weatherEffect}
-      <Snowfall snowflakeCount={450} style={{ zIndex: 9999, width: 530 }} />
+      <Snowfall snowflakeCount={200} style={{ zIndex: 9999, width: 530 }} />
+
       {/* <ReactRain numDrops={500} style={{ width: 530, zIndex: 9999 }} /> */}
       <div
         style={{
@@ -71,7 +72,7 @@ function Kiosk() {
           backgroundColor: 'black',
         }}
       >
-        <Videos />
+        {/* <Videos /> */}
       </div>
     </div>
   );

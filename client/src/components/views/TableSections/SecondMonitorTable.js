@@ -34,9 +34,9 @@ function SecondMonitorTable(props) {
     {
       title: '시간',
       dataIndex: 'created_at',
-      render: (created_at) => {
-        return <p>{moment(created_at).format('LT')}</p>;
-      },
+      // render: (created_at) => {
+      //   return <p>{moment(created_at).format('LT')}</p>;
+      // },
       key: 'created_at',
       align: 'center',
       width: 250,
@@ -44,24 +44,36 @@ function SecondMonitorTable(props) {
     {
       title: '수위',
       dataIndex: 'water_level',
+      render: (water_level) => {
+        return <text>{water_level}M</text>;
+      },
       key: 'water_level',
       align: 'center',
     },
     {
       title: '강수량',
       dataIndex: 'precipitation',
+      render: (precipitation) => {
+        return <text>{precipitation}mm</text>;
+      },
       key: 'precipitation',
       align: 'center',
     },
     {
       title: '온도',
       dataIndex: 'temperature',
+      render: (temperature) => {
+        return <text>{temperature}℃</text>;
+      },
       key: 'temperature',
       align: 'center',
     },
     {
       title: '습도',
       dataIndex: 'humidity',
+      render: (humidity) => {
+        return <text>{humidity}%</text>;
+      },
       key: 'humidity',
       align: 'center',
     },

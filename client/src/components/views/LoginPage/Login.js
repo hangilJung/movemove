@@ -20,33 +20,41 @@ function Login() {
       onLogin();
     }
   };
-  const onLogin = async () => {
-    await axios
-      .post('/api/login', {
-        id: id,
-        password: password,
-      })
-      .then((res) => {
-        sessionStorage.setItem('refreshToken', res.data.refreshToken);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert('아이디와 비밀번호가 다릅니다.');
-      });
 
-    axios
-      .post('/api/login/accessToken', null, {
-        headers: {
-          authorization: sessionStorage.getItem('refreshToken'),
-        },
-      })
-      .then((data) => {
-        sessionStorage.setItem('accessToken', data.data.accessToken);
-        window.location = '/landing';
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const onLogin = async () => {
+    const regPwd = /[^\s]+/;
+    if (regPwd.test(password)) {
+      console.log('로그인테스트');
+      await axios
+        .post('/api/login', {
+          id: id,
+          password: password,
+        })
+        .then((res) => {
+          sessionStorage.setItem('refreshToken', res.data.refreshToken);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert('아이디와 비밀번호가 다릅니다.');
+          window.location = '/landing';
+        });
+
+      axios
+        .post('/api/login/accessToken', null, {
+          headers: {
+            authorization: sessionStorage.getItem('refreshToken'),
+          },
+        })
+        .then((data) => {
+          sessionStorage.setItem('accessToken', data.data.accessToken);
+          window.location = '/landing';
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('정확한 비밀번호를 입력해주세요.');
+    }
   };
 
   return (
@@ -59,27 +67,44 @@ function Login() {
             type="text"
             onChange={idValue}
             placeholder="아이디를 입력해 주세요."
+            style={{
+              width: 250,
+              height: 55,
+              padding: '0 15px 0 15px',
+              borderRadius: 18,
+            }}
           />
         </Form.Item>
         <Form.Item>
-          <Input
+          <Input.Password
             // className="login-password"
             type="password"
             onChange={passwordValue}
             placeholder="비밀번호를 입력해 주세요."
+            maxLength={10}
+            style={{
+              width: 250,
+              height: 55,
+              padding: '0 15px 0 15px',
+              borderRadius: 18,
+            }}
           />
         </Form.Item>
         <Button
           type="button"
           onClick={onLogin}
-          style={{ border: 'none', backgroundColor: '#fff' }}
+          style={{ border: 'none', height: 50, backgroundColor: '#F1FBFF' }}
         >
           <img className="login-btn" src="img/Login.png" alt="profile" />
         </Button>
       </Form>
       <div className="logo">
-        <img src="img/suncheonsi.png" style={{ margin: '20px 10px 0 10px' }} />
-        <img src="img/joia.png" />
+        <img
+          src="img/suncheonsi.png"
+          style={{ margin: '20px 10px 0 10px' }}
+          alt="logo"
+        />
+        <img src="img/joia.png" alt="logo" />
       </div>
     </div>
   );
