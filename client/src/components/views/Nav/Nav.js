@@ -107,19 +107,39 @@ function Nav() {
               {' '}
             </Button>
           </Menu.Item>
-          <div style={{ marginTop: 30 }}>
+          <div style={{ marginTop: 100 }}>
+            <a
+              href="/menual/menual.pdf"
+              download="menual.pdf"
+              style={{
+                border: 'none',
+                fontFamily: 'Noto Sans CJK KR',
+                fontStyle: 'normal',
+                fontSize: 15,
+                marginLeft: 100,
+              }}
+            >
+              <img src="/img/menualBtn.png" alt="메뉴얼 다운로드" />
+            </a>
+          </div>
+
+          <div>
             <div>
               <img
                 src="img/citylogo.png"
                 alt="profile"
-                style={{ width: 250, height: 'auto', margin: '70px 0 0 20px' }}
+                style={{ width: 250, height: 'auto', marginLeft: 20 }}
               />
             </div>
             <div>
               <img
                 src="img/joialogo.png"
                 alt="profile"
-                style={{ width: 300, height: 'auto', margin: '0px 0 30px 5px' }}
+                style={{
+                  width: 300,
+                  height: 'auto',
+                  margin: '-30px 0 0 5px',
+                }}
               />
             </div>
             <div
