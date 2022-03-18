@@ -23,7 +23,7 @@ const accessToken = (props) => {
         })
         .catch((error) => {
           console.log(error);
-          props.history.push('/login');
+          window.location.href = '/login';
         });
     });
 };

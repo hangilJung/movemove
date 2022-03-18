@@ -73,12 +73,6 @@ function Daily(props) {
     createdDate.push(data.created_at);
   });
 
-  // const dateXaxis = createdDate.map((createdAt) => {
-  //   return createdAt + '시';
-  // });
-
-  // const dateXaxis = moment(createdDate).format('DD일 HH시');
-
   let body = {
     placeId: placeId,
     startDate: startDate,
@@ -93,17 +87,10 @@ function Daily(props) {
       .post('/api/daily', { body })
       .then((res) => {
         setData(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, [placeId]);
-
-  // const dateXaxis = createdDate;
-
-  function dateXaxis(createdDate) {
-    return createdDate.map((createdAt) => {
-      return createdAt + '시';
-    });
-  }
 
   const handleChange = (value) => {
     setPlaceId(value);
@@ -141,8 +128,6 @@ function Daily(props) {
     }
   });
 
-  // const dangerLevel = data[0].water_level_danger;
-
   // 메인차트
   const WaterChart = (props) => {
     return (
@@ -168,6 +153,10 @@ function Daily(props) {
     );
   };
 
+  const dateXaxis = createdDate.map((createdAt) => {
+    return moment(createdAt).format('MM월 DD일 HH시');
+  });
+
   const Charts = () => {
     const [WaterChartOptions, setWaterChartOptions] = useState({
       chart: {
@@ -184,7 +173,7 @@ function Daily(props) {
       },
       title: { text: '수위 및 강수량' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -192,23 +181,25 @@ function Daily(props) {
           labels: {
             enabled: true,
           },
-          // plotLines: [
-          //   {
-          //     color: '#FF0000',
-          //     width: 2,
-          //     value: dangerLevel,
-          //   },
-          // ],
           title: {
             text: '수위',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '강수량',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 0,
           },
-
           labels: {
             enabled: true,
           },
@@ -254,7 +245,7 @@ function Daily(props) {
       },
       series: [
         { name: '수위', data: waterData, type: 'areaspline', color: '#1E90FF' },
-        { name: '강우량', data: preData, color: '#87CEFA' },
+        { name: '강수량', data: preData, color: '#87CEFA', yAxis: 1 },
       ],
     });
 
@@ -363,7 +354,7 @@ function Daily(props) {
 
       series: [
         { name: '수위', data: waterData, type: 'area' },
-        { name: '강우량', data: preData },
+        { name: '강수량', data: preData },
       ],
 
       exporting: {
@@ -422,7 +413,7 @@ function Daily(props) {
 
       title: { text: '온도 및 습도' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -432,15 +423,24 @@ function Daily(props) {
           },
           title: {
             text: '온도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '습도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 10,
           },
           labels: {
-            format: `${humData}%`,
             enabled: true,
           },
           opposite: true,
@@ -485,7 +485,7 @@ function Daily(props) {
       },
       series: [
         { name: '온도', data: tempData, type: 'areaspline' },
-        { name: '습도', data: humData, color: '#82ca9d' },
+        { name: '습도', data: humData, color: '#82ca9d', yAxis: 1 },
       ],
     });
 

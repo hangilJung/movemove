@@ -25,17 +25,6 @@ function StatisticsPage() {
     createdAt: createdAt,
   };
 
-  // useEffect(() => {
-  //   accessToken(props);
-
-  //   axios
-  //     .post('/api/daily', { body })
-  //     .then((res) => {
-  //       setData(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   const handleChange = (value) => {
     setPlaceId(value);
     axios

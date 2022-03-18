@@ -1,40 +1,15 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
-import Modal from 'react-modal';
+
 function Videos() {
-  // const srcData = 'file:///C:/videos/03._1117.mp4'
-
-  let subtitle;
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  const customStyles = {
-    content: {
-      top: 730,
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-
   return (
     <div>
-      <video
+       <img
+          style={{ width: "80%", height:"80%", position: 'relative', top: 0, left: 40, margin: 10 }}
+          alt="profile"
+          src="img/kiosk_image.png"
+        />
+      {/* <video
         width="100%"
         height="100%"
         autoPlay
@@ -43,8 +18,10 @@ function Videos() {
         muted
         style={{ borderRadius: 10, padding: '5px 5px 1px 5px' }}
       >
-        <source src="videos/test1.mp4" type="video/mp4" />
-      </video>
+        <source src="videos/info.mov" type="video/mp4" />
+      </video> */}
+
+     
       <div style={{ textAlign: 'center' }}>
         <img
           style={{ width: 80, position: 'relative', top: -8 }}

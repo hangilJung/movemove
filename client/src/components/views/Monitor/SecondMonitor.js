@@ -56,13 +56,22 @@ function SecondMonitor(props) {
   useEffect(() => {
     accessToken(props);
 
-    axios.post('/api/warningdata', { body }).then((res) => {
-      setWarningData(res.data.body[1]);
-    });
-
-    axios.post('/api/minute', { body }).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .post('/api/minute/', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(moment().format('HH:mm:ss'), err));
+    axios
+      .post('/api/warningdata', { body })
+      .then((res) => {
+        setWarningData(res.data.body);
+      })
+      .catch(
+        axios.post('/api/warningdata', { body }).then((res) => {
+          setWarningData(res.data.body);
+        })
+      );
   }, []);
 
   // 메인차트
@@ -111,21 +120,30 @@ function SecondMonitor(props) {
       },
       yAxis: [
         {
-          // plotLines: [
-          //   {
-          //     color: '#FF0000',
-          //     width: 2,
-          //     value: secondDanger,
-          //   },
-          // ],
+          labels: {
+            enabled: true,
+          },
           title: {
             text: '수위',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '강수량',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 0,
+          },
+          labels: {
+            enabled: true,
           },
           opposite: true,
         },
@@ -169,7 +187,7 @@ function SecondMonitor(props) {
       },
       series: [
         { name: '수위', data: waterData, type: 'areaspline', color: '#1E90FF' },
-        { name: '강우량', data: preData, color: '#87CEFA' },
+        { name: '강수량', data: preData, color: '#87CEFA', yAxis: 1 },
       ],
     });
 
@@ -278,7 +296,7 @@ function SecondMonitor(props) {
 
       series: [
         { name: '수위', data: waterData, type: 'area' },
-        { name: '강우량', data: preData },
+        { name: '강수량', data: preData },
       ],
 
       exporting: {
@@ -347,15 +365,24 @@ function SecondMonitor(props) {
           },
           title: {
             text: '온도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '습도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 10,
           },
           labels: {
-            format: `${humData}%`,
             enabled: true,
           },
           opposite: true,
@@ -400,7 +427,7 @@ function SecondMonitor(props) {
       },
       series: [
         { name: '온도', data: tempData, type: 'areaspline' },
-        { name: '습도', data: humData, color: '#82ca9d' },
+        { name: '습도', data: humData, color: '#82ca9d', yAxis: 1 },
       ],
     });
 
@@ -526,14 +553,27 @@ function SecondMonitor(props) {
 
   // 위험설정값
 
-  let secondBoundary = warningData.water_level_boundary;
-  let secondDanger = warningData.water_level_danger;
+  let Boundary = {};
+  let Danger = {};
+
+  const getWarningData = data.map((item) => {
+    if (item.water_level_boundary !== null) {
+      Boundary = item.water_level_boundary;
+    } else {
+      Boundary = 0;
+    }
+    if (item.water_level_danger !== null) {
+      Danger = item.water_level_danger;
+    } else {
+      Danger = 0;
+    }
+  });
 
   // 수위 최근값
 
   let getWaterLevel = {};
 
-  if (data.water_level !== 'undefined') {
+  if (data.length > 0) {
     getWaterLevel = data[data.length - 1].water_level;
   } else {
     getWaterLevel = '-';
@@ -545,7 +585,7 @@ function SecondMonitor(props) {
 
   let getPreLevel = {};
 
-  if (data.precipitation !== 'undefined') {
+  if (data.length > 0) {
     getPreLevel = data[data.length - 1].precipitation;
   } else {
     getPreLevel = '-';
@@ -557,7 +597,7 @@ function SecondMonitor(props) {
 
   let getTempData = {};
 
-  if (data.temperature !== 'undefined') {
+  if (data.length > 0) {
     getTempData = data[data.length - 1].temperature;
   } else {
     getTempData = '-';
@@ -569,7 +609,7 @@ function SecondMonitor(props) {
 
   let getHumData = {};
 
-  if (data.humidity !== 'undefined') {
+  if (data.length > 0) {
     getHumData = data[data.length - 1].humidity;
   } else {
     getHumData = '-';
@@ -615,8 +655,8 @@ function SecondMonitor(props) {
               }}
               title="위험도"
             >
-              <p> 경계수위 : {secondBoundary}</p>
-              <p>위험수위 : {secondDanger}</p>
+              <p> 경계수위 : {Boundary}</p>
+              <p>위험수위 : {Danger}</p>
             </Card>
             <Card
               style={{

@@ -47,28 +47,13 @@ function Month(props) {
 
   const { Option } = Select;
 
-  const [startDate, setStartDate] = useState(moment().format('YYYY-MM-01'));
+  const [startDate, setStartDate] = useState(
+    moment().startOf('month').format('YYYY-MM-DD')
+  );
   const [endDate, setEndDate] = useState(
-    moment(
-      moment(startDate)
-        .add(1, 'months')
-        .format('YYYY-MM' + '-01')
-    )
-      .subtract(1, 'days')
-      .format('YYYY-MM-DD')
+    moment().endOf('month').format('YYYY-MM-DD')
   );
   const [createdAt, setCreatedAt] = useState(moment().format());
-
-  useEffect(() => {
-    accessToken(props);
-
-    axios
-      .post('/api/month', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   let waterData = [];
   let preData = [];
@@ -92,12 +77,6 @@ function Month(props) {
     createdDate.push(data.created_at);
   });
 
-  // const dateXaxis = createdDate.map((createdAt) => {
-  //   return createdAt + '시';
-  // });
-
-  // const dateXaxis = moment(createdDate).format('DD일 HH시');
-
   let body = {
     placeId: placeId,
     startDate: startDate,
@@ -105,9 +84,16 @@ function Month(props) {
     createdAt: createdAt,
   };
 
-  const handleChange = (value) => {
-    setPlaceId(value);
-  };
+  useEffect(() => {
+    accessToken(props);
+
+    axios
+      .post('/api/month', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [placeId]);
 
   const onSubmitHandler = (event) => {
     // page refresh를 막아줌
@@ -120,6 +106,14 @@ function Month(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleChange = (value) => {
+    setPlaceId(value);
+  };
+
+  const dateXaxis = createdDate.map((createdAt) => {
+    return moment(createdAt).format('MM월 DD일');
+  });
 
   let firstDanger = [];
 
@@ -141,8 +135,6 @@ function Month(props) {
     }
   });
 
-  // const placeNumber = placeId - 1;
-  // console.log('placeNumber: ' + placeNumber);
 
   // 메인차트
   const WaterChart = (props) => {
@@ -172,7 +164,6 @@ function Month(props) {
   const Charts = () => {
     const [WaterChartOptions, setWaterChartOptions] = useState({
       chart: {
-        // marginBottom: 120,
         reflow: true,
         marginLeft: 50,
         marginRight: 20,
@@ -185,7 +176,7 @@ function Month(props) {
       },
       title: { text: '수위 및 강수량' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -193,29 +184,32 @@ function Month(props) {
           labels: {
             enabled: true,
           },
-          // plotLines: [
-          //   {
-          //     color: '#FF0000',
-          //     width: 2,
-          //     value: dangerLevel,
-          //   },
-          // ],
           title: {
             text: '수위',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '강수량',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 0,
           },
-
           labels: {
             enabled: true,
           },
           opposite: true,
         },
       ],
+
       tooltip: {
         shared: true,
       },
@@ -255,7 +249,7 @@ function Month(props) {
       },
       series: [
         { name: '수위', data: waterData, type: 'areaspline', color: '#1E90FF' },
-        { name: '강우량', data: preData, color: '#87CEFA' },
+        { name: '강수량', data: preData, color: '#87CEFA', yAxis: 1 },
       ],
     });
 
@@ -364,7 +358,7 @@ function Month(props) {
 
       series: [
         { name: '수위', data: waterData, type: 'area' },
-        { name: '강우량', data: preData },
+        { name: '강수량', data: preData },
       ],
 
       exporting: {
@@ -423,7 +417,7 @@ function Month(props) {
 
       title: { text: '온도 및 습도' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -433,15 +427,24 @@ function Month(props) {
           },
           title: {
             text: '온도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '습도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 10,
           },
           labels: {
-            format: `${humData}%`,
             enabled: true,
           },
           opposite: true,
@@ -486,7 +489,7 @@ function Month(props) {
       },
       series: [
         { name: '온도', data: tempData, type: 'areaspline' },
-        { name: '습도', data: humData, color: '#82ca9d' },
+        { name: '습도', data: humData, color: '#82ca9d', yAxis: 1 },
       ],
     });
 
@@ -633,14 +636,18 @@ function Month(props) {
           <DatePicker
             locale={locale}
             placeholder={moment().format('YYYY년 MM월')}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) =>
+              setStartDate(moment(date).startOf('month').format('YYYY-MM-DD'))
+            }
             picker="month"
             style={{ width: 160 }}
           />
           <DatePicker
             locale={locale}
             placeholder={moment().format('YYYY년 MM월')}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date) =>
+              setEndDate(moment(date).endOf('month').format('YYYY-MM-DD'))
+            }
             picker="month"
             style={{ width: 160 }}
           />

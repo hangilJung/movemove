@@ -49,20 +49,13 @@ function FirstMonitorTable(props) {
     humData.push(data.humidity);
   });
   data.map((data) => {
-    createdDate.push(data.created_at);
-  });
-
-  const dateXaxis = createdDate.map((createdAt) => {
-    return moment(createdAt).format('HH시 mm분');
+    createdDate.push(data.created_at + '일');
   });
 
   const columns = [
     {
       title: '시간',
       dataIndex: 'created_at',
-      // render: (created_at) => {
-      //   return <p>{moment(created_at).format('LT')}</p>;
-      // },
       key: 'created_at',
       align: 'center',
       width: 250,
@@ -104,7 +97,6 @@ function FirstMonitorTable(props) {
       align: 'center',
     },
   ];
-  // console.log(props.data);
 
   return (
     <div

@@ -11,6 +11,7 @@ import Nav from './components/views/Nav/Nav';
 import HeaderMenu from './components/views/HeaderMenu/HeaderMenu';
 import Footer from './components/views/Footer/Footer';
 import Kiosk from './components/views/KioskPage/Kiosk';
+import Fair from './components/views/Fair/Fair';
 import NotFound from './components/views/NotFoundPage';
 
 // --------------------setting-----------------------
@@ -57,6 +58,13 @@ function App() {
     return (
       <div>
         <Login />
+      </div>
+    );
+
+  if (window.location.pathname === '/fair')
+    return (
+      <div>
+        <Fair />
       </div>
     );
 
@@ -193,7 +201,8 @@ function App() {
                     <PublicRoute exact path="/notfound" component={NotFound} />
 
                     {/* ---------------------kiosk */}
-                    <PublicRoute exact path="/kiosk" component={Kiosk} />
+                    <PrivateRoute exact path="/kiosk" component={Kiosk} />
+                    <PrivateRoute exact path="/fair" component={Fair} />
                   </Content>
 
                   {/* <Footer /> */}
@@ -205,9 +214,11 @@ function App() {
       </Layout>
       <BrowserRouter>
         <PublicRoute exact path="/kiosk" component={Kiosk} />
+        <PublicRoute exact path="/fair" component={Fair} />
       </BrowserRouter>
     </Suspense>
   );
 }
 
 export default App;
+

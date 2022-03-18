@@ -4,6 +4,7 @@ import { Menu, Button } from 'antd';
 function Nav() {
   if (window.location.pathname === '/login') return <div></div>;
   if (window.location.pathname === '/kiosk') return <div></div>;
+  // if (window.location.pathname === '/kioskfair') return <div></div>;
 
   return (
     <nav>

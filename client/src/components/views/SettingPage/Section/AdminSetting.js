@@ -48,11 +48,11 @@ function AdminSetting(props) {
   };
 
   const onSubmit = async () => {
-    const regPwd = /[^\s]+/;
+    const regPwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{1,10}$/;
 
     // 비밀번호 유효성 검사
     if (
-      // regPwd.test(password) &&
+      regPwd.test(password) &&
       regPwd.test(firstPassword) &&
       regPwd.test(secondPassword)
     ) {
@@ -84,7 +84,7 @@ function AdminSetting(props) {
           alert('기존 비밀번호가 다릅니다.');
         });
     } else {
-      alert('비밀번호를 확인해주세요.');
+      alert('유효하지 않은 비밀번호 입니다.');
     }
   };
 
@@ -110,7 +110,7 @@ function AdminSetting(props) {
           주세요.
         </p>
         <p style={{ fontSize: 15, color: '#727272' }}>
-          비밀번호는 공백을 제외한 10자리 이내로 입력해 주세요.
+          비밀번호는 공백을 제외한 영문+숫자 혼합 10자리 이내로 입력해 주세요.
         </p>
         <br />
         <div style={{ width: '60vh', margin: '0 auto' }}>

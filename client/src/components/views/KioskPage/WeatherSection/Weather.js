@@ -25,7 +25,7 @@ function Weather() {
           setWeatherData(res.data.body[0]);
         })
         .catch((err) => console.log(err));
-    }, 5000);
+    }, 60000);
   };
 
   if (weatherData.weatherName === '맑음') {

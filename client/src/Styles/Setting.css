@@ -28,12 +28,31 @@ ul {
 
 .card_input Input {
   border-radius: 15px;
-  background-color: 'red';
-  width: 230px;
+  width: 150px;
+}
+.submit-btn {
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-left: 5px;
+  border: 2px solid #ccc;
+  /* background-color: #7771f6; */
+  /* color: white; */
+  /* border: 0; */
 }
 .card_input_tag {
   margin-top: 20px;
 }
 span {
   font-size: 20px;
+}
+input {
+  height: 40px;
+  font-size: 15px;
+  border: 2px solid #ccc;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  opacity: 1 !important;
 }

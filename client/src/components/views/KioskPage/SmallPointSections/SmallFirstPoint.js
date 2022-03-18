@@ -25,6 +25,22 @@ function SmallFirstPoint() {
   };
 
   useEffect(() => {
+    axios
+      .post('/api/minute/', { body })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(moment().format('HH:mm:ss'), err));
+    axios
+      .post('/api/warningdata', { body })
+      .then((res) => {
+        setWarningData(res.data.body);
+      })
+      .catch(
+        axios.post('/api/warningdata', { body }).then((res) => {
+          setWarningData(res.data.body);
+        })
+      );
     intervalFunc();
   }, []);
 
@@ -37,15 +53,50 @@ function SmallFirstPoint() {
         })
         .catch((err) => console.log(err));
 
-      axios.post('/api/warningdata', { body }).then((res) => {
-        setWarningData(res.data.body[0]);
-      });
-    }, 5000);
+      axios
+        .post('/api/warningdata/', { body })
+        .then((res) => {
+          setWarningData(res.data.body);
+        })
+        .catch(
+          axios.post('/api/warningdata', { body }).then((res) => {
+            setWarningData(res.data.body);
+          })
+        );
+    }, 60000);
   };
+
+  let Attention = {};
+  let Caution = {};
+  let Boundary = {};
+  let Danger = {};
+
+  const getWarningData = data.map((item) => {
+    if (item.water_level_attention !== null) {
+      Attention = item.water_level_attention;
+    } else {
+      Attention = 0;
+    }
+    if (item.water_level_caution !== null) {
+      Caution = item.water_level_caution;
+    } else {
+      Caution = 0;
+    }
+    if (item.water_level_boundary !== null) {
+      Boundary = item.water_level_boundary;
+    } else {
+      Boundary = 0;
+    }
+    if (item.water_level_danger !== null) {
+      Danger = item.water_level_danger;
+    } else {
+      Danger = 0;
+    }
+  });
 
   let getWaterLevel = {};
 
-  if (data.water_level !== 'undefined') {
+  if (data.length > 0) {
     getWaterLevel = data[data.length - 1].water_level;
   } else {
     getWaterLevel = '-';
@@ -54,11 +105,6 @@ function SmallFirstPoint() {
   const placeName = body.placeId;
 
   const waterData = getWaterLevel;
-
-  let Attention = warningData.water_level_attention;
-  let Caution = warningData.water_level_caution;
-  let Boundary = warningData.water_level_boundary;
-  let Danger = warningData.water_level_danger;
 
   let cl = new CommonLib();
   let gl = new GaugeLib();

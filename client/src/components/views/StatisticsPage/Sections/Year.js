@@ -47,16 +47,13 @@ function Year(props) {
 
   const { Option } = Select;
 
-  const [startDate, setStartDate] = useState(moment().format('YYYY-01-01'));
-  const [endDate, setEndDate] = useState(
-    moment(
-      moment(startDate)
-        .add(1, 'years')
-        .format('YYYY' + '-01-01')
-    )
-      .subtract(1, 'days')
-      .format('YYYY-MM-DD')
+  const [startDate, setStartDate] = useState(
+    moment().startOf('year').format('YYYY-MM-DD')
   );
+  const [endDate, setEndDate] = useState(
+    moment().endOf('year').format('YYYY-MM-DD')
+  );
+
   const [createdAt, setCreatedAt] = useState(moment().format());
 
   useEffect(() => {
@@ -68,7 +65,7 @@ function Year(props) {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [placeId]);
 
   let waterData = [];
   let preData = [];
@@ -91,12 +88,6 @@ function Year(props) {
   data.map((data) => {
     createdDate.push(data.created_at);
   });
-
-  // const dateXaxis = createdDate.map((createdAt) => {
-  //   return createdAt + '시';
-  // });
-
-  // const dateXaxis = moment(createdDate).format('DD일 HH시');
 
   let body = {
     placeId: placeId,
@@ -141,8 +132,9 @@ function Year(props) {
     }
   });
 
-  // const placeNumber = placeId - 1;
-  // console.log('placeNumber: ' + placeNumber);
+  const dateXaxis = createdDate.map((createdAt) => {
+    return moment(createdAt).format('YYYY년 MM월');
+  });
 
   // 메인차트
   const WaterChart = (props) => {
@@ -185,7 +177,7 @@ function Year(props) {
       },
       title: { text: '수위 및 강수량' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -193,23 +185,25 @@ function Year(props) {
           labels: {
             enabled: true,
           },
-          // plotLines: [
-          //   {
-          //     color: '#FF0000',
-          //     width: 2,
-          //     value: dangerLevel,
-          //   },
-          // ],
           title: {
             text: '수위',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '강수량',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 0,
           },
-
           labels: {
             enabled: true,
           },
@@ -255,7 +249,7 @@ function Year(props) {
       },
       series: [
         { name: '수위', data: waterData, type: 'areaspline', color: '#1E90FF' },
-        { name: '강우량', data: preData, color: '#87CEFA' },
+        { name: '강수량', data: preData, color: '#87CEFA', yAxis: 1 },
       ],
     });
 
@@ -364,7 +358,7 @@ function Year(props) {
 
       series: [
         { name: '수위', data: waterData, type: 'area' },
-        { name: '강우량', data: preData },
+        { name: '강수량', data: preData },
       ],
 
       exporting: {
@@ -423,7 +417,7 @@ function Year(props) {
 
       title: { text: '온도 및 습도' },
       xAxis: {
-        categories: createdDate,
+        categories: dateXaxis,
         tickInterval: 1,
       },
       yAxis: [
@@ -433,15 +427,24 @@ function Year(props) {
           },
           title: {
             text: '온도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: -10,
           },
           showFirstLabel: true,
         },
         {
           title: {
             text: '습도',
+            align: 'high',
+            offset: 0,
+            rotation: 0,
+            y: -10,
+            x: 10,
           },
           labels: {
-            format: `${humData}%`,
             enabled: true,
           },
           opposite: true,
@@ -486,7 +489,7 @@ function Year(props) {
       },
       series: [
         { name: '온도', data: tempData, type: 'areaspline' },
-        { name: '습도', data: humData, color: '#82ca9d' },
+        { name: '습도', data: humData, color: '#82ca9d', yAxis: 1 },
       ],
     });
 
@@ -633,14 +636,18 @@ function Year(props) {
           <DatePicker
             locale={locale}
             placeholder={moment().format('YYYY년')}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) =>
+              setStartDate(moment(date).startOf('year').format('YYYY-MM-DD'))
+            }
             picker="year"
             style={{ width: 160 }}
           />
           <DatePicker
             locale={locale}
             placeholder={moment().format('YYYY년')}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date) =>
+              setEndDate(moment(date).endOf('year').format('YYYY-MM-DD'))
+            }
             picker="year"
             style={{ width: 160 }}
           />

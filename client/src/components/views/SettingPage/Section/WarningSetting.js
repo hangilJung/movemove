@@ -11,7 +11,7 @@ import {
   Typography,
   Form,
   Card,
-  Input,
+  input,
   message,
 } from 'antd';
 import { withRouter } from 'react-router';
@@ -52,11 +52,15 @@ function Warning(props) {
 
   useEffect(() => {
     axios
-      .post('/api/warningdata/')
+      .post('/api/warningdata')
       .then((res) => {
         setData(res.data.body);
       })
-      .catch((err) => console.log(err));
+      .catch(
+        axios.post('/api/warningdata').then((res) => {
+          setData(res.data.body);
+        })
+      );
   }, []);
 
   let firstAttention = [];
@@ -105,13 +109,27 @@ function Warning(props) {
 
   const { Title } = Typography;
 
+  function inRange(x, min, max) {
+    return x >= min && x <= max;
+  }
+
+  const onRemove = () => {
+    alert('유효한 값이 아닙니다.');
+  };
+
   const oneAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        if (e.target.value >= 0 && e.target.value <= firstCaution[0]) {
-          data.water_level_attention = e.target.value;
-        } else {
-          alert('정상적인 수치를 입력해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, 0, firstCaution[0]) ||
+            inRange(e.target.value, 0, data.water_level_caution)
+          ) {
+            data.water_level_attention = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = firstAttention;
+          }
         }
       }
     });
@@ -120,35 +138,64 @@ function Warning(props) {
   const oneCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        if (
-          0 < e.target.value &&
-          e.target.value >= data.water_level_attention
-        ) {
-          data.water_level_caution = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, firstAttention[0], firstBoundary[0]) ||
+            inRange(
+              e.target.value,
+              data.water_level_attention,
+              data.water_level_boundary
+            )
+          ) {
+            data.water_level_caution = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = firstCaution;
+          }
         }
       }
     });
   };
+
   const oneBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
-          data.water_level_boundary = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, firstCaution[0], firstDanger[0]) ||
+            inRange(
+              e.target.value,
+              data.water_level_caution,
+              data.water_level_danger
+            )
+          ) {
+            data.water_level_boundary = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = firstBoundary;
+          }
         }
       }
     });
   };
+
   const oneDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 1) {
-        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
-          data.water_level_danger = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, firstBoundary[0], 99.9) ||
+            inRange(
+              e.target.value,
+              firstAttention[0],
+              data.water_level_attention
+            )
+          ) {
+            data.water_level_danger = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = firstDanger;
+          }
         }
       }
     });
@@ -157,46 +204,78 @@ function Warning(props) {
   const twoAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        if (e.target.value >= 0 && e.target.value <= secondCaution[0]) {
-          data.water_level_attention = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, 0, secondCaution[0]) ||
+            inRange(e.target.value, 0, data.water_level_caution)
+          ) {
+            data.water_level_attention = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = secondAttention;
+          }
         }
       }
     });
   };
+
   const twoCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        if (
-          0 < e.target.value &&
-          e.target.value >= data.water_level_attention
-        ) {
-          data.water_level_caution = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, secondAttention[0], secondBoundary[0]) ||
+            inRange(
+              e.target.value,
+              secondBoundary[0],
+              data.water_level_boundary
+            )
+          ) {
+            data.water_level_caution = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = secondCaution;
+          }
         }
       }
     });
   };
+
   const twoBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
-          data.water_level_boundary = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, secondCaution[0], secondDanger[0]) ||
+            inRange(e.target.value, secondDanger[0], data.water_level_danger)
+          ) {
+            data.water_level_boundary = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = secondBoundary;
+          }
         }
       }
     });
   };
+
   const twoDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 2) {
-        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
-          data.water_level_danger = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, secondBoundary[0], 99.9) ||
+            inRange(
+              e.target.value,
+              secondAttention[0],
+              data.water_level_attention
+            )
+          ) {
+            data.water_level_danger = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = secondDanger;
+          }
         }
       }
     });
@@ -205,46 +284,74 @@ function Warning(props) {
   const threeAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        if (e.target.value >= 0 && e.target.value <= thirdCaution[0]) {
-          data.water_level_attention = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, 0, thirdCaution[0]) ||
+            inRange(e.target.value, 0, data.water_level_caution)
+          ) {
+            data.water_level_attention = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = thirdAttention;
+          }
         }
       }
     });
   };
+
   const threeCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        if (
-          0 < e.target.value &&
-          e.target.value >= data.water_level_attention
-        ) {
-          data.water_level_caution = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, thirdAttention[0], thirdBoundary[0]) ||
+            inRange(e.target.value, thirdBoundary[0], data.water_level_boundary)
+          ) {
+            data.water_level_caution = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = thirdCaution;
+          }
         }
       }
     });
   };
+
   const threeBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
-          data.water_level_boundary = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, thirdCaution[0], thirdDanger[0]) ||
+            inRange(e.target.value, thirdDanger[0], data.water_level_danger)
+          ) {
+            data.water_level_boundary = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = thirdBoundary;
+          }
         }
       }
     });
   };
+
   const threeDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 3) {
-        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
-          data.water_level_danger = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, thirdBoundary[0], 99.9) ||
+            inRange(
+              e.target.value,
+              thirdAttention[0],
+              data.water_level_attention
+            )
+          ) {
+            data.water_level_danger = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = thirdDanger;
+          }
         }
       }
     });
@@ -253,10 +360,16 @@ function Warning(props) {
   const fourAttention = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        if (e.target.value >= 0 && e.target.value <= fourthCaution[0]) {
-          data.water_level_attention = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, 0, fourthCaution[0]) ||
+            inRange(e.target.value, 0, data.water_level_caution)
+          ) {
+            data.water_level_attention = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = fourthAttention;
+          }
         }
       }
     });
@@ -265,13 +378,20 @@ function Warning(props) {
   const fourCaution = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        if (
-          0 < e.target.value &&
-          e.target.value >= data.water_level_attention
-        ) {
-          data.water_level_caution = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, fourthAttention[0], fourthBoundary[0]) ||
+            inRange(
+              e.target.value,
+              fourthBoundary[0],
+              data.water_level_boundary
+            )
+          ) {
+            data.water_level_caution = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = fourthCaution;
+          }
         }
       }
     });
@@ -280,10 +400,16 @@ function Warning(props) {
   const fourBoundary = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        if (0 < e.target.value && e.target.value >= data.water_level_caution) {
-          data.water_level_boundary = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, fourthCaution[0], fourthDanger[0]) ||
+            inRange(e.target.value, fourthDanger[0], data.water_level_danger)
+          ) {
+            data.water_level_boundary = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = fourthBoundary;
+          }
         }
       }
     });
@@ -292,21 +418,36 @@ function Warning(props) {
   const fourDanger = (e) => {
     setup.map((data) => {
       if (data.place_id === 4) {
-        if (0 < e.target.value && e.target.value >= data.water_level_boundary) {
-          data.water_level_danger = e.target.value;
-        } else {
-          alert('수치를 확인해 주세요.');
+        if (e.target.value !== 'undefined') {
+          if (
+            inRange(e.target.value, fourthBoundary[0], 99.9) ||
+            inRange(
+              e.target.value,
+              fourthAttention[0],
+              data.water_level_attention
+            )
+          ) {
+            data.water_level_danger = e.target.value;
+          } else {
+            onRemove();
+            e.target.value = fourthDanger;
+          }
         }
       }
     });
   };
 
+  const keyAction = (e) => {
+    e.target.value = '';
+  };
+
+  //
   const onSubmit = async (e) => {
     e.preventDefault();
 
     await axios
       .post('/api/warning', setup)
-      .then(alert('변경사항이 적용되었습니다.'), props.history.push('/setting'))
+      .then(alert('변경사항이 적용되었습니다.'), window.location.reload())
       .catch((err) => console.log(err));
   };
 
@@ -341,45 +482,69 @@ function Warning(props) {
                 <div className="card_input">
                   <div className="card_input_tag">
                     <span>관심: </span>
-                    <Input
+                    <input
+                      className="first_attention"
                       type="number"
                       onChange={oneAttention}
-                      min={0}
                       size="large"
-                      placeholder={firstAttention}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={firstAttention}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>주의: </span>
-                    <Input
+                    <input
                       type="number"
                       onChange={oneCaution}
                       size="large"
-                      min={0}
-                      placeholder={firstCaution}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={firstCaution}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>경계: </span>
-                    <Input
+                    <input
                       type="number"
-                      min={0}
                       onChange={oneBoundary}
                       size="large"
-                      placeholder={firstBoundary}
-                      maxLength={2}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={firstBoundary}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>심각: </span>
-                    <Input
+                    <input
                       type="number"
-                      min={0}
                       onChange={oneDanger}
                       size="large"
-                      placeholder={firstDanger}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={firstDanger}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                 </div>
               </Card>
@@ -398,47 +563,75 @@ function Warning(props) {
                 <div className="card_input">
                   <div className="card_input_tag">
                     <span>관심: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={twoAttention}
                       size="large"
-                      placeholder={secondAttention}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={secondAttention}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>주의: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={twoCaution}
                       size="large"
-                      placeholder={secondCaution}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={secondCaution}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>경계: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={twoBoundary}
                       size="large"
-                      placeholder={secondBoundary}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={secondBoundary}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>심각: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={twoDanger}
                       size="large"
-                      placeholder={secondDanger}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={secondDanger}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                 </div>
               </Card>
@@ -457,47 +650,75 @@ function Warning(props) {
                 <div className="card_input">
                   <div className="card_input_tag">
                     <span>관심: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={threeAttention}
                       size="large"
-                      placeholder={thirdAttention}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={thirdAttention}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>주의: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={threeCaution}
                       size="large"
-                      placeholder={thirdCaution}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={thirdCaution}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>경계: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={threeBoundary}
                       size="large"
-                      placeholder={thirdBoundary}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={thirdBoundary}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>심각: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={threeDanger}
                       size="large"
-                      placeholder={thirdDanger}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={thirdDanger}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                 </div>
               </Card>
@@ -516,47 +737,75 @@ function Warning(props) {
                 <div className="card_input">
                   <div className="card_input_tag">
                     <span>관심: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={fourAttention}
                       size="large"
-                      placeholder={fourthAttention}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={fourthAttention}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>주의: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={fourCaution}
                       size="large"
-                      placeholder={fourthCaution}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={fourthCaution}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>경계: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={fourBoundary}
                       size="large"
-                      placeholder={fourthBoundary}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={fourthBoundary}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                   <div className="card_input_tag">
                     <span>심각: </span>
-                    <Input
+                    <input
                       type="number"
                       min="0"
                       onChange={fourDanger}
                       size="large"
-                      placeholder={fourthDanger}
+                      step={0.1}
+                      onKeyDown={keyAction}
+                      onKeyPress={keyAction}
+                      onKeyUp={keyAction}
+                      defaultValue={fourthDanger}
                       maxLength={2}
                     />
+                    <button onClick={onSubmit} className="submit-btn">
+                      변경
+                    </button>
                   </div>
                 </div>
               </Card>
@@ -570,23 +819,9 @@ function Warning(props) {
               margin: '50px 0 -10px 0',
             }}
           >
-            위험 수위는 0~99.9까지 설정할 수 있습니다.
+            위험 수위는 0~99.9까지 설정할 수 있습니다. <br />
+            위험 수치는 화살표로 입력해 주세요.
           </p>
-          <Button
-            onClick={onSubmit}
-            size="large"
-            shape="round"
-            style={{
-              backgroundColor: '#7771F6',
-              color: 'white',
-              marginTop: 30,
-              width: 200,
-              height: 50,
-              fontSize: 20,
-            }}
-          >
-            변경
-          </Button>
         </div>
       </Form>
     </div>

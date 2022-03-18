@@ -42,6 +42,7 @@ function DailyTable(props) {
       .post('/api/daily', { body })
       .then((res) => {
         setData(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };

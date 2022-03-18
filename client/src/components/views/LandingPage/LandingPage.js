@@ -5,15 +5,12 @@ import { withRouter } from 'react-router';
 
 import axios from 'axios';
 import moment from 'moment';
-import { Radio, Typography, Row, Col, Card } from 'antd';
+import { Typography, Row, Col, Card } from 'antd';
 import accessToken from '../../../lib/accessToken';
 import FirstPoint from './Sections/FirstPoint';
 import SecondPoint from './Sections/SecondPoint';
 import ThirdPoint from './Sections/ThirdPoint';
 import FourthPoint from './Sections/FourthPoint';
-import { GiRadarSweep } from 'react-icons/gi';
-import { ImWarning } from 'react-icons/im';
-import { FcSettings } from 'react-icons/fc';
 
 function DailyStatisticsPage(props) {
   const { Title } = Typography;
@@ -41,26 +38,6 @@ function DailyStatisticsPage(props) {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  // useEffect(() => {
-  //   weatherFunc();
-  // }, []);
-
-  const onSelect = (e) => {
-    body = {
-      placeId: e.target.value,
-      startDate: startDate,
-      endDate: endDate,
-      createdAt: createdAt,
-    };
-
-    axios
-      .post('/api/daily', { body })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <div

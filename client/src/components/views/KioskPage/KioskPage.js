@@ -24,7 +24,7 @@ function KioskPage() {
   useEffect(() => {
     timer = setInterval(() => {
       setTime(moment());
-    }, 5000);
+    }, 60000);
   }, []);
 
   return (

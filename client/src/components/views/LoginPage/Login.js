@@ -24,7 +24,6 @@ function Login() {
   const onLogin = async () => {
     const regPwd = /[^\s]+/;
     if (regPwd.test(password)) {
-      console.log('로그인테스트');
       await axios
         .post('/api/login', {
           id: id,

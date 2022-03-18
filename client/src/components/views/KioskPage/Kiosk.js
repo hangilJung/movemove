@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import accessToken from '../../../lib/accessToken';
 import axios from 'axios';
 import KioskPage from './KioskPage';
 import Videos from './Videos';
 import Snowfall from 'react-snowfall';
 
-function Kiosk() {
+function Kiosk(props) {
   let weatherEffect = null;
 
   const [weatherData, setWeatherData] = useState({});
 
   useEffect(() => {
+
+    accessToken(props);
+
     axios.post('/api/weather/header').then((res) => {
       setWeatherData(res.data.body[0]);
     });
-  }, []);
-
-  useEffect(() => {
+  
     weatherFunc();
   }, []);
 
@@ -27,7 +29,7 @@ function Kiosk() {
           setWeatherData(res.data.body[0]);
         })
         .catch((err) => console.log(err));
-    }, 5000);
+    }, 60000);
   };
 
   if (weatherData.weatherName === '비/눈' || weatherData.weatherName === '눈') {
@@ -49,7 +51,7 @@ function Kiosk() {
       }}
     >
       {weatherEffect}
-      <Snowfall snowflakeCount={200} style={{ zIndex: 9999, width: 530 }} />
+      {/* <Snowfall snowflakeCount={200} style={{ zIndex: 9999, width: 530 }} /> */}
 
       {/* <ReactRain numDrops={500} style={{ width: 530, zIndex: 9999 }} /> */}
       <div
@@ -72,7 +74,7 @@ function Kiosk() {
           backgroundColor: 'black',
         }}
       >
-        {/* <Videos /> */}
+        <Videos />
       </div>
     </div>
   );

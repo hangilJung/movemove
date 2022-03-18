@@ -123,7 +123,6 @@ function MonthTable(props) {
       align: 'center',
     },
   ];
-  // console.log(props.data);
 
   return (
     <div

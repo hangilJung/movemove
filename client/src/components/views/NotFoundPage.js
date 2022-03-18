@@ -12,7 +12,11 @@ function NotFoundPage(props) {
         title="404"
         subTitle="잘못된 접근 경로입니다."
         extra={
-          <Button type="primary" onClick={backPage}>
+          <Button
+            type="primary"
+            onClick={backPage}
+            style={{ borderRadius: 15, width: 130, height: 40 }}
+          >
             이전화면
           </Button>
         }

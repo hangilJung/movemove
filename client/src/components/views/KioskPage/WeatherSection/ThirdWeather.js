@@ -36,7 +36,13 @@ function FirstWeather() {
   let wl = new WeatherLib();
 
   const [weatherData, setWeatherData] = useState({});
-  const preData = data[data.length - 1].precipitation;
+    let preData = {};
+
+  if (data.length > 0) {
+    preData = data[data.length - 1].precipitation;
+  } else {
+    preData = '-';
+  }
   const windData = weatherData.wsd;
 
   return wl.getWeather(preData, windData);
